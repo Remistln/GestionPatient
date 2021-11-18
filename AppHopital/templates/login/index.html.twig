@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}Login Page{% endblock %}
 
+
+{% block stylesheets %} {% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container">
+    <h1 class="display-6">LONDON</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <form >
+        <div class="form-group">
+            <label for="InputUsernameLogin">Nom d'utilisateur : </label>
+            <input type="text" class="form-control" id="InputUsernameLogin" aria-describedby="username" placeholder="Username">
+            <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+            <label for="InputPasswordLogin">Mot de passe : </label>
+            <input type="password" class="form-control" id="InputPasswordLogin" placeholder="Password">
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/src/Controller/LoginController.php'|file_link(0) }}">src/Controller/LoginController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/templates/login/index.html.twig'|file_link(0) }}">templates/login/index.html.twig</a></code></li>
-    </ul>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+
 </div>
 {% endblock %}
