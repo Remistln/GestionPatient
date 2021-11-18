@@ -27,6 +27,12 @@ class Service
         return $this->id;
     }
 
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getLabel(): ?string
     {
         return $this->label;
