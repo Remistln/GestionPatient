@@ -7,7 +7,7 @@ use App\Entity\Infirmier;
 
 class TableauInfirmier
 {
-    public function GetInfirmier()
+    public function GetInfirmiers()
     {
         $appel = file_get_contents("api_get");
         $appel = json_decode($appel);

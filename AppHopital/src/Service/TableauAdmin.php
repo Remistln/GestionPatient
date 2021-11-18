@@ -7,7 +7,7 @@ use App\Entity\Admin;
 
 class TableauAdmin
 {
-    public function GetAdmin()
+    public function GetAdmins()
     {
         $appel = file_get_contents("api_get");
         $appel = json_decode($appel);
