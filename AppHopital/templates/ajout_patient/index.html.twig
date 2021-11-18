@@ -10,11 +10,12 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
+        {{ form_start(formPatient) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/src/Controller/AjoutPatientController.php'|file_link(0) }}">src/Controller/AjoutPatientController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/templates/ajout_patient/index.html.twig'|file_link(0) }}">templates/ajout_patient/index.html.twig</a></code></li>
-    </ul>
+        {{ form_widget(formPatient) }}
+
+        <button type="submit" >Ajouter</button>
+
+        {{ form_end(formPatient) }}
 </div>
 {% endblock %}
