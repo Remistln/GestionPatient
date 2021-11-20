@@ -15,4 +15,10 @@ class AccueilInfirmierController extends AbstractController
             'controller_name' => 'AccueilInfirmierController',
         ]);
     }
+
+    #[Route('/', name: 'home')]
+    public function home()
+    {
+        return $this->render('login/index.html.twig');
+    }
 }
