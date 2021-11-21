@@ -34,13 +34,15 @@ class AjoutPatientController extends AbstractController
                     ->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             
         }
         dump($patient);
 
         return $this->render('ajout_patient/index.html.twig', [
-            'controller_name' => 'AjoutPatientController', 'formPatient' => $form->createView()
+            'controller_name' => 'AjoutPatientController',
+             'formPatient' => $form->createView(),
         ]);
     }
 }

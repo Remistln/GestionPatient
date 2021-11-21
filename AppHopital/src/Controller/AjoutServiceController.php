@@ -2,17 +2,37 @@
 
 namespace App\Controller;
 
+use App\Entity\Service;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class AjoutServiceController extends AbstractController
 {
     #[Route('/ajout/service', name: 'ajout_service')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $service = new Service();
+
+        $form= $this->createFormBuilder($service)
+                    ->add('label')
+
+                    ->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+
+        }
+        dump($service);
+
         return $this->render('ajout_service/index.html.twig', [
             'controller_name' => 'AjoutServiceController',
+            'formService' => $form->createView(),
         ]);
     }
 }

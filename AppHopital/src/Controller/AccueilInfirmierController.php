@@ -13,12 +13,9 @@ class AccueilInfirmierController extends AbstractController
     {
         return $this->render('accueil_infirmier/index.html.twig', [
             'controller_name' => 'AccueilInfirmierController',
+            'title'=> 'Accueil',
         ]);
     }
 
-    #[Route('/', name: 'home')]
-    public function home()
-    {
-        return $this->render('login/index.html.twig');
-    }
+
 }

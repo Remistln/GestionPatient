@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Acceuil{% endblock %}
+{% block title %}
 
-{% block stylesheets %}{% endblock %}
+    {{ title }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/templates/accueil_infirmier/accueil_infirmier.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+{% endblock %}
 
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <button type="button" class="btn btn-secondary">Retour</button>
+            <button onclick="window.location.href = '/';" type="button" class="btn btn-secondary">Retour</button>
         </div>
         <div class="col-md align-self-center"><h2>Acceuil</h2></div>
 
@@ -18,14 +25,14 @@
     <p><h4> Listes des patients </h4></p>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-        <table class="table table-bordered table-striped mb-0">
+        <table width="100%" class="table-primary">
             <thead>
             <tr>
                 <th scope="col">Nom du patient</th>
                 <th scope="col"><p>Options</p></th>
                 <th scope="col">
                     <div class="right-text-pad">
-                        <button type="button" class="btn btn-secondary">Ajouter</button>
+                        <button onclick="window.location.href = '/ajout/patient';" type="button" class="btn btn-secondary">Ajouter</button>
                     </div>
                 </th>
 
@@ -36,8 +43,8 @@
                 <th scope="row">Mark</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
+                    <button  type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
             </tr>
@@ -45,7 +52,7 @@
                 <th scope="row">Gaetan</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
                     <button type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
@@ -54,7 +61,7 @@
                 <th scope="row">Rémi</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
                     <button type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
@@ -63,7 +70,7 @@
                 <th scope="row">Aya</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
                     <button type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
@@ -72,7 +79,7 @@
                 <th scope="row">Mia</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
                     <button type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
@@ -81,8 +88,7 @@
                 <th scope="row">Sami</th>
 
                 <td>
-                    <button type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
+                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>                    <button type="button" class="btn btn-secondary">Supprimer</button>
                 </td>
 
             </tr>
@@ -97,14 +103,14 @@
         <p><h4> Listes des services</h4></p>
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-            <table class="table table-bordered table-striped mb-0">
+            <table width="100%" class="table-primary">
                 <thead>
                 <tr>
-                    <th scope="col">Service</th>
+                    <th scope="col">Nom du service</th>
                     <th scope="col"><p>Options</p></th>
                     <th scope="col">
                         <div class="right-text-pad">
-                            <button type="button" class="btn btn-secondary">Ajouter</button>
+                            <button onclick="window.location.href = '/ajout/service';" type="button" class="btn btn-secondary">Ajouter</button>
                         </div>
                     </th>
 
@@ -115,8 +121,7 @@
                     <th scope="row">Mark</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
+                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
                 </tr>
@@ -124,8 +129,7 @@
                     <th scope="row">Gaetan</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
+                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
                 </tr>
@@ -133,8 +137,7 @@
                     <th scope="row">Rémi</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
+                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
                 </tr>
@@ -142,7 +145,7 @@
                     <th scope="row">Aya</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
+                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
                         <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
@@ -151,7 +154,7 @@
                     <th scope="row">Mia</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
+                        <button onclick="window.location.href='/modification/service';" type="button" class="btn btn-secondary">Renommer</button>
                         <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
@@ -160,7 +163,7 @@
                     <th scope="row">Sami</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Renommer</button>
+                        <button onclick="window.location.href='/modification/service';" type="button" class="btn btn-secondary">Renommer</button>
                         <button type="button" class="btn btn-secondary">Supprimer</button>
                     </td>
 
@@ -174,16 +177,16 @@
 
     <div class="container">
         <p><h4> Listes des lits </h4></p>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-            <table class="table table-bordered table-striped mb-0">
+
+            <table width="100%" class="table-primary table-wrapper-scroll-y my-custom-scrollbar">
                 <thead>
                 <tr>
-                    <th scope="col">Lit</th>
+                    <th scope="col">Numéro du lit</th>
                     <th scope="col"><p>Options</p></th>
                     <th scope="col">
                         <div class="right-text-pad">
-                            <button type="button" class="btn btn-secondary">Ajouter</button>
+                            <button onclick="window.location.href = '/ajout/lit';" type="button" class="btn btn-secondary">Ajouter</button>
                         </div>
                     </th>
 
@@ -194,7 +197,7 @@
                     <th scope="row">Mark</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -203,7 +206,7 @@
                     <th scope="row">Gaetan</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -212,7 +215,7 @@
                     <th scope="row">Rémi</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -221,7 +224,7 @@
                     <th scope="row">Aya</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -230,7 +233,7 @@
                     <th scope="row">Mia</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -239,7 +242,7 @@
                     <th scope="row">Sami</th>
 
                     <td>
-                        <button type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
                         <button type="button" class="btn btn-secondary">Etat</button>
                     </td>
 
@@ -249,7 +252,7 @@
 
         </div>
 
-    </div>
+
 
 
 
