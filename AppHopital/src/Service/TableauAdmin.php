@@ -10,9 +10,10 @@ class TableauAdmin
     public function GetAdmins()
     {
         $appel = file_get_contents("http://localhost:8000/api/admins");
-        $appel = json_decode($appel);
+        $appel = json_decode($appel, true);
         $tableau = [];
-        foreach($appel as $adminTableau)
+        $admins = $appel["hydra:member"];
+        foreach($admins as $adminTableau)
         {
             $service = (new Admin())
                 ->setId($adminTableau['id'])

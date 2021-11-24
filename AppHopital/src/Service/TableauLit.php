@@ -10,9 +10,12 @@ class TableauLit
     public function GetLits()
     {
         $appel = file_get_contents("http://localhost:8000/api/lits");
-        $appel = json_decode($appel);
+        $appel = json_decode($appel, true);
+
         $tableau = [];
-        foreach($appel as $litTableau)
+        $lits = $appel["hydra:member"];
+
+        foreach($lits as $litTableau)
         {
             $lit = (new Lit())
                 ->setId($litTableau['id'])

@@ -10,9 +10,10 @@ class TableauService
     public function GetServices()
     {
         $appel = file_get_contents("http://localhost:8000/api/services");
-        $appel = json_decode($appel);
+        $appel = json_decode($appel,true);
         $tableau = [];
-        foreach($appel as $serviceTableau)
+        $service = $appel["hydra:member"];
+        foreach($service as $serviceTableau)
         {
             $service = (new Service())
                 ->setId($serviceTableau['id'])

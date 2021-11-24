@@ -10,9 +10,12 @@ class TableauInfirmier
     public function GetInfirmiers()
     {
         $appel = file_get_contents("http://localhost:8000/api/infirmiers");
-        $appel = json_decode($appel);
+        $appel = json_decode($appel, true);
         $tableau = [];
-        foreach($appel as $infirmierTableau)
+
+        $infirmiers = $appel["hydra:member"];
+
+        foreach($infirmiers as $infirmierTableau)
         {
             $service = (new Infirmier())
                 ->setId($infirmierTableau['id'])

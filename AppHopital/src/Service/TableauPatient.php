@@ -11,9 +11,10 @@ class TableauPatient
     {
         $appel = file_get_contents("http://localhost:8000/api/patients");
         $appel = json_decode($appel,true);
-        dump($appel);
+
         $tableau = [];
         $patients = $appel["hydra:member"];
+        
         foreach($patients as $patientTableau)
         {
             $temps = $patientTableau['dateNaissance'];
