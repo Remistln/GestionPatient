@@ -11,6 +11,7 @@ class TableauPatient
     {
         $appel = file_get_contents("http://localhost:8000/api/patients");
         $appel = json_decode($appel);
+        dump($appel);
         $tableau = [];
         foreach($appel as $patientTableau)
         {
