@@ -9,7 +9,7 @@ class TableauInfirmier
 {
     public function GetInfirmiers()
     {
-        $appel = file_get_contents("api_get");
+        $appel = file_get_contents("http://localhost:8000/api/infirmiers");
         $appel = json_decode($appel);
         $tableau = [];
         foreach($appel as $infirmierTableau)

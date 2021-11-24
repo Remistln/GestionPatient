@@ -9,7 +9,7 @@ class TableauAdmin
 {
     public function GetAdmins()
     {
-        $appel = file_get_contents("api_get");
+        $appel = file_get_contents("http://localhost:8000/api/admins");
         $appel = json_decode($appel);
         $tableau = [];
         foreach($appel as $adminTableau)
@@ -26,4 +26,5 @@ class TableauAdmin
         
         return $tableau;
     }
+
 }

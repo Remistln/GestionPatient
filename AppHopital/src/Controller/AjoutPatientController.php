@@ -5,24 +5,22 @@ namespace App\Controller;
 use App\Entity\Patient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class AjoutPatientController extends AbstractController
 {
     #[Route('/ajout/patient', name: 'ajout_patient')]
-    public function index(Request $request): Response
+    public function index(): Response
     {
         $patient = new Patient();
-
+        
         $form = $this->createFormBuilder($patient)
+                    ->setAction("http://localhost:8080/post/patient")
                     ->add('nom')
                     ->add('prenom')
                     ->add('dateNaissance', BirthdayType::class, [
-                        'format' => 'dd-MM-yyyy', 'attr' => [
+                        'format' => 'yyyy-MM-dd', 'attr' => [
                             'required' => false
                         ]
                     ])
@@ -33,12 +31,6 @@ class AjoutPatientController extends AbstractController
                     
                     ->getForm();
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            
-        }
-        dump($patient);
 
         return $this->render('ajout_patient/index.html.twig', [
             'controller_name' => 'AjoutPatientController',

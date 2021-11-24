@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostVersApiController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/src/Controller/PostVersApiController.php'|file_link(0) }}">src/Controller/PostVersApiController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/templates/post_vers_api/index.html.twig'|file_link(0) }}">templates/post_vers_api/index.html.twig</a></code></li>
+    </ul>
+</div>
+<table>
+{% for contenu in request %}
+    <td>{{contenu}}</td>
+{% endfor %}
+</table>
+{% endblock %}
