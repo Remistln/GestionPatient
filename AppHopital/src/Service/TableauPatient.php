@@ -10,10 +10,11 @@ class TableauPatient
     public function GetPatients()
     {
         $appel = file_get_contents("http://localhost:8000/api/patients");
-        $appel = json_decode($appel);
+        $appel = json_decode($appel,true);
         dump($appel);
         $tableau = [];
-        foreach($appel as $patientTableau)
+        $patients = $appel["hydra:member"];
+        foreach($patients as $patientTableau)
         {
             $patient = (new Patient())
                 ->setId($patientTableau['id'])
