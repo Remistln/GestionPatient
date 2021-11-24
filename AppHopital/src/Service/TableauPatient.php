@@ -16,17 +16,29 @@ class TableauPatient
         $patients = $appel["hydra:member"];
         foreach($patients as $patientTableau)
         {
+            $temps = $patientTableau['dateNaissance'];
+            $temps = substr($temps, 0, 10);
+            $date = \DateTime::createFromFormat("Y-m-d", $temps);
+
+            $lit = $patientTableau['lit'];
+            $lit = substr($lit,-1,1);
+            $lit = intval($lit);
+
+            $service = $patientTableau['service'];
+            $service = substr($service,-1,1);
+            $service = intval($service);
+
             $patient = (new Patient())
                 ->setId($patientTableau['id'])
                 ->setNom($patientTableau['nom'])
                 ->setPrenom($patientTableau['prenom'])
-                ->setDateNaissance($patientTableau['dateNaissance'])
+                ->setDateNaissance($date)
                 ->setLieuNaissance($patientTableau['lieuNaissance'])
                 ->setDescription($patientTableau['description'])
-                ->setLit($patientTableau['lit'])
+                ->setLit($lit)
                 ->setNumeroSS($patientTableau['numeroSS'])
                 ->setProbleme($patientTableau['probleme'])
-                ->setService($patientTableau['service'])
+                ->setService($service)
                 ;
             array_push($tableau, $patient);
         }
