@@ -28,7 +28,24 @@ class AjoutLitController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
+            $data = $request->request->get('form');
 
+            $data["numero"] = intval($data["numero"]);
+            $data["chambre"] = intval($data["chambre"]); 
+            $data["longueur"] = floatval($data["longueur"]); 
+            $data["largeur"] = floatval($data["largeur"]); 
+            $data["etat"] = boolval($data["etat"]); 
+
+            $donneesLit = json_encode($data,true);
+
+            $requetteLit = curl_init('http://localhost:8000/api/lits');
+
+            curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneesLit);
+            curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
+
+            $retourApi = curl_exec($requetteLit);
+            curl_close($requetteLit);
         }
         dump($lit);
 
