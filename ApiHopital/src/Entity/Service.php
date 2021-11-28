@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource]
 class Service
 {
+    #[Groups("patient")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,6 +21,7 @@ class Service
      */
     private $id;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
