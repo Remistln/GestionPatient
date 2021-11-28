@@ -39,10 +39,10 @@ class AjoutPatientController extends AbstractController
             $data = $request->request->get('form');
             $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
             $data["numeroSS"] = intval($data["numeroSS"]); 
-            dump($data);
+            
             
             $donneesPatient = json_encode($data,true);
-            dump($donneesPatient);
+            
             
             $requettePatient = curl_init('http://localhost:8000/api/patients');
 
