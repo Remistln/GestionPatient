@@ -67,7 +67,7 @@ class Patient
 
     #[Groups("patient")]
     /**
-     * @ORM\OneToOne(targetEntity=Service::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Service::class, cascade={"persist", "remove"})
      */
     private $service;
 

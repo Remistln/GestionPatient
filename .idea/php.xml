@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/jms/serializer-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/jms/serializer" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/fig/link-util" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/friendsofphp/proxy-manager-lts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/api-platform/core" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/composer" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/webonyx/graphql-php" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/security-core" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/proxy-manager-bridge" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/password-hasher" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/event-dispatcher-contracts" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/ApiHopital/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+</project>
