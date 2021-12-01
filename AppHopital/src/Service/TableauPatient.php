@@ -22,8 +22,7 @@ class TableauPatient
             $date = \DateTime::createFromFormat("Y-m-d", $temps);
             
             $lit = $patientTableau['lit'];
-            $lit = substr($lit,-1,1);
-            $lit = intval($lit);
+            $lit = intval($lit['id']);
             
             $service = $patientTableau['service'];
             $service = intval($service['id']);
