@@ -46,8 +46,8 @@ class AppFixtures extends Fixture
             $manager->persist($service);
 
             $patient = new Patient();
-            $patient->setLit($lit);
-            $patient->setService($service);
+            $patient->setLit($lit->getNumero());
+            $patient->setService($faker->randomDigit());
             $patient->setNom($faker->name());
             $patient->setPrenom($faker->firstName());
             $patient->setDateNaissance($faker->dateTime());

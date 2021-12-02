@@ -5,17 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PatientRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PatientRepository::class)
  */
-#[ApiResource(normalizationContext: ['groups' => ['patient']],
-            denormalizationContext:['groups' => ['patient']]
-    )]
+#[ApiResource]
 class Patient
 {
-    #[Groups("patient")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,57 +19,48 @@ class Patient
      */
     private $id;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="date")
      */
     private $dateNaissance;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lieuNaissance;
 
-    #[Groups("patient")]
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $probleme;
 
-    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */
     private $numeroSS;
 
-    #[Groups("patient")]
     /**
-     * @ORM\ManyToOne(targetEntity=Service::class, cascade={"persist", "remove"})
+     * @ORM\Column(type="integer")
      */
     private $service;
 
-    #[Groups("patient")]
     /**
-     * @ORM\OneToOne(targetEntity=Lit::class, cascade={"persist", "remove"})
+     * @ORM\Column(type="integer")
      */
     private $lit;
 
@@ -135,7 +122,7 @@ class Patient
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -166,24 +153,24 @@ class Patient
         return $this;
     }
 
-    public function getService(): ?Service
+    public function getService(): ?int
     {
         return $this->service;
     }
 
-    public function setService(Service $service): self
+    public function setService(int $service): self
     {
         $this->service = $service;
 
         return $this;
     }
 
-    public function getLit(): ?Lit
+    public function getLit(): ?int
     {
         return $this->lit;
     }
 
-    public function setLit(?Lit $lit): self
+    public function setLit(int $lit): self
     {
         $this->lit = $lit;
 
