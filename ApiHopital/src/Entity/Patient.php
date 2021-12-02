@@ -5,13 +5,17 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PatientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PatientRepository::class)
  */
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['patient']],
+            denormalizationContext:['groups' => ['patient']]
+    )]
 class Patient
 {
+    #[Groups("patient")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,46 +23,55 @@ class Patient
      */
     private $id;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="date")
      */
     private $dateNaissance;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lieuNaissance;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $probleme;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */
     private $numeroSS;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */
     private $service;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */

@@ -13,12 +13,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource]
 class Service
 {
+    #[Groups("patient")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="string", length=255)
      */
