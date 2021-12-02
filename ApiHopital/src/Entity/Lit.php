@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=LitRepository::class)
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource]
 class Lit
 {
+    #[Groups("patient")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,26 +21,31 @@ class Lit
      */
     private $id;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */
     private $numero;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="integer")
      */
     private $chambre;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="float")
      */
     private $longueur;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="float")
      */
     private $largeur;
 
+    #[Groups("patient")]
     /**
      * @ORM\Column(type="boolean")
      */

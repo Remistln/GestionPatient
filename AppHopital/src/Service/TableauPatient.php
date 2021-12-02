@@ -20,14 +20,12 @@ class TableauPatient
             $temps = $patientTableau['dateNaissance'];
             $temps = substr($temps, 0, 10);
             $date = \DateTime::createFromFormat("Y-m-d", $temps);
-
+            
             $lit = $patientTableau['lit'];
-            $lit = substr($lit,-1,1);
-            $lit = intval($lit);
-
+            $lit = intval($lit['id']);
+            
             $service = $patientTableau['service'];
-            $service = substr($service,-1,1);
-            $service = intval($service);
+            $service = intval($service['id']);
 
             $patient = (new Patient())
                 ->setId($patientTableau['id'])
