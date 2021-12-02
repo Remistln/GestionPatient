@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AjoutAdminController!{% endblock %}
+{% block title %}Ajout Admin{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <button onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary">Retour</button>
+                </div>
+                <div class="col-md-4 align-self-center"><h2>Ajout d'un admin</h2></div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/remis/OneDrive/Documents/EPSI/B2/Projet Transversal/Conception_application_web/GestionPatient/AppHopital/src/Controller/AjoutAdminController.php'|file_link(0) }}">src/Controller/AjoutAdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/remis/OneDrive/Documents/EPSI/B2/Projet Transversal/Conception_application_web/GestionPatient/AppHopital/templates/ajout_admin/index.html.twig'|file_link(0) }}">templates/ajout_admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+            </div>
+        </div>
+
+        {{ form_start(formAdmin) }}
+
+        {{ form_widget(formAdmin) }}
+
+        <button class="btn btn-secondary" type="submit" >Ajouter</button>
+
+        {{ form_end(formAdmin) }}
+    </div>
 {% endblock %}
