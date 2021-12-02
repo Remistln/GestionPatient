@@ -34,7 +34,9 @@
         "symfony/twig-bundle": "5.3.*",
         "symfony/validator": "5.3.*",
         "symfony/yaml": "5.3.*",
-        "webonyx/graphql-php": "^14.11"
+        "webonyx/graphql-php": "^14.11",
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "config": {
         "optimize-autoloader": true,

@@ -8,13 +8,23 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <button onclick="window.location.href = '/accueil/infirmier';" type="button" class="btn btn-secondary">Retour</button>
+                </div>
+                <div class="col-md-4 align-self-center"><h2>Ajout d'un infirmier</h2></div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/remis/OneDrive/Documents/EPSI/B2/Projet Transversal/Conception_application_web/GestionPatient/AppHopital/src/Controller/AjoutInfirmierController.php'|file_link(0) }}">src/Controller/AjoutInfirmierController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/remis/OneDrive/Documents/EPSI/B2/Projet Transversal/Conception_application_web/GestionPatient/AppHopital/templates/ajout_infirmier/index.html.twig'|file_link(0) }}">templates/ajout_infirmier/index.html.twig</a></code></li>
-    </ul>
-</div>
+            </div>
+        </div>
+
+        {{ form_start(formInfirmier) }}
+
+        {{ form_widget(formInfirmier) }}
+
+        <button class="btn btn-secondary" type="submit" >Ajouter</button>
+
+        {{ form_end(formInfirmier) }}
+    </div>
 {% endblock %}
