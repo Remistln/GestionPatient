@@ -24,6 +24,7 @@ class TableauLit
                 ->setNumero($litTableau['numero'])
                 ->setChambre($litTableau['chambre'])
                 ->setEtat($litTableau['etat'])
+                ->setService($litTableau['service'])
                 ;
             array_push($tableau, $lit);
         }

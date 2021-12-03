@@ -42,6 +42,11 @@ class Lit
      */
     private $etat;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $service;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +114,18 @@ class Lit
     public function setEtat(?bool $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getService(): ?int
+    {
+        return $this->service;
+    }
+
+    public function setService(int $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }
