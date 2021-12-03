@@ -52,11 +52,13 @@ class AjoutPatientController extends AbstractController
         {
 
             $data = $request->request->get('form');
-            dump($data);
+            
             $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
             $data["numeroSS"] = intval($data["numeroSS"]);
 
             $data["service"] = $entiteesService[$data["service"]]->getId();
+            $data["lit"] = 0;
+            dump($data);
 
             $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
