@@ -78,4 +78,20 @@ class TableauPatient
             ;
         return $patient;
     }
+
+    public function PostPatient($data)
+    {
+        $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
+
+            
+        $requettePatient = curl_init('http://localhost:8000/api/patients');
+
+        curl_setopt($requettePatient, CURLOPT_POSTFIELDS, $donneesPatient);
+        curl_setopt($requettePatient, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
+            
+        $retourApi = curl_exec($requettePatient);
+        curl_close($requettePatient);
+        return $retourApi;
+    }
 }
