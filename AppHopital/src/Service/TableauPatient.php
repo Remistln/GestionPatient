@@ -46,4 +46,36 @@ class TableauPatient
         }
         return $tableau;
     }
+
+    public function GetPatient($id)
+    {
+        $appel = file_get_contents("http://localhost:8000/api/patients/" . strval($id));
+        $appel = json_decode($appel,true);
+
+        $patientReponse = $appel;
+
+        $temps = $patientReponse['dateNaissance'];
+        $temps = substr($temps, 0, 10);
+        $date = \DateTime::createFromFormat("Y-m-d", $temps);
+            
+        $lit = $patientReponse['lit'];
+
+            
+        $service = $patientReponse['service'];
+
+
+        $patient = (new Patient())
+            ->setId($patientReponse['id'])
+            ->setNom($patientReponse['nom'])
+            ->setPrenom($patientReponse['prenom'])
+            ->setDateNaissance($date)
+            ->setLieuNaissance($patientReponse['lieuNaissance'])
+            ->setDescription($patientReponse['description'])
+            ->setLit($lit)
+            ->setNumeroSS($patientReponse['numeroSS'])
+            ->setProbleme($patientReponse['probleme'])
+            ->setService($service)
+            ;
+        return $patient;
+    }
 }
