@@ -33,29 +33,42 @@ class AppFixtures extends Fixture
             $infirmier->setMdp($faker->password());
             $manager->persist($infirmier);
 
-            $lit = new Lit();
-            $lit->setChambre($faker->randomDigit());
-            $lit->setEtat($faker->boolean());
-            $lit->setLargeur($faker->randomFloat());
-            $lit->setLongueur($faker->randomFloat());
-            $lit->setNumero($faker->randomDigit());
-            $manager->persist($lit);
-
             $service = new Service();
             $service->setLabel($faker->text());
             $manager->persist($service);
+            $manager->flush();
 
-            $patient = new Patient();
-            $patient->setLit($lit->getNumero());
-            $patient->setService($faker->randomDigit());
-            $patient->setNom($faker->name());
-            $patient->setPrenom($faker->firstName());
-            $patient->setDateNaissance($faker->dateTime());
-            $patient->setLieuNaissance($faker->city());
-            $patient->setDescription($faker->text());
-            $patient->setProbleme($faker->text());
-            $patient->setNumeroSS($faker->randomDigit());
-            $manager->persist($patient);
+            if ($service->getId() == null)
+            {
+                echo $service->getId();
+            }
+            else
+            {
+                echo $service->getId();
+                $lit = new Lit();
+                $lit->setChambre($faker->randomDigit());
+                $lit->setEtat($faker->boolean());
+                $lit->setLargeur($faker->randomFloat());
+                $lit->setLongueur($faker->randomFloat());
+                $lit->setNumero($faker->randomDigit());
+                $lit->setService($service->getId());
+                $manager->persist($lit);
+                $manager->flush();
+                
+
+                $patient = new Patient();
+                $patient->setLit($lit->getId());
+                $patient->setService($service->getId());
+                $patient->setNom($faker->name());
+                $patient->setPrenom($faker->firstName());
+                $patient->setDateNaissance($faker->dateTime());
+                $patient->setLieuNaissance($faker->city());
+                $patient->setDescription($faker->text());
+                $patient->setProbleme($faker->text());
+                $patient->setNumeroSS($faker->randomDigit());
+                $manager->persist($patient);
+            }
+            
 
 
         }
