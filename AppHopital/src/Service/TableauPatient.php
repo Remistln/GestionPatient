@@ -22,10 +22,12 @@ class TableauPatient
             $date = \DateTime::createFromFormat("Y-m-d", $temps);
             
             $lit = $patientTableau['lit'];
-            $lit = intval($lit['id']);
+            #$lit = intval($lit['id']);
+
             
             $service = $patientTableau['service'];
-            $service = intval($service['id']);
+
+            #$service = intval($service['id']);
 
             $patient = (new Patient())
                 ->setId($patientTableau['id'])
@@ -40,8 +42,8 @@ class TableauPatient
                 ->setService($service)
                 ;
             array_push($tableau, $patient);
+            
         }
-        
         return $tableau;
     }
 }
