@@ -26,12 +26,17 @@ class LoginController extends AbstractController
             $data = $request->request->get('form');
 
             $admins = new TableauAdmin;
-            $admin = $admins->AdminParIndentifiant($data['identifiant']);
-            if ($admin == true){
-                $test = $admin[0]->getMdp();
-                dump($test);
+            $idAdmin = $admins->AdminParIndentifiant($data['identifiant']);
+            if ($idAdmin == true){
+                $mdpAdmin = $idAdmin[0]->getMdp();
+                $mdpForm = $data['mdp'];
+                if ($mdpAdmin == $mdpForm){
+                    dump("Les mdp correspondemt ! Bravo");
+                }else{
+                    dump("Les mdp ne correspondent pas");
+                }
             }else{
-                dump("non");
+                dump("Il n'y a pas d'admin avec cet identifiant");
             }
         }
 
