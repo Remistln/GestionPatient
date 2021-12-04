@@ -31,4 +31,24 @@ class TableauLit
         
         return $tableau;
     }
+
+    public function GetLit($id)
+    {
+        $appel = file_get_contents("http://localhost:8000/api/lits/" . strval($id));
+        $appel = json_decode($appel, true);
+
+        $lits = $appel;
+
+        $lit = (new Lit())
+            ->setId($lits['id'])
+            ->setLargeur($lits['largeur'])
+            ->setLongueur($lits['longueur'])
+            ->setNumero($lits['numero'])
+            ->setChambre($lits['chambre'])
+            ->setEtat($lits['etat'])
+            ->setService($lits['service'])
+            ;
+        
+        return $lit;
+    }
 }

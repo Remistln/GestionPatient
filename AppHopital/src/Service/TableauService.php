@@ -24,4 +24,21 @@ class TableauService
         
         return $tableau;
     }
+
+    public function GetService($id)
+    {
+        $appel = file_get_contents("http://localhost:8000/api/services/" . strval($id));
+        $appel = json_decode($appel,true);
+        
+        $services = $appel;
+        
+        $service = (new Service())
+            ->setId($services['id'])
+            ->setLabel($services['label'])
+            ;
+        
+        
+        
+        return $service;
+    }
 }

@@ -29,4 +29,24 @@ class TableauInfirmier
         
         return $tableau;
     }
+
+    public function GetInfirmier($id)
+    {
+        $appel = file_get_contents("http://localhost:8000/api/infirmiers/" . strval($id));
+        $appel = json_decode($appel, true);
+
+        $infirmiers = $appel;
+
+        
+        $infirmier = (new Infirmier())
+            ->setId($infirmiers['id'])
+            ->setNom($infirmiers['nom'])
+            ->setPrenom($infirmiers['prenom'])
+            ->setIdentifiant($infirmiers['identifiant'])
+            ->setMdp($infirmiers['mdp'])
+            ;
+        
+        
+        return $infirmiers;
+    }
 }
