@@ -47,7 +47,7 @@ class AjoutLitController extends AbstractController
             $retourApi = curl_exec($requetteLit);
             curl_close($requetteLit);
         }
-        dump($lit);
+ 
 
         return $this->render('ajout_lit/index.html.twig', [
             'controller_name' => 'AjoutLitController',
