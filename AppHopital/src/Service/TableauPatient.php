@@ -94,4 +94,21 @@ class TableauPatient
         curl_close($requettePatient);
         return $retourApi;
     }
+
+    public function PutPatient($idPatient,$data)
+    {
+        $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
+
+            
+        $requettePatient = curl_init('http://localhost:8000/api/patients/' . strval($idPatient));
+
+        curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($requettePatient, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($requettePatient, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requettePatient, CURLOPT_POSTFIELDS, $donneesPatient);
+            
+        $retourApi = curl_exec($requettePatient);
+        curl_close($requettePatient);
+        return $retourApi;
+    }
 }
