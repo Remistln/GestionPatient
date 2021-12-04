@@ -6,20 +6,12 @@
 <div class="container">
     <h1 class="display-6">LONDON</h1>
 
-    <form >
-        <div class="form-group">
-            <label for="InputUsernameLogin">Nom d'utilisateur : </label>
-            <input type="text" class="form-control" id="InputUsernameLogin" aria-describedby="username" placeholder="Username">
-            <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-            <label for="InputPasswordLogin">Mot de passe : </label>
-            <input type="password" class="form-control" id="InputPasswordLogin" placeholder="Password">
-        </div>
+    {{ form_start(formLogin) }}
 
+    {{ form_widget(formLogin) }}
 
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    <button class="btn btn-secondary" type="submit" >Ajouter</button>
+    {{ form_end(formLogin) }}
 
 
 </div>
