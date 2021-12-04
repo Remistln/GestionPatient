@@ -11,6 +11,7 @@ use App\Service\TableauInfirmier;
 use App\Service\TableauAdmin;
 use App\Service\TableauService;
 
+
 class AccueilInfirmierController extends AbstractController
 {
     #[Route('/accueil/infirmier', name: 'accueil_infirmier')]
@@ -21,13 +22,14 @@ class AccueilInfirmierController extends AbstractController
 
         $lits = new TableauLit;
         $tableauLits = $lits->GetLits();
-        /*
+
+
         $infirmiers = new TableauInfirmier;
         $tableauInfirmiers = $infirmiers->GetInfirmiers();
 
         $admins = new TableauAdmin;
         $tableauAdmins = $admins->GetAdmins();
-        */
+
         $service = new TableauService;
         $tableauServices = $service->GetServices();
 
