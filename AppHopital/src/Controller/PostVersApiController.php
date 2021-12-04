@@ -37,6 +37,9 @@ class PostVersApiController extends AbstractController
         $tableauServices = $service->GetService(53);
         dump($tableauServices);
 
+        $nom = "dfranecki@runolfsson.com";
+        dump($admins->AdminParIndentifiant($nom));
+
         return $this->render('post_vers_api/index.html.twig', [
             'controller_name' => 'PostVersApiControllerController',
             'title'=> 'Accueil',

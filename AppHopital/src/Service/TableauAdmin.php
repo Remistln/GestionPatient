@@ -48,4 +48,21 @@ class TableauAdmin
         return $admin;
     }
 
+    public function AdminParIndentifiant($identifiant)
+    {
+        $Admins = $this->GetAdmins();
+
+        $adminTrouves = [];
+
+        foreach($Admins as $admin)
+        {
+            if ($admin->getIdentifiant() == $identifiant)
+            {
+                array_push($adminTrouves,$admin);
+            }
+        }
+
+        return $adminTrouves;
+    }
+
 }
