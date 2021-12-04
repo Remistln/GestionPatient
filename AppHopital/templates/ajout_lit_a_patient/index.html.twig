@@ -16,5 +16,13 @@
         <li>Your controller at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/src/Controller/AjoutLitAPatientController.php'|file_link(0) }}">src/Controller/AjoutLitAPatientController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'D:/EPSI-Volumineux/Projet Transversale Symfony/GestionPatient/AppHopital/templates/ajout_lit_a_patient/index.html.twig'|file_link(0) }}">templates/ajout_lit_a_patient/index.html.twig</a></code></li>
     </ul>
+
+     {{ form_start(formLit) }}
+
+    {{ form_widget(formLit) }}
+
+    <button class="btn btn-secondary" type="submit" >Ajouter</button>
+
+    {{ form_end(formLit) }}
 </div>
 {% endblock %}
