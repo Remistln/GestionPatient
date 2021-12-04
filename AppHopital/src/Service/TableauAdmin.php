@@ -98,4 +98,18 @@ class TableauAdmin
         curl_close($requetteAdmin);
         return $retourApi;
     }
+
+    public function DeleteAdmin($idAdmin)
+    {
+    
+        $requetteAdmin = curl_init('http://localhost:8000/api/admins/' . strval($idAdmin));
+        curl_setopt($requetteAdmin, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
+    
+        $retourApi = curl_exec($requetteAdmin);
+    
+        curl_close($requetteAdmin);
+
+        return $retourApi;
+    }
 }

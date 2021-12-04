@@ -85,4 +85,18 @@ class TableauLit
         curl_close($requetteLit);
         return $retourApi;
     }
+
+    public function DeleteLit($idLit)
+    {
+    
+        $requetteLit = curl_init('http://localhost:8000/api/lits/' . strval($idLit));
+        curl_setopt($requetteLit, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
+    
+        $retourApi = curl_exec($requetteLit);
+    
+        curl_close($requetteLit);
+
+        return $retourApi;
+    }
 }

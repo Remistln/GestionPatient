@@ -75,4 +75,18 @@ class TableauService
         curl_close($requetteService);
         return $retourApi;
     }
+
+    public function DeleteInfirmier($idService)
+    {
+    
+        $requetteService = curl_init('http://localhost:8000/api/services/' . strval($idService));
+        curl_setopt($requetteService, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
+    
+        $retourApi = curl_exec($requetteService);
+    
+        curl_close($requetteService);
+
+        return $retourApi;
+    }
 }

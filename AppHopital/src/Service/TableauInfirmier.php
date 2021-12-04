@@ -84,14 +84,11 @@ class TableauInfirmier
         return $retourApi;
     }
 
-    /*
+    
     public function DeleteInfirmier($idInfirmier)
     {
-        
-        $url = "https://api.mywebtuts.com/api/users/2";
     
-        $requetteInfirmier = curl_init();
-        curl_setopt($requetteInfirmier, CURLOPT_URL, $url);
+        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers/' . strval($idInfirmier));
         curl_setopt($requetteInfirmier, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
     
@@ -101,5 +98,5 @@ class TableauInfirmier
 
         return $retourApi;
     }
-    */
+    
 }

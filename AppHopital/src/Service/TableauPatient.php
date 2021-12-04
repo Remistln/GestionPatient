@@ -111,4 +111,18 @@ class TableauPatient
         curl_close($requettePatient);
         return $retourApi;
     }
+
+    public function DeletePatient($idPatient)
+    {
+    
+        $requettePatient = curl_init('http://localhost:8000/api/patients/' . strval($idPatient));
+        curl_setopt($requettePatient, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
+    
+        $retourApi = curl_exec($requettePatient);
+    
+        curl_close($requettePatient);
+
+        return $retourApi;
+    }
 }
