@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Service\TableauService;
 
 class AjoutServiceController extends AbstractController
 {
@@ -28,18 +29,10 @@ class AjoutServiceController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $data = $request->request->get('form');
-            $donneeService = json_encode($data,true);
-
-            $requetteService = curl_init('http://localhost:8000/api/services');
-
-            curl_setopt($requetteService, CURLOPT_POSTFIELDS, $donneeService);
-            curl_setopt($requetteService, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
-
-            $retourApi = curl_exec($requetteService);
-            curl_close($requetteService);
+            $manager = new TableauService;
+            $retourAPI = $manager->PostService($data);
         }
-        dump($service);
+
 
         return $this->render('ajout_service/index.html.twig', [
             'controller_name' => 'AjoutServiceController',

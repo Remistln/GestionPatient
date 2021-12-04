@@ -41,4 +41,21 @@ class TableauService
         
         return $service;
     }
+
+    public function PostService($data)
+    {
+        
+        $donneeService = json_encode($data,true);
+
+        $requetteService = curl_init('http://localhost:8000/api/services');
+
+        curl_setopt($requetteService, CURLOPT_POSTFIELDS, $donneeService);
+        curl_setopt($requetteService, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
+
+        $retourApi = curl_exec($requetteService);
+        curl_close($requetteService);
+        
+        return $retourApi;
+    }
 }
