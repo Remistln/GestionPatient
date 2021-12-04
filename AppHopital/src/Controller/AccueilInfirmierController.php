@@ -23,13 +23,13 @@ class AccueilInfirmierController extends AbstractController
         $lits = new TableauLit;
         $tableauLits = $lits->GetLits();
 
-
+/*
         $infirmiers = new TableauInfirmier;
         $tableauInfirmiers = $infirmiers->GetInfirmiers();
 
         $admins = new TableauAdmin;
         $tableauAdmins = $admins->GetAdmins();
-
+*/
         $service = new TableauService;
         $tableauServices = $service->GetServices();
 

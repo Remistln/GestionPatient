@@ -2,7 +2,7 @@
 
 {% block title %}
 
-    {{ title }}
+    {{ title  }}
 
 {% endblock %}
 
@@ -38,61 +38,18 @@
 
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">Mark</th>
+                <tbody>
+                {% for patients in tableauPatients %}
+                    <tr>
+                        <td>{{ patients.nom }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
+                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
 
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
-                    <button  type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            <tr>
-                <th scope="row">Gaetan</th>
-
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            <tr>
-                <th scope="row">Rémi</th>
-
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            <tr>
-                <th scope="row">Aya</th>
-
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            <tr>
-                <th scope="row">Mia</th>
-
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
-                    <button type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            <tr>
-                <th scope="row">Sami</th>
-
-                <td>
-                    <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>                    <button type="button" class="btn btn-secondary">Supprimer</button>
-                </td>
-
-            </tr>
-            </tbody>
+                </tbody>
         </table>
 
     </div>
@@ -117,58 +74,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">Mark</th>
+                {% for services in tableauServices %}
+                    <tr>
+                        <td>{{ services.label }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
+                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
 
-                    <td>
-                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Gaetan</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Rémi</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Aya</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Mia</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/service';" type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Sami</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/service';" type="button" class="btn btn-secondary">Renommer</button>
-                        <button type="button" class="btn btn-secondary">Supprimer</button>
-                    </td>
-
-                </tr>
                 </tbody>
+
             </table>
 
         </div>
@@ -193,60 +110,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">Mark</th>
+                {% for lits in tableauLits %}
+                    <tr>
+                        <td>Lit n°{{ lits.numero }} Chambre n°{{ lits.chambre }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
+                             {% if lits.etat == true %}
+                                <label>OUI</label>
+                             {% else %}
+                                 <label>NON</label>
+                            {% endif %}
 
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
+                        </td>
+                    </tr>
+                {% endfor %}
 
-                </tr>
-                <tr>
-                    <th scope="row">Gaetan</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Rémi</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Aya</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Mia</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Sami</th>
-
-                    <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button type="button" class="btn btn-secondary">Etat</button>
-                    </td>
-
-                </tr>
                 </tbody>
             </table>
 

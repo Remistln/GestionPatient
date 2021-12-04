@@ -3,11 +3,7 @@
 {% block title %}Acceuil Admin{% endblock %}
 
 {% block body %}
-<style>
-
-</style>
-
-<div class="container">
+    <!--header-->
     <div class="container">
         <div class="row">
             <div class="col-md">
@@ -17,8 +13,156 @@
 
         </div>
     </div>
+    <!--Listes patients-->
+    <div class="container">
+        <p><h4> Listes des patients </h4></p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-    Page d'acceuil Administrateur en cours...
+            <table width="100%" class="table-primary">
+                <thead>
+                <tr>
+                    <th scope="col">Nom du patient</th>
+                    <th scope="col"><p>Options</p></th>
+                    <th scope="col">
+                        <div class="right-text-pad">
+                            <button onclick="window.location.href = '/ajout/patient';" type="button" class="btn btn-secondary">Ajouter</button>
+                        </div>
+                    </th>
 
-</div>
+                </tr>
+                </thead>
+                <tbody>
+                {% for patients in tableauPatients %}
+                    <tr>
+                        <td>{{ patients.nom }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/patient';"type="button" class="btn btn-secondary">Modifier</button>
+                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!--Listes comptes-->
+    <div class="container">
+        <p><h4> Listes des infirmiers </h4></p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table width="100%" class="table-primary">
+                <thead>
+                <tr>
+                    <th scope="col">Nom de l'infirmier</th>
+                    <th scope="col"><p>Options</p></th>
+                    <th scope="col">
+                        <div class="right-text-pad">
+                            <button onclick="window.location.href = '/ajout/infirmier';" type="button" class="btn btn-secondary">Ajouter</button>
+                        </div>
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for infirmiers in tableauInfirmiers %}
+                    <tr>
+                        <td>{{ infirmiers.nom }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/blank';"type="button" class="btn btn-secondary">Modifier</button>
+                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <!--Listes Services-->
+    <div class="container">
+        <p><h4> Listes des services</h4></p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table width="100%" class="table-primary">
+                <thead>
+                <tr>
+                    <th scope="col">Nom du service</th>
+                    <th scope="col"><p>Options</p></th>
+                    <th scope="col">
+                        <div class="right-text-pad">
+                            <button onclick="window.location.href = '/ajout/service';" type="button" class="btn btn-secondary">Ajouter</button>
+                        </div>
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for services in tableauServices %}
+                    <tr>
+                        <td>{{ services.label }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
+                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!--Listes lits-->
+    <div class="container">
+        <p><h4> Listes des lits </h4></p>
+
+
+        <table width="100%" class="table-primary table-wrapper-scroll-y my-custom-scrollbar">
+            <thead>
+            <tr>
+                <th scope="col">Numéro du lit</th>
+                <th scope="col"><p>Options</p></th>
+                <th scope="col">
+                    <div class="right-text-pad">
+                        <button onclick="window.location.href = '/ajout/lit';" type="button" class="btn btn-secondary">Ajouter</button>
+                    </div>
+                </th>
+
+            </tr>
+            </thead>
+            <!--<tbody>
+           {#  {% for lits in tableauLits %}
+                <tr>
+                    <td>Lit n°{{ lits.numero }} Chambre n°{{ lits.chambre }}</td>
+                    <td>
+                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
+                        {% if lits.etat == true %}
+                            <label>OUI</label>
+                        {% else %}
+                            <label>NON</label>
+                        {% endif %}
+
+                    </td>
+                </tr>
+            {% endfor %}#}
+
+            </tbody>-->
+        </table>
+
+    </div>
+
+
+
+
+
+
+
 {% endblock %}
