@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Service\TableauAdmin;
+use App\Service\TableauInfirmier;
 use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,8 @@ class LoginController extends AbstractController
                     dump("Les mdp ne correspondent pas");
                 }
             }else{
-                dump("Il n'y a pas d'admin avec cet identifiant");
+                $infirmier = new TableauInfirmier();
+                $idAdmin = $admins->AdminParIndentifiant($data['identifiant']);
             }
         }
 

@@ -50,6 +50,23 @@ class TableauInfirmier
         return $infirmiers;
     }
 
+    public function InfirmerParIndentifiant($identifiant)
+    {
+        $Infirmiers = $this->GetInfirmiers();
+
+        $infirmiersTrouves = [];
+
+        foreach($Infirmiers as $infirmier)
+        {
+            if ($infirmier->getIdentifiant() == $identifiant)
+            {
+                array_push($infirmiersTrouves,$infirmier);
+            }
+        }
+
+        return $infirmiersTrouves;
+    }
+
     public function PostInfirmier($data)
     {
         
