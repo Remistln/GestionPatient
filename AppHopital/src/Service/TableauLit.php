@@ -69,7 +69,7 @@ class TableauLit
         return $retourApi;
     }
 
-    public function PutPatient($idLit,$data)
+    public function PutLit($idLit,$data)
     {
         $donneesLit = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
