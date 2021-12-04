@@ -65,4 +65,20 @@ class TableauAdmin
         return $adminTrouves;
     }
 
+    public function PostAdmin($data)
+    {
+        
+        $donneeAdmin = json_encode($data,true);
+
+        $requetteAdmin = curl_init('http://localhost:8000/api/services');
+
+        curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $requetteAdmin);
+        curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
+
+        $retourApi = curl_exec($requetteAdmin);
+        curl_close($requetteAdmin);
+        
+        return $retourApi;
+    }
 }

@@ -49,4 +49,21 @@ class TableauInfirmier
         
         return $infirmiers;
     }
+
+    public function PostInfirmier($data)
+    {
+        
+        $donneeInfirmier = json_encode($data,true);
+
+        $requetteInfirmier = curl_init('http://localhost:8000/api/services');
+
+        curl_setopt($requetteInfirmier, CURLOPT_POSTFIELDS, $donneeInfirmier);
+        curl_setopt($requetteInfirmier, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
+
+        $retourApi = curl_exec($requetteInfirmier);
+        curl_close($requetteInfirmier);
+        
+        return $retourApi;
+    }
 }

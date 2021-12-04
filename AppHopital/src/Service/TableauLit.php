@@ -51,4 +51,21 @@ class TableauLit
         
         return $lit;
     }
+
+    public function PostLit($data)
+    {
+        
+        $donneeLit = json_encode($data,true);
+
+        $requetteLit = curl_init('http://localhost:8000/api/services');
+
+        curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneeLit);
+        curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
+
+        $retourApi = curl_exec($requetteLit);
+        curl_close($requetteLit);
+        
+        return $retourApi;
+    }
 }
