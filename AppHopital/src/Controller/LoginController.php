@@ -27,9 +27,9 @@ class LoginController extends AbstractController
             $data = $request->request->get('form');
 
             $admins = new TableauAdmin;
-            $idAdmin = $admins->AdminParIndentifiant($data['identifiant']);
-            if ($idAdmin == true){
-                $mdpAdmin = $idAdmin[0]->getMdp();
+            $Admin = $admins->AdminParIndentifiant($data['identifiant']);
+            if ($Admin == true){
+                $mdpAdmin = $Admin[0]->getMdp();
                 $mdpForm = $data['mdp'];
                 if ($mdpAdmin == $mdpForm){
                     return $this->redirectToRoute('accueil_administrateur');
@@ -38,7 +38,18 @@ class LoginController extends AbstractController
                 }
             }else{
                 $infirmier = new TableauInfirmier();
-                $idAdmin = $admins->AdminParIndentifiant($data['identifiant']);
+                $Infirmier = $infirmier->InfirmerParIndentifiant($data['identifiant']);
+                if ($Infirmier == true) {
+                    $mdpInfirmier = $Infirmier[0]->getMdp();
+                    $mdpForm = $data['mdp'];
+                    if ($mdpInfirmier == $mdpForm) {
+                        return $this->redirectToRoute('accueil_infirmier');
+                    } else {
+                        dump("Les mdp de l'utilisateur ne correspondent pas");
+                    }
+                }else{
+                    dump("L'identifiant ne correspond pas");
+                }
             }
         }
 
