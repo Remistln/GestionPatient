@@ -6,32 +6,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\TableauPatient;
+use App\Service\TableauLit;
+use App\Service\TableauInfirmier;
+use App\Service\TableauAdmin;
+use App\Service\TableauService;
 
 class PostVersApiController extends AbstractController
 {
     #[Route('/post/patient', name: 'post_patient')]
-    public function PostPatient(Request $request)
+    public function PostPatient():Response
     {
-        $donneesPatient = json_encode($request->getContent(), true);
-        dump($donneesPatient);
-        dump($request->getContent());
-        $requettePatient = curl_init('http://localhost:8000/api/patients');
+        $patients = new TableauPatient;
+        $tableauPatients = $patients->GetPatient(50);
+        dump($tableauPatients);
 
-        curl_setopt($requettePatient, CURLOPT_POSTFIELDS, $donneesPatient);
-        curl_setopt($requettePatient, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
+        $lits = new TableauLit;
+        $tableauLits = $lits->GetLit(32);
+        dump($tableauLits);
 
-        $retourApi = curl_exec($requettePatient);
-        curl_close($requettePatient);
+        $infirmiers = new TableauInfirmier;
+        $tableauInfirmiers = $infirmiers->GetInfirmier(43);
+        dump($tableauInfirmiers);
 
-        if ($retourApi == 200) {
-            $response = new Response();
-            $response = $this->forward('App\Controller\AccueilInfirmierController::accueil_infirmier', [
-        ]);
-        }
+        $admins = new TableauAdmin;
+        $tableauAdmins = $admins->GetAdmin(44);
+        dump($tableauAdmins);
+
+        $service = new TableauService;
+        $tableauServices = $service->GetService(53);
+        dump($tableauServices);
+
         return $this->render('post_vers_api/index.html.twig', [
             'controller_name' => 'PostVersApiControllerController',
-            'title'=> 'Accueil', 'request' => $request->getContent()
+            'title'=> 'Accueil',
         ]);
 
     }
