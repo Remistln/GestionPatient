@@ -57,7 +57,7 @@ class TableauLit
         
         $donneeLit = json_encode($data,true);
 
-        $requetteLit = curl_init('http://localhost:8000/api/services');
+        $requetteLit = curl_init('http://localhost:8000/api/lits');
 
         curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneeLit);
         curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -74,7 +74,7 @@ class TableauLit
         $donneesLit = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteLit = curl_init('http://localhost:8000/api/patients/' . strval($idLit));
+        $requetteLit = curl_init('http://localhost:8000/api/lits/' . strval($idLit));
 
         curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteLit, CURLOPT_CUSTOMREQUEST, "PUT");

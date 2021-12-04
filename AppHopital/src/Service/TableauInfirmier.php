@@ -55,7 +55,7 @@ class TableauInfirmier
         
         $donneeInfirmier = json_encode($data,true);
 
-        $requetteInfirmier = curl_init('http://localhost:8000/api/services');
+        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers');
 
         curl_setopt($requetteInfirmier, CURLOPT_POSTFIELDS, $donneeInfirmier);
         curl_setopt($requetteInfirmier, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -72,7 +72,7 @@ class TableauInfirmier
         $donneesInfirmier = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteInfirmier = curl_init('http://localhost:8000/api/patients/' . strval($idInfirmier));
+        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers/' . strval($idInfirmier));
 
         curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteInfirmier, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -83,4 +83,23 @@ class TableauInfirmier
         curl_close($requetteInfirmier);
         return $retourApi;
     }
+
+    /*
+    public function DeleteInfirmier($idInfirmier)
+    {
+        
+        $url = "https://api.mywebtuts.com/api/users/2";
+    
+        $requetteInfirmier = curl_init();
+        curl_setopt($requetteInfirmier, CURLOPT_URL, $url);
+        curl_setopt($requetteInfirmier, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
+    
+        $retourApi = curl_exec($requetteInfirmier);
+    
+        curl_close($requetteInfirmier);
+
+        return $retourApi;
+    }
+    */
 }

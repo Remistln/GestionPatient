@@ -64,7 +64,7 @@ class TableauService
         $donneesService = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteService = curl_init('http://localhost:8000/api/patients/' . strval($idService));
+        $requetteService = curl_init('http://localhost:8000/api/services/' . strval($idService));
 
         curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteService, CURLOPT_CUSTOMREQUEST, "PUT");

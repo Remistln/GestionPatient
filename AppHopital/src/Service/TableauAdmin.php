@@ -70,7 +70,7 @@ class TableauAdmin
         
         $donneeAdmin = json_encode($data,true);
 
-        $requetteAdmin = curl_init('http://localhost:8000/api/services');
+        $requetteAdmin = curl_init('http://localhost:8000/api/admins');
 
         curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $requetteAdmin);
         curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -87,7 +87,7 @@ class TableauAdmin
         $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteAdmin = curl_init('http://localhost:8000/api/patients/' . strval($idAdmin));
+        $requetteAdmin = curl_init('http://localhost:8000/api/admins/' . strval($idAdmin));
 
         curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteAdmin, CURLOPT_CUSTOMREQUEST, "PUT");
