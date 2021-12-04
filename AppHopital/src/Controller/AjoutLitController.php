@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Lit;
+use App\Entity\Service;
+use App\Service\TableauService;
+use App\Service\TableauLit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 
 class AjoutLitController extends AbstractController
@@ -16,9 +19,18 @@ class AjoutLitController extends AbstractController
     {
         $lit = new Lit();
 
+        $serviceGet = new TableauService;
+        $entiteesService = $serviceGet->GetServices();
+
         $form = $this ->createFormBuilder($lit)
                       ->add('numero')
                       ->add('chambre')
+                      ->add('service', ChoiceType::class, [
+                        'mapped' => false,
+                        'choices'  => $entiteesService,
+                        'choice_label' => 'label'
+                    ]
+                    )
                       ->add('longueur')
                       ->add('largeur')
                       ->add('etat')
@@ -34,18 +46,12 @@ class AjoutLitController extends AbstractController
             $data["chambre"] = intval($data["chambre"]); 
             $data["longueur"] = floatval($data["longueur"]); 
             $data["largeur"] = floatval($data["largeur"]); 
-            $data["etat"] = boolval($data["etat"]); 
+            $data["etat"] = boolval($data["etat"]);
+            $data["service"] = $entiteesService[$data["service"]]->getId();
 
-            $donneesLit = json_encode($data,true);
+            $tableauLit = new TableauLit;
+            $retourApi = $tableauLit->PostLit($data);
 
-            $requetteLit = curl_init('http://localhost:8000/api/lits');
-
-            curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneesLit);
-            curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
-
-            $retourApi = curl_exec($requetteLit);
-            curl_close($requetteLit);
         }
  
 
