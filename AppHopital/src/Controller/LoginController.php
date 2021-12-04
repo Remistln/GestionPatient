@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Service\TableauAdmin;
+use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,11 +26,14 @@ class LoginController extends AbstractController
             $data = $request->request->get('form');
 
             $admins = new TableauAdmin;
-            $tableauAdmins = $admins->GetAdmins();
-            dump($tableauAdmins);
+            $admin = $admins->AdminParIndentifiant($data['identifiant']);
+            if ($admin == true){
+                $test = $admin[0]->getMdp();
+                dump($test);
+            }else{
+                dump("non");
+            }
         }
-
-
 
         return $this->render('login/index.html.twig', [
             'controller_name' => 'LoginController',
