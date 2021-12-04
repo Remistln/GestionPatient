@@ -129,4 +129,11 @@ class Lit
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $message = "Lit numéro " . $this->numero . " dans la chambre " . $this->chambre;
+        dump($message);
+        return $message;
+    }
 }
