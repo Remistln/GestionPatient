@@ -37,7 +37,6 @@ class AjoutLitAPatientController extends AbstractController
                 array_push($listeLitDuService, $lit);
             }
         }
-        dump($listeLitDuService);
 
         
         $form = $this->createFormBuilder()
