@@ -28,4 +28,24 @@ class TableauAdmin
         return $tableau;
     }
 
+    public function GetAdmin($id)
+    {
+        $appel = file_get_contents("http://localhost:8000/api/admins/" . strval($id));
+        $appel = json_decode($appel, true);
+        $tableau = [];
+        $admins = $appel;
+        
+        $service = (new Admin())
+            ->setId($admins['id'])
+            ->setNom($admins['nom'])
+            ->setPrenom($admins['prenom'])
+            ->setIdentifiant($admins['identifiant'])
+            ->setMdp($admins['mdp'])
+            ;
+        array_push($tableau, $service);
+        
+        
+        return $tableau;
+    }
+
 }
