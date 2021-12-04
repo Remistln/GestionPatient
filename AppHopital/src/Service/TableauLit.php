@@ -68,4 +68,21 @@ class TableauLit
         
         return $retourApi;
     }
+
+    public function PutPatient($idLit,$data)
+    {
+        $donneesLit = json_encode($data, JSON_UNESCAPED_SLASHES, true);
+
+            
+        $requetteLit = curl_init('http://localhost:8000/api/patients/' . strval($idLit));
+
+        curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($requetteLit, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneesLit);
+            
+        $retourApi = curl_exec($requetteLit);
+        curl_close($requetteLit);
+        return $retourApi;
+    }
 }

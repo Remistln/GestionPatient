@@ -81,4 +81,21 @@ class TableauAdmin
         
         return $retourApi;
     }
+
+    public function PutAdmin($idAdmin,$data)
+    {
+        $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
+
+            
+        $requetteAdmin = curl_init('http://localhost:8000/api/patients/' . strval($idAdmin));
+
+        curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($requetteAdmin, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $donneesAdmin);
+            
+        $retourApi = curl_exec($requetteAdmin);
+        curl_close($requetteAdmin);
+        return $retourApi;
+    }
 }

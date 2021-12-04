@@ -55,7 +55,24 @@ class TableauService
 
         $retourApi = curl_exec($requetteService);
         curl_close($requetteService);
-        
+
+        return $retourApi;
+    }
+
+    public function PutService($idService,$data)
+    {
+        $donneesService = json_encode($data, JSON_UNESCAPED_SLASHES, true);
+
+            
+        $requetteService = curl_init('http://localhost:8000/api/patients/' . strval($idService));
+
+        curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($requetteService, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($requetteService, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($requetteService, CURLOPT_POSTFIELDS, $donneesService);
+            
+        $retourApi = curl_exec($requetteService);
+        curl_close($requetteService);
         return $retourApi;
     }
 }
