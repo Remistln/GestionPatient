@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Patient;
 use App\Entity\Service;
 use App\Service\TableauService;
+use App\Service\TableauPatient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AjoutPatientController extends AbstractController
 {
@@ -23,8 +25,6 @@ class AjoutPatientController extends AbstractController
         $entiteesService = $serviceGet->GetServices();
         
         
-
-        dump($entiteesService);
         $form = $this->createFormBuilder($patient)
                     ->add('nom')
                     ->add('prenom')
@@ -58,19 +58,20 @@ class AjoutPatientController extends AbstractController
 
             $data["service"] = $entiteesService[$data["service"]]->getId();
             $data["lit"] = 0;
-            dump($data);
-
-            $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
-
             
-            $requettePatient = curl_init('http://localhost:8000/api/patients');
+            $tableauPatient = new TableauPatient;
+            $retourApi = $tableauPatient->PostPatient($data);
+            
+            $retourApi = json_decode($retourApi,true);
+            dump($retourApi);
+            
+            if ($retourApi["@context"] != "\/api\/contexts\/Error")
+            {
 
-            curl_setopt($requettePatient, CURLOPT_POSTFIELDS, $donneesPatient);
-            curl_setopt($requettePatient, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-            curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
-            dump($requettePatient);
-            $retourApi = curl_exec($requettePatient);
-            curl_close($requettePatient);
+                return $this->redirectToRoute('ajout_lit_a_patient', array('idPatient' => $retourApi["id"], 'idService' => $retourApi["service"]));
+            }
+            
+            
             
         }
 
