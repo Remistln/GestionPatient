@@ -19,8 +19,8 @@ class AccueilAdministrateurController extends AbstractController
         $patients = new TableauPatient;
         $tableauPatients = $patients->GetPatients();
 
-        $lits = new TableauLit;
-        $tableauLits = $lits->GetLits();
+//        $lits = new TableauLit;
+//        $tableauLits = $lits->GetLits();
         
         $infirmiers = new TableauInfirmier;
         $tableauInfirmiers = $infirmiers->GetInfirmiers();
@@ -34,7 +34,8 @@ class AccueilAdministrateurController extends AbstractController
         return $this->render('accueil_administrateur/index.html.twig', [
             'controller_name' => 'AccueilAdministrateurController',
             'tableauPatients' => $tableauPatients,
-            'tableauLits' => $tableauLits, 'tableauServices' => $tableauServices,
+//            'tableauLits' => $tableauLits,
+            'tableauServices' => $tableauServices,
             'tableauInfirmiers' => $tableauInfirmiers, 'tableauAdmins' => $tableauAdmins
         ]);
     }

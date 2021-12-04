@@ -31,7 +31,7 @@ class LoginController extends AbstractController
                 $mdpAdmin = $idAdmin[0]->getMdp();
                 $mdpForm = $data['mdp'];
                 if ($mdpAdmin == $mdpForm){
-                    dump("Les mdp correspondemt ! Bravo");
+                    return $this->redirectToRoute('accueil_administrateur');
                 }else{
                     dump("Les mdp ne correspondent pas");
                 }
