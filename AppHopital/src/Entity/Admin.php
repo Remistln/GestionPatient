@@ -95,4 +95,12 @@ class Admin
 
         return $this;
     }
+
+    public function getRoles(): string
+    {
+        // guarantee every user at least has ROLE_USER
+        $roles = 'ROLE_ADMIN';
+
+        return $roles;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,6 +12,7 @@ use App\Service\TableauInfirmier;
 use App\Service\TableauAdmin;
 use App\Service\TableauService;
 
+
 class AccueilAdministrateurController extends AbstractController
 {
     #[Route('/accueil/administrateur', name: 'accueil_administrateur')]
@@ -18,10 +20,10 @@ class AccueilAdministrateurController extends AbstractController
     {
         $patients = new TableauPatient;
         $tableauPatients = $patients->GetPatients();
-/*
+
         $lits = new TableauLit;
         $tableauLits = $lits->GetLits();
- */
+
         $infirmiers = new TableauInfirmier;
         $tableauInfirmiers = $infirmiers->GetInfirmiers();
 

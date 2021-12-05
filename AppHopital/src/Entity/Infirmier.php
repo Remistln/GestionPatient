@@ -95,4 +95,11 @@ class Infirmier
 
         return $this;
     }
+
+    public function getRoles(): string
+    {
+        $roles = 'ROLE_USER';
+
+        return $roles;
+    }
 }
