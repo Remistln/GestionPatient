@@ -50,9 +50,5 @@ class AccueilAdministrateurController extends AbstractController
                 'error' => "Vous n'êtes pas autorisé à aller sur cette page"
             ]);
         }
-
-
-
-
     }
 }

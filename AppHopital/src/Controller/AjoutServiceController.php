@@ -16,27 +16,37 @@ class AjoutServiceController extends AbstractController
     #[Route('/ajout/service', name: 'ajout_service')]
     public function index(Request $request): Response
     {
-        $service = new Service();
+        $session = $request->getSession();
+        $role = $session->get('role');
+        if ($role == 'ROLE_ADMIN'){
+            $service = new Service();
 
-        $form= $this->createFormBuilder($service)
-                    ->add('label')
+            $form= $this->createFormBuilder($service)
+                ->add('label')
 
-                    ->getForm();
+                ->getForm();
 
-                    
-        $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $data = $request->request->get('form');
-            $manager = new TableauService;
-            $retourAPI = $manager->PostService($data);
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $data = $request->request->get('form');
+                $manager = new TableauService;
+                $retourAPI = $manager->PostService($data);
+            }
+
+
+            return $this->render('ajout_service/index.html.twig', [
+                'controller_name' => 'AjoutServiceController',
+                'formService' => $form->createView(),
+            ]);
+        }else{
+            return $this->render('access_denied/index.html.twig', [
+                'controller_name' => 'AjoutServiceController',
+                'error' => "Vous n'êtes pas autorisé à aller sur cette page"
+            ]);
         }
 
-
-        return $this->render('ajout_service/index.html.twig', [
-            'controller_name' => 'AjoutServiceController',
-            'formService' => $form->createView(),
-        ]);
     }
 }
