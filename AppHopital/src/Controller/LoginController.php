@@ -38,7 +38,7 @@ class LoginController extends AbstractController
                 $mdpForm = $data['mdp'];
                 if ($mdpAdmin == $mdpForm){
                     $user = new Admin();
-                    $role = $user->getRoles();
+                    $session->set('role', $user->getRoles());;
                     return $this->redirectToRoute('accueil_administrateur');
                 }else{
                     dump("Les mdp ne correspondent pas");
@@ -51,7 +51,7 @@ class LoginController extends AbstractController
                     $mdpForm = $data['mdp'];
                     if ($mdpInfirmier == $mdpForm) {
                         $user = new Infirmier();
-                        $role = $user->getRoles();
+                        $session->set('role', $user->getRoles());;
                         return $this->redirectToRoute('accueil_infirmier');
                     } else {
                         dump("Les mdp de l'utilisateur ne correspondent pas");
