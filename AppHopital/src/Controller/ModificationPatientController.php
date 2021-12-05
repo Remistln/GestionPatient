@@ -21,14 +21,6 @@ class ModificationPatientController extends AbstractController
         $managerPatient = new TableauPatient();
         $patient = $managerPatient->GetPatient($id);
 
-        /*
-        $serviceGet = new TableauService;
-        $entiteesService = $serviceGet->GetServices();
-        
-        $indexeService = $this->trouverIndexeService($patient,$entiteesService);
-
-        $entiteesService = $this->servicePatientPremier($indexeService,$entiteesService);
-*/
         $form = $this->createFormBuilder($patient)
                     ->add('nom')
                     ->add('prenom')
@@ -63,31 +55,5 @@ class ModificationPatientController extends AbstractController
         ]);
     }
 
-    private function trouverIndexeService($patient,$entiteesService)
-    {
-        $tableauIndexes = [];
-        foreach( $entiteesService as $service)
-        {
-            array_push($tableauIndexes, $service->getId());
-        }
-        return array_search($patient->getService(), $tableauIndexes);
-    }
-
-    private function servicePatientPremier($indexeService,$entiteesService)
-    {
-       
-        $tableau = array($entiteesService[$indexeService]);
-
-        $dernierCle = array_key_last($entiteesService);
-
-        for ($i=0; $i < $dernierCle; $i++) { 
-            if ($i != $indexeService)
-            {
-                array_push($tableau, $entiteesService[$i]);
-            }
-        }
-
-        return $tableau;
-
-    }
+    
 }
