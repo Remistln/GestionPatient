@@ -76,7 +76,7 @@ class TableauService
         return $retourApi;
     }
 
-    public function DeleteInfirmier($idService)
+    public function DeleteService($idService)
     {
     
         $requetteService = curl_init('http://localhost:8000/api/services/' . strval($idService));
