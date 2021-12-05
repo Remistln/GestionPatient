@@ -22,7 +22,7 @@ class DeleteAdminController extends AbstractController
             return $this->redirectToRoute('login');
         }else{
             return $this->render('access_denied/index.html.twig', [
-                'controller_name' => 'AjoutAdminController',
+                'controller_name' => 'DeleteAdminController',
                 'error' => "Vous n'êtes pas autorisé à aller sur cette page"
             ]);
         }
