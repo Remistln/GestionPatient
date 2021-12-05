@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class DeplacementLitController extends AbstractController
 {
     #[Route('/deplacement/lit/{id}', name: 'deplacement_lit')]
-    public function index($id,Request $request): Response
+    public function index($id, Request $request): Response
     {
         $managerPatients = new TableauPatient;
         $patient = $managerPatients->GetPatient($id);
@@ -24,7 +24,7 @@ class DeplacementLitController extends AbstractController
         $indexeLit = $this->trouverIndexeLit($patient,$lits);
 
         $lits = $this->litPatientPremier($indexeLit,$lits, $patient->getService());
-        dump($lits);
+        
         $form = $this->createFormBuilder()
                             ->add('lit', ChoiceType::class, [
                                 'mapped' => false,
