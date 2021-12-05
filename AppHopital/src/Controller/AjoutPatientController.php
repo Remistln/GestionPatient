@@ -19,65 +19,75 @@ class AjoutPatientController extends AbstractController
     #[Route('/ajout/patient', name: 'ajout_patient')]
     public function index(Request $request): Response
     {
-        $patient = new Patient();
+        $session = $request->getSession();
+        $role = $session->get('role');
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
+            $patient = new Patient();
 
-        $serviceGet = new TableauService;
-        $entiteesService = $serviceGet->GetServices();
-        
-        
-        $form = $this->createFormBuilder($patient)
-                    ->add('nom')
-                    ->add('prenom')
-                    ->add('service', ChoiceType::class, [
+            $serviceGet = new TableauService;
+            $entiteesService = $serviceGet->GetServices();
+
+
+            $form = $this->createFormBuilder($patient)
+                ->add('nom')
+                ->add('prenom')
+                ->add('service', ChoiceType::class, [
                         'mapped' => false,
                         'choices'  => $entiteesService,
                         'choice_label' => 'label'
                     ]
-                    )
-                    ->add('dateNaissance', BirthdayType::class, [
-                        'format' => 'yyyy-MM-dd', 'attr' => [
-                            'required' => false
-                        ]
-                    ])
-                    ->add('lieuNaissance')
-                    ->add('numeroSS')
-                    ->add('probleme')
-                    ->add('description')
-                    
-                    ->getForm();
+                )
+                ->add('dateNaissance', BirthdayType::class, [
+                    'format' => 'yyyy-MM-dd', 'attr' => [
+                        'required' => false
+                    ]
+                ])
+                ->add('lieuNaissance')
+                ->add('numeroSS')
+                ->add('probleme')
+                ->add('description')
 
-        $form->handleRequest($request);
+                ->getForm();
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+            $form->handleRequest($request);
 
-            $data = $request->request->get('form');
-            
-            $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
-            $data["numeroSS"] = intval($data["numeroSS"]);
-
-            $data["service"] = $entiteesService[$data["service"]]->getId();
-            $data["lit"] = 0;
-            
-            $tableauPatient = new TableauPatient;
-            $retourApi = $tableauPatient->PostPatient($data);
-            
-            $retourApi = json_decode($retourApi,true);
-            dump($retourApi);
-            
-            if ($retourApi["@context"] != "\/api\/contexts\/Error")
+            if($form->isSubmitted() && $form->isValid())
             {
 
-                return $this->redirectToRoute('ajout_lit_a_patient', array('idPatient' => $retourApi["id"], 'idService' => $retourApi["service"]));
+                $data = $request->request->get('form');
+
+                $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
+                $data["numeroSS"] = intval($data["numeroSS"]);
+
+                $data["service"] = $entiteesService[$data["service"]]->getId();
+                $data["lit"] = 0;
+
+                $tableauPatient = new TableauPatient;
+                $retourApi = $tableauPatient->PostPatient($data);
+
+                $retourApi = json_decode($retourApi,true);
+                dump($retourApi);
+
+                if ($retourApi["@context"] != "\/api\/contexts\/Error")
+                {
+
+                    return $this->redirectToRoute('ajout_lit_a_patient', array('idPatient' => $retourApi["id"], 'idService' => $retourApi["service"]));
+                }
             }
-            
-            
-            
+
+            return $this->render('ajout_patient/index.html.twig', [
+                'controller_name' => 'AjoutPatientController',
+                'formPatient' => $form->createView(),
+            ]);
+
+        }else{
+
+            return $this->render('access_denied/index.html.twig', [
+                'controller_name' => 'AjoutPatientController',
+                'error' => "Vous n'êtes pas autorisé à aller sur cette page"
+            ]);
+
         }
 
-        return $this->render('ajout_patient/index.html.twig', [
-            'controller_name' => 'AjoutPatientController',
-             'formPatient' => $form->createView(),
-        ]);
     }
 }
