@@ -70,7 +70,6 @@ class AjoutPatientController extends AbstractController
 
                 if ($retourApi["@context"] != "\/api\/contexts\/Error")
                 {
-
                     return $this->redirectToRoute('ajout_lit_a_patient', array('idPatient' => $retourApi["id"], 'idService' => $retourApi["service"]));
                 }
             }
