@@ -42,6 +42,7 @@ class AjoutAdminController extends AbstractController
                 dump($requetteAdmin);
                 $retourApi = curl_exec($requetteAdmin);
                 curl_close($requetteAdmin);
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

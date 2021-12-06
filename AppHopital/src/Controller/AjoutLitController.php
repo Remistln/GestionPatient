@@ -54,7 +54,7 @@ class AjoutLitController extends AbstractController
 
                 $tableauLit = new TableauLit;
                 $retourApi = $tableauLit->PostLit($data);
-
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

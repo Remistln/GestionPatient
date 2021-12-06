@@ -43,6 +43,7 @@ class AjoutInfirmierController extends AbstractController
                 dump($requestInfirmier);
                 $retourApi = curl_exec($requestInfirmier);
                 curl_close($requestInfirmier);
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

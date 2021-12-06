@@ -16,7 +16,7 @@ class DeleteLitController extends AbstractController
         $appelApi = $manager->DeleteLit($id);
 
         
-        return $this->redirectToRoute('login');
+        return $this->redirectToRoute('accueil_administrateur');
         
 
     }

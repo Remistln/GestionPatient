@@ -36,7 +36,7 @@ class ModificationAdminController extends AbstractController
                 $data = $request->request->get('form');
                 
                 $retourApi = $adminGet->PutAdmin($id,$data);
-                return $this->redirectToRoute('login');
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

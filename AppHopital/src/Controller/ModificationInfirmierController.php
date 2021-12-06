@@ -36,7 +36,7 @@ class ModificationInfirmierController extends AbstractController
                 $data = $request->request->get('form');
                 
                 $retourApi = $infirmierGet->PutInfirmier($id, $data);
-                return $this->redirectToRoute('login');
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

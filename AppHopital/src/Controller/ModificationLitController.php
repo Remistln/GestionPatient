@@ -39,6 +39,7 @@ class ModificationLitController extends AbstractController
 
            
             $retourApi = $managerLit->PutLit($id, $data);
+            return $this->redirectToRoute('login');
             
         }
         

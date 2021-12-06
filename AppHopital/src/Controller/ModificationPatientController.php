@@ -47,6 +47,7 @@ class ModificationPatientController extends AbstractController
             
             $tableauPatient = new TableauPatient;
             $retourApi = $tableauPatient->PutPatient($id,$data);
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('modification_patient/index.html.twig', [

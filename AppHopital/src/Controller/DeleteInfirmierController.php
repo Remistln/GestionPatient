@@ -20,7 +20,7 @@ class DeleteInfirmierController extends AbstractController
             $appelApi = $manager->DeleteInfirmier($id);
 
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('accueil_administrateur');
         }else{
             return $this->render('access_denied/index.html.twig', [
                 'controller_name' => 'DeleteInfirmierController',

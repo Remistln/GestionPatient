@@ -19,7 +19,7 @@ class DeleteAdminController extends AbstractController
         if ($role == 'ROLE_ADMIN'){
             $manager = new TableauAdmin;
             $appelApi = $manager->DeleteAdmin($id);
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('accueil_administrateur');
         }else{
             return $this->render('access_denied/index.html.twig', [
                 'controller_name' => 'DeleteAdminController',

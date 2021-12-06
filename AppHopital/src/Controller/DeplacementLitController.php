@@ -43,6 +43,7 @@ class DeplacementLitController extends AbstractController
             $data["lit"] = $lits[$data["lit"]]->getId();
             
             $retourApi = $managerPatients->PutPatient($id,$data);
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('deplacement_lit/index.html.twig', [

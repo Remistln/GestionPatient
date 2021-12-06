@@ -30,6 +30,7 @@ class ModificationServiceController extends AbstractController
             $data = $request->request->get('form');
             
             $retourAPI = $manager->PutService($id,$data);
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('modification_service/index.html.twig', [

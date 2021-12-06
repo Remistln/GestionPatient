@@ -58,6 +58,7 @@ class AjoutLitAPatientController extends AbstractController
             dump($data);
 
             $retourApi = $patientGet->PutPatient($idPatient,$data);
+            return $this->redirectToRoute('login');
         }
         
         return $this->render('ajout_lit_a_patient/index.html.twig', [
