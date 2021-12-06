@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Patient;
+use App\Service\TableauLit;
 use App\Service\TableauPatient;
 use App\Service\TableauService;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class DeplacementServiceController extends AbstractController
 {
@@ -40,6 +43,10 @@ class DeplacementServiceController extends AbstractController
                                 'required' => false,
                                 
                             ])
+                            ->add('chambre', IntegerType::class,[
+                                'label' => 'Numéro de la chambre',
+                                'required' => true
+                            ])
                             ->getForm();
 
         $form->handleRequest($request);
@@ -56,6 +63,10 @@ class DeplacementServiceController extends AbstractController
                 $retourApi = $managerPatient->PutPatient($id,$data);
                 return $this->redirectToRoute('deplacement_lit',array('id' =>$id));
             } else {
+                $data['chambre'] = intval($data['chambre']);
+                $managerLit = new TableauLit();
+                $managerLit->PutLit($patient->getLit(),array('chambre' => $data['chambre'] ));
+                unset($data['chambre'] );
                 $retourApi = $managerPatient->PutPatient($id,$data);
                 return $this->redirectToRoute('login');
             }
