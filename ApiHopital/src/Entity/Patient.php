@@ -61,7 +61,7 @@ class Patient
 
     #[Groups("patient")]
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $numeroSS;
 

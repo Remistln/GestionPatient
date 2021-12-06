@@ -48,8 +48,8 @@ class AppFixtures extends Fixture
                 $lit = new Lit();
                 $lit->setChambre($faker->randomDigit());
                 $lit->setEtat($faker->boolean());
-                $lit->setLargeur($faker->randomFloat());
-                $lit->setLongueur($faker->randomFloat());
+                $lit->setLargeur($faker->randomDigit());
+                $lit->setLongueur($faker->randomDigit());
                 $lit->setNumero($faker->randomDigit());
                 $lit->setService($service->getId());
                 $manager->persist($lit);
