@@ -11,7 +11,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
+
+
                     <button onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary">Retour</button>
+
+
                 </div>
                 <div class="col-md-4 align-self-center"><h2>Modification d'un infirmier</h2></div>
 
@@ -22,7 +26,7 @@
 
         {{ form_widget(formInfirmier) }}
 
-        <button class="btn btn-secondary" type="submit" >Modifier</button>
+        <button onclick="window.location.href = '/accueil/administrateur';" class="btn btn-secondary" type="submit" >Modifier</button>
 
         {{ form_end(formInfirmier) }}
     </div>

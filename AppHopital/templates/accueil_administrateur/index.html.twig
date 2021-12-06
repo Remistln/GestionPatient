@@ -9,7 +9,7 @@
             <div class="col-md">
                 <button onclick="window.location.href = '/';" type="button" class="btn btn-secondary">Retour</button>
             </div>
-            <div class="col-md align-self-center"><h2>Acceuil</h2></div>
+            <div class="col-md align-self-center"><h2>Accueil</h2></div>
 
         </div>
     </div>
@@ -37,7 +37,7 @@
                         <td>{{ patients.nom }}</td>
                         <td>
                             <button onclick="window.location.href='/modification/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Modifier</button>
-                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/confirme/delete/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -72,8 +72,8 @@
                     <tr>
                         <td>{{ infirmiers.nom }}</td>
                         <td>
-                            <button onclick="window.location.href='/modification/blank';"type="button" class="btn btn-secondary">Modifier</button>
-                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/modification/infirmier/{{ infirmiers.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                            <button onclick="window.location.href='/confirme/delete/lit/{{ infirmiers.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -107,8 +107,8 @@
                     <tr>
                         <td>{{ services.label }}</td>
                         <td>
-                            <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
-                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/modification/service/{{ services.id }}';"type="button" class="btn btn-secondary">Renommer</button>
+                            <button onclick="window.location.href='/confirme/delete/service/{{ services.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -138,12 +138,14 @@
 
             </tr>
             </thead>
-            <!--<tbody>
-           {#  {% for lits in tableauLits %}
+            <tbody>
+             {% for lits in tableauLits %}
                 <tr>
                     <td>Lit n°{{ lits.numero }} Chambre n°{{ lits.chambre }}</td>
                     <td>
-                        <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/modification/lit/{{ lits.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                        <button onclick="window.location.href='/confirme/delete/service/{{ lits.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
+
                         {% if lits.etat == true %}
                             <label>OUI</label>
                         {% else %}
@@ -152,9 +154,9 @@
 
                     </td>
                 </tr>
-            {% endfor %}#}
+            {% endfor %}
 
-            </tbody>-->
+            </tbody>
         </table>
 
     </div>

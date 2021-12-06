@@ -11,7 +11,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
+
+                    {% if role=='ROLE_ADMIN' %}
                     <button onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary">Retour</button>
+                    {% else %}
+                    <button onclick="window.location.href = '/accueil/infirmier';" type="button" class="btn btn-secondary"  >Retour</button>
+                    {% endif %}
+
                 </div>
                 <div class="col-md-4 align-self-center"><h2>Modification d'un service</h2></div>
 
@@ -22,7 +28,8 @@
 
         {{ form_widget(formService) }}
 
-        <button class="btn btn-secondary" type="submit" >Modifier</button>
+            <button  class="btn btn-secondary" type="submit" >Modifier</button>
+
 
         {{ form_end(formService) }}
     </div>

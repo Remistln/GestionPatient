@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConfirmeDeletePatientController!{% endblock %}
+{% block title %}Suppression Patient{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
     <h1>Êtes-vous sûr de supprimer ce patient?</h1>
-    <button  onclick="window.location.href = '{{ route }}';" type="button" > Oui </button>
-    <button  onclick="window.location.href = '/';" type="button" > Non </button>
+    <button  onclick="window.location.href = '{{ route }}';" type="button" class="btn btn-secondary" > Oui </button>
+    <button  onclick="window.location.href = '/';" type="button" class="btn btn-secondary" > Non </button>
 </div>
 {% endblock %}

@@ -43,8 +43,8 @@
                     <tr>
                         <td>{{ patients.nom }}</td>
                         <td>
-                            <button onclick="window.location.href='/modification/patient/{{ patients.id }}';"type="button" class="btn btn-secondary">Modifier</button>
-                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/modification/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                            <button onclick="window.location.href='/confirme/delete/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -78,8 +78,8 @@
                     <tr>
                         <td>{{ services.label }}</td>
                         <td>
-                            <button onclick="window.location.href='/modification/service';"type="button" class="btn btn-secondary">Renommer</button>
-                            <button type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/modification/service/{{ services.id }}';"type="button" class="btn btn-secondary">Renommer</button>
+                            <button onclick="window.location.href='/confirme/delete/service/{{ services.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -114,8 +114,10 @@
                     <tr>
                         <td>Lit n°{{ lits.numero }} Chambre n°{{ lits.chambre }}</td>
                         <td>
-                            <button onclick="window.location.href='/modification/lit';" type="button" class="btn btn-secondary">Modifier</button>
-                             {% if lits.etat == true %}
+                            <button onclick="window.location.href='/modification/lit/{{ lits.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                            <button onclick="window.location.href='/confirme/delete/lit/{{ lits.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
+
+                            {% if lits.etat == true %}
                                 <label>OUI</label>
                              {% else %}
                                  <label>NON</label>
