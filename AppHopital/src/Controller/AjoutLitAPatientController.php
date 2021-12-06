@@ -55,9 +55,10 @@ class AjoutLitAPatientController extends AbstractController
             $data = $request->request->get('form');
             
             $data["lit"] = $listeLitDuService[$data["lit"]]->getId();
-            dump($data);
+            $dataLit = array("etat" => false);
 
-            $retourApi = $patientGet->PutPatient($idPatient,$data);
+            $retourApiPatient = $patientGet->PutPatient($idPatient,$data);
+            $retourApiLit =$litGet->PutLit($data["lit"] , $dataLit);
             return $this->redirectToRoute('login');
         }
         
