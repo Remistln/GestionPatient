@@ -35,13 +35,13 @@ class Lit
 
     #[Groups("patient")]
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $longueur;
 
     #[Groups("patient")]
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $largeur;
 
