@@ -49,7 +49,7 @@
 
     </div>
 
-    <!--Listes comptes-->
+    <!--Listes comptes infirmiers-->
     <div class="container">
         <p><h4> Listes des infirmiers </h4></p>
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -70,10 +70,10 @@
                 <tbody>
                 {% for infirmiers in tableauInfirmiers %}
                     <tr>
-                        <td>{{ infirmiers.nom }}</td>
+                        <td>{{ infirmiers.nom }} {{ infirmiers.prenom }}</td>
                         <td>
                             <button onclick="window.location.href='/modification/infirmier/{{ infirmiers.id }}';" type="button" class="btn btn-secondary">Modifier</button>
-                            <button onclick="window.location.href='/confirme/delete/lit/{{ infirmiers.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
+                            <button onclick="window.location.href='/confirme/delete/infirmier/{{ infirmiers.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -84,6 +84,43 @@
         </div>
 
     </div>
+
+    <!--Listes comptes administrateur-->
+    <div class="container">
+        <p><h4> Listes des administrateurs </h4></p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table width="100%" class="table-primary">
+                <thead>
+                <tr>
+                    <th scope="col">Nom d'un administrateur</th>
+                    <th scope="col"><p>Options</p></th>
+                    <th scope="col">
+                        <div class="right-text-pad">
+                            <button onclick="window.location.href = '/ajout/admin';" type="button" class="btn btn-secondary">Ajouter</button>
+                        </div>
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for admins in tableauAdmins %}
+                    <tr>
+                        <td>{{ admins.nom }} {{ admins.prenom }}</td>
+                        <td>
+                            <button onclick="window.location.href='/modification/admin/{{ admins.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                            <button onclick="window.location.href='/confirme/delete/admin/{{ admins.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
     <!--Listes Services-->
     <div class="container">
         <p><h4> Listes des services</h4></p>
