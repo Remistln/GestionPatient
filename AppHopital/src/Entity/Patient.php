@@ -48,7 +48,7 @@ class Patient
     private $probleme;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $numeroSS;
 
