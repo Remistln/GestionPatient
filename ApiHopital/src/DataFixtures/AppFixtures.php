@@ -17,6 +17,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $list_services = ["Urgences","Radiologie", "Cardiologie", "Maternité", "Chirurgie", "Medecin general", "Pneumologie", "Covid", "Pharmacie", "Neurologie"];
         $faker = Factory::create();
         for ($i = 0; $i < 10; $i++) {
             $admin = new Admin();
@@ -34,7 +35,7 @@ class AppFixtures extends Fixture
             $manager->persist($infirmier);
 
             $service = new Service();
-            $service->setLabel($faker->text());
+            $service->setLabel($list_services[$i]);
             $manager->persist($service);
             $manager->flush();
 
