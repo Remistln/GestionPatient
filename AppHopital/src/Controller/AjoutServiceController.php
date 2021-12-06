@@ -40,6 +40,7 @@ class AjoutServiceController extends AbstractController
             return $this->render('ajout_service/index.html.twig', [
                 'controller_name' => 'AjoutServiceController',
                 'formService' => $form->createView(),
+                'role' => $role
             ]);
         }else{
             return $this->render('access_denied/index.html.twig', [

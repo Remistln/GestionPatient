@@ -77,6 +77,7 @@ class AjoutPatientController extends AbstractController
             return $this->render('ajout_patient/index.html.twig', [
                 'controller_name' => 'AjoutPatientController',
                 'formPatient' => $form->createView(),
+                'role' => $role
             ]);
 
         }else{

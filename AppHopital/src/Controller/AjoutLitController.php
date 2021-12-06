@@ -17,47 +17,57 @@ class AjoutLitController extends AbstractController
     #[Route('/ajout/lit', name: 'ajout_lit')]
     public function index(Request $request): Response
     {
-        $lit = new Lit();
+        $session = $request->getSession();
+        $role = $session->get('role');
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
+            $lit = new Lit();
 
-        $serviceGet = new TableauService;
-        $entiteesService = $serviceGet->GetServices();
+            $serviceGet = new TableauService;
+            $entiteesService = $serviceGet->GetServices();
 
-        $form = $this ->createFormBuilder($lit)
-                      ->add('numero')
-                      ->add('chambre')
-                      ->add('service', ChoiceType::class, [
+            $form = $this ->createFormBuilder($lit)
+                ->add('numero')
+                ->add('chambre')
+                ->add('service', ChoiceType::class, [
                         'mapped' => false,
                         'choices'  => $entiteesService,
                         'choice_label' => 'label'
                     ]
-                    )
-                      ->add('longueur')
-                      ->add('largeur')
-                      ->add('etat')
+                )
+                ->add('longueur')
+                ->add('largeur')
+                ->add('etat')
 
-                      ->getForm();
+                ->getForm();
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $data = $request->request->get('form');
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $data = $request->request->get('form');
 
-            $data["numero"] = intval($data["numero"]);
-            $data["chambre"] = intval($data["chambre"]); 
-            $data["longueur"] = floatval($data["longueur"]); 
-            $data["largeur"] = floatval($data["largeur"]); 
-            $data["etat"] = boolval($data["etat"]);
-            $data["service"] = $entiteesService[$data["service"]]->getId();
+                $data["numero"] = intval($data["numero"]);
+                $data["chambre"] = intval($data["chambre"]);
+                $data["longueur"] = floatval($data["longueur"]);
+                $data["largeur"] = floatval($data["largeur"]);
+                $data["etat"] = boolval($data["etat"]);
+                $data["service"] = $entiteesService[$data["service"]]->getId();
 
-            $tableauLit = new TableauLit;
-            $retourApi = $tableauLit->PostLit($data);
+                $tableauLit = new TableauLit;
+                $retourApi = $tableauLit->PostLit($data);
 
+            }
+
+
+            return $this->render('ajout_lit/index.html.twig', [
+                'controller_name' => 'AjoutLitController',
+                'formLit'=> $form->createView(),
+                'role' => $role
+            ]);
+        }else{
+            return $this->render('access_denied/index.html.twig', [
+                'controller_name' => 'AjoutLitController',
+                'error' => "Vous n'êtes pas autorisé à aller sur cette page"
+            ]);
         }
- 
-
-        return $this->render('ajout_lit/index.html.twig', [
-            'controller_name' => 'AjoutLitController',
-            'formLit'=> $form->createView(),
-        ]);
     }
 }
