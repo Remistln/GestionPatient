@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1287ccc9058a0e937c1f020851f3b61",
+    "content-hash": "789df825fd2fc18adfa038cc188202b8",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1523,16 +1523,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.10.2",
+            "version": "2.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "81d472f6f96b8b571cafefe8d2fef89ed9446a62"
+                "reference": "7b242753466508e1dd10f67c1baee95785f845c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/81d472f6f96b8b571cafefe8d2fef89ed9446a62",
-                "reference": "81d472f6f96b8b571cafefe8d2fef89ed9446a62",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/7b242753466508e1dd10f67c1baee95785f845c1",
+                "reference": "7b242753466508e1dd10f67c1baee95785f845c1",
                 "shasum": ""
             },
             "require": {
@@ -1562,12 +1562,12 @@
                 "doctrine/annotations": "^1.13",
                 "doctrine/coding-standard": "^9.0",
                 "phpbench/phpbench": "^0.16.10 || ^1.0",
-                "phpstan/phpstan": "0.12.99",
+                "phpstan/phpstan": "1.2.0",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.4",
                 "squizlabs/php_codesniffer": "3.6.1",
                 "symfony/cache": "^4.4 || ^5.2",
                 "symfony/yaml": "^3.4 || ^4.0 || ^5.0 || ^6.0",
-                "vimeo/psalm": "4.10.0"
+                "vimeo/psalm": "4.13.1"
             },
             "suggest": {
                 "symfony/cache": "Provides cache support for Setup Tool with doctrine/cache 2.0",
@@ -1616,9 +1616,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.10.2"
+                "source": "https://github.com/doctrine/orm/tree/2.10.3"
             },
-            "time": "2021-10-21T17:57:02+00:00"
+            "time": "2021-12-03T12:27:05+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1761,22 +1761,22 @@
         },
         {
             "name": "fakerphp/faker",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "271d384d216e5e5c468a6b28feedf95d49f83b35"
+                "reference": "b85e9d44eae8c52cca7aa0939483611f7232b669"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/271d384d216e5e5c468a6b28feedf95d49f83b35",
-                "reference": "271d384d216e5e5c468a6b28feedf95d49f83b35",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/b85e9d44eae8c52cca7aa0939483611f7232b669",
+                "reference": "b85e9d44eae8c52cca7aa0939483611f7232b669",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0",
                 "psr/container": "^1.0 || ^2.0",
-                "symfony/deprecation-contracts": "^2.2"
+                "symfony/deprecation-contracts": "^2.2 || ^3.0"
             },
             "conflict": {
                 "fzaninotto/faker": "*"
@@ -1795,7 +1795,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "v1.16-dev"
+                    "dev-main": "v1.17-dev"
                 }
             },
             "autoload": {
@@ -1820,9 +1820,9 @@
             ],
             "support": {
                 "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.16.0"
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.17.0"
             },
-            "time": "2021-09-06T14:53:37+00:00"
+            "time": "2021-12-05T17:14:47+00:00"
         },
         {
             "name": "fig/link-util",
@@ -7306,7 +7306,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2.5",
+        "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-curl": "*",
