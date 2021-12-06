@@ -72,7 +72,7 @@ class TableauAdmin
 
         $requetteAdmin = curl_init('http://localhost:8000/api/admins');
 
-        curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $requetteAdmin);
+        curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $donneeAdmin);
         curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
 
