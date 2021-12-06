@@ -10,6 +10,10 @@
 <div class="example-wrapper">
     <h1>Êtes-vous sûr de supprimer ce service?</h1>
     <button  onclick="window.location.href = '{{ route }}';" type="button" class="btn btn-secondary" > Oui </button>
-    <button  onclick="window.location.href = '/';" type="button" class="btn btn-secondary" > Non </button>
+    {% if role=='ROLE_ADMIN' %}
+        <button  onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary" > Non </button>
+    {% else %}
+        <button  onclick="window.location.href = '/accueil/infirmier';" type="button" class="btn btn-secondary" > Non </button>
+    {% endif %}
 </div>
 {% endblock %}
