@@ -8,6 +8,7 @@ use App\Service\TableauAdmin;
 use App\Service\TableauInfirmier;
 use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class LoginController extends AbstractController
 
         $form = $this->createFormBuilder()
             ->add('identifiant')
-            ->add('mdp')
+            ->add('mdp', PasswordType::class)
             ->getForm();
 
         $form->handleRequest($request);

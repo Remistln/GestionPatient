@@ -14,11 +14,13 @@ use App\Service\TableauAdmin;
 use App\Service\TableauService;
 
 
+
 class AccueilAdministrateurController extends AbstractController
 {
     #[Route('/accueil/administrateur', name: 'accueil_administrateur')]
     public function index(Request $request): Response
     {
+
         $session = $request->getSession();
         $role = $session->get('role');
         if ($role == 'ROLE_ADMIN'){
