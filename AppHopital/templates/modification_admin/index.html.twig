@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModificationAdminController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <button onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary">Retour</button>
+                </div>
+                <div class="col-md-4 align-self-center"><h2>Modification d'un admin</h2></div>
+
+            </div>
+        </div>
+
+        {{ form_start(formAdmin) }}
+
+        {{ form_widget(formAdmin) }}
+
+        <button class="btn btn-secondary" type="submit" >Modifier</button>
+
+        {{ form_end(formAdmin) }}
+    </div>
+{% endblock %}
