@@ -7,6 +7,8 @@ use App\Entity\Service;
 use App\Service\TableauService;
 use App\Service\TableauPatient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,7 +45,7 @@ class AjoutPatientController extends AbstractController
                     ]
                 ])
                 ->add('lieuNaissance')
-                ->add('numeroSS')
+                ->add('numeroSS', TextType::class, array('attr' => ['minlength' => 13,'maxlength' => 13]))
                 ->add('probleme')
                 ->add('description')
 
@@ -53,11 +55,9 @@ class AjoutPatientController extends AbstractController
 
             if($form->isSubmitted() && $form->isValid())
             {
-
                 $data = $request->request->get('form');
 
                 $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
-                $data["numeroSS"] = intval($data["numeroSS"]);
 
                 $data["service"] = $entiteesService[$data["service"]]->getId();
                 $data["lit"] = 0;
