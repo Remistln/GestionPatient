@@ -34,7 +34,7 @@ class AjoutServiceController extends AbstractController
                 $data = $request->request->get('form');
                 $manager = new TableauService;
                 $retourAPI = $manager->PostService($data);
-                return $this->redirectToRoute('login');
+                return $this->redirectToRoute('accueil_administrateur');
             }
 
 

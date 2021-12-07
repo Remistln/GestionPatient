@@ -21,7 +21,7 @@ class DeleteServiceController extends AbstractController
             if ($role == 'ROLE_ADMIN'){
                 return $this->redirectToRoute('accueil_administrateur');
             }else{
-                return $this->redirectToRoute('accueil_infirmier');
+                return $this->redirectToRoute('accueil_administrateur');
             }
         }else{
             return $this->render('access_denied/index.html.twig', [
