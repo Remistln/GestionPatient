@@ -20,7 +20,6 @@ class AjoutAdminController extends AbstractController
             $admin = new Admin();
             $adminGet = new TableauAdmin;
             $entiteesAdmin = $adminGet->GetAdmins();
-            dump($entiteesAdmin);
 
             $form = $this->createFormBuilder($admin)
                 ->add('nom')
@@ -32,7 +31,7 @@ class AjoutAdminController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
                 $data = $request->request->get('form');
-                dump($data);
+                
                 $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
                 $requetteAdmin = curl_init('http://localhost:8000/api/admins');
 
