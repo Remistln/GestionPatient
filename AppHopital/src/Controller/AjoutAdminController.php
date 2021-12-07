@@ -31,14 +31,14 @@ class AjoutAdminController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
                 $data = $request->request->get('form');
-                
+
                 $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
                 $requetteAdmin = curl_init('http://localhost:8000/api/admins');
 
                 curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $donneesAdmin);
                 curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
                 curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
-                dump($requetteAdmin);
+                
                 $retourApi = curl_exec($requetteAdmin);
                 curl_close($requetteAdmin);
                 return $this->redirectToRoute('accueil_administrateur');
