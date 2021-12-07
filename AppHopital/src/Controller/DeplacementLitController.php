@@ -15,41 +15,51 @@ class DeplacementLitController extends AbstractController
     #[Route('/deplacement/lit/{id}', name: 'deplacement_lit')]
     public function index($id, Request $request): Response
     {
-        $managerPatients = new TableauPatient;
-        $patient = $managerPatients->GetPatient($id);
+        $session = $request->getSession();
+        $role = $session->get('role');
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
+            $managerPatients = new TableauPatient;
+            $patient = $managerPatients->GetPatient($id);
 
-        $managerLits = new TableauLit;
-        $lits = $managerLits->GetLits();
-        
-        $indexeLit = $this->trouverIndexeLit($patient,$lits);
+            $managerLits = new TableauLit;
+            $lits = $managerLits->GetLits();
 
-        $lits = $this->litPatientPremier($indexeLit,$lits, $patient->getService());
-        
-        $form = $this->createFormBuilder()
-                            ->add('lit', ChoiceType::class, [
-                                'mapped' => false,
-                                'choices'  => $lits,
-                                'choice_label' => function($lit) {return $lit->__toString();}
-                                ]
-                            )
-                            ->getForm();
+            $indexeLit = $this->trouverIndexeLit($patient,$lits);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
+            $lits = $this->litPatientPremier($indexeLit,$lits, $patient->getService());
 
-            $data = $request->request->get('form');
+            $form = $this->createFormBuilder()
+                ->add('lit', ChoiceType::class, [
+                        'mapped' => false,
+                        'choices'  => $lits,
+                        'choice_label' => function($lit) {return $lit->__toString();}
+                    ]
+                )
+                ->getForm();
 
-            $data["lit"] = $lits[$data["lit"]]->getId();
-            
-            $retourApi = $managerPatients->PutPatient($id,$data);
-            return $this->redirectToRoute('login');
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $data = $request->request->get('form');
+                $data["lit"] = $lits[$data["lit"]]->getId();
+                $retourApi = $managerPatients->PutPatient($id,$data);
+                if ($role == 'ROLE_ADMIN'){
+                    return $this->redirectToRoute('accueil_administrateur');
+                }else{
+                    return $this->redirectToRoute('accueil_infirmier');
+                }
+            }
+            return $this->render('deplacement_lit/index.html.twig', [
+                'controller_name' => 'DeplacementLitController',
+                'formLit' => $form->createView(),
+            ]);
+        }else{
+            return $this->render('access_denied/index.html.twig', [
+                'controller_name' => 'DeleteLitController',
+                'error' => "Vous n'êtes pas autorisé à aller sur cette page"
+            ]);
         }
 
-        return $this->render('deplacement_lit/index.html.twig', [
-            'controller_name' => 'DeplacementLitController',
-            'formLit' => $form->createView(),
-        ]);
     }
 
     private function trouverIndexeLit($patient,$lits)

@@ -19,7 +19,8 @@ class ConfirmeDeletePatientController extends AbstractController
 
             return $this->render('confirme_delete_patient/index.html.twig', [
                 'controller_name' => 'ConfirmeDeletePatientController',
-                'route' => $route
+                'route' => $route,
+                'role' => $role
             ]);
         }else{
             return $this->render('access_denied/index.html.twig', [

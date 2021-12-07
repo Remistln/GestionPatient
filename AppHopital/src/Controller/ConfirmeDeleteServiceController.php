@@ -14,11 +14,12 @@ class ConfirmeDeleteServiceController extends AbstractController
     {
         $session = $request->getSession();
         $role = $session->get('role');
-        if ($role == 'ROLE_ADMIN'){
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
             $route = "/delete/service/" . $id;
             return $this->render('confirme_delete_service/index.html.twig', [
                 'controller_name' => 'ConfirmeDeleteServiceController',
-                'route' => $route
+                'route' => $route,
+                'role' => $role
             ]);
         }else{
             return $this->render('access_denied/index.html.twig', [

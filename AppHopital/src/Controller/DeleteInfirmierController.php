@@ -18,8 +18,6 @@ class DeleteInfirmierController extends AbstractController
         if ($role == 'ROLE_ADMIN'){
             $manager = new TableauInfirmier;
             $appelApi = $manager->DeleteInfirmier($id);
-
-
             return $this->redirectToRoute('accueil_administrateur');
         }else{
             return $this->render('access_denied/index.html.twig', [

@@ -20,62 +20,75 @@ class DeplacementServiceController extends AbstractController
     #[Route('/deplacement/service/{id}', name: 'deplacement_service')]
     public function index($id, Request $request): Response
     {
-        $managerPatient = new TableauPatient;
-        $patient = $managerPatient->GetPatient($id);
+        $session = $request->getSession();
+        $role = $session->get('role');
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
+            $managerPatient = new TableauPatient;
+            $patient = $managerPatient->GetPatient($id);
 
-        $managerService = new TableauService;
-        $services = $managerService->GetServices();
+            $managerService = new TableauService;
+            $services = $managerService->GetServices();
 
-        $indexeLit = $this->trouverIndexeService($patient,$services);
+            $indexeLit = $this->trouverIndexeService($patient,$services);
 
-        $services = $this->servicePatientPremier($indexeLit,$services);
-        
-        $form = $this->createFormBuilder()
-                            ->add('service', ChoiceType::class, [
-                                'mapped' => false,
-                                'choices'  => $services,
-                                'choice_label' => 'label'
-                            ]
-                            )
-                            ->add('litChoix', CheckboxType::class, [
-                                'mapped' => false,
-                                'label'    => 'Le Patient change de lit',
-                                'required' => false,
-                                
-                            ])
-                            ->add('chambre', IntegerType::class,[
-                                'label' => 'Numéro de la chambre',
-                                'required' => true
-                            ])
-                            ->getForm();
+            $services = $this->servicePatientPremier($indexeLit,$services);
 
-        $form->handleRequest($request);
+            $form = $this->createFormBuilder()
+                ->add('service', ChoiceType::class, [
+                        'mapped' => false,
+                        'choices'  => $services,
+                        'choice_label' => 'label'
+                    ]
+                )
+                ->add('litChoix', CheckboxType::class, [
+                    'mapped' => false,
+                    'label'    => 'Le Patient change de lit',
+                    'required' => false,
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $data = $request->request->get('form');
-            $data["service"] = $services[$data["service"]]->getId();
-            dump($data);
-            
-            if (isset($data["litChoix"]))
+                ])
+                ->add('chambre', IntegerType::class,[
+                    'label' => 'Numéro de la chambre',
+                    'required' => true
+                ])
+                ->getForm();
+
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
             {
-                unset($data["litChoix"]);
-                $retourApi = $managerPatient->PutPatient($id,$data);
-                return $this->redirectToRoute('deplacement_lit',array('id' =>$id));
-            } else {
-                $data['chambre'] = intval($data['chambre']);
-                $managerLit = new TableauLit();
-                $managerLit->PutLit($patient->getLit(),array('chambre' => $data['chambre'] ));
-                unset($data['chambre'] );
-                $retourApi = $managerPatient->PutPatient($id,$data);
-                return $this->redirectToRoute('login');
+                $data = $request->request->get('form');
+                $data["service"] = $services[$data["service"]]->getId();
+                dump($data);
+
+                if (isset($data["litChoix"]))
+                {
+                    unset($data["litChoix"]);
+                    $retourApi = $managerPatient->PutPatient($id,$data);
+                    return $this->redirectToRoute('deplacement_lit',array('id' =>$id));
+                } else {
+                    $data['chambre'] = intval($data['chambre']);
+                    $managerLit = new TableauLit();
+                    $managerLit->PutLit($patient->getLit(),array('chambre' => $data['chambre'] ));
+                    unset($data['chambre'] );
+                    $retourApi = $managerPatient->PutPatient($id,$data);
+                    if ($role == 'ROLE_ADMIN'){
+                        return $this->redirectToRoute('accueil_administrateur');
+                    }else{
+                        return $this->redirectToRoute('accueil_infirmier');
+                    }
+                }
             }
+            return $this->render('deplacement_service/index.html.twig', [
+                'controller_name' => 'DeplacementServiceController',
+                'formService' => $form->createView(),
+            ]);
+        }else{
+            return $this->render('access_denied/index.html.twig', [
+                'controller_name' => 'DeplacementServiceController',
+                'error' => "Vous n'êtes pas autorisé à aller sur cette page"
+            ]);
         }
 
-        return $this->render('deplacement_service/index.html.twig', [
-            'controller_name' => 'DeplacementServiceController',
-            'formService' => $form->createView(),
-        ]);
     }
 
     private function trouverIndexeService($patient,$services)
