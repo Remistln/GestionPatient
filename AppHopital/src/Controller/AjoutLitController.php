@@ -54,7 +54,11 @@ class AjoutLitController extends AbstractController
 
                 $tableauLit = new TableauLit;
                 $retourApi = $tableauLit->PostLit($data);
-                return $this->redirectToRoute('accueil_administrateur');
+                if ($role == 'ROLE_ADMIN'){
+                    return $this->redirectToRoute('accueil_administrateur');
+                }else{
+                    return $this->redirectToRoute('accueil_infirmier');
+                }
             }
 
 

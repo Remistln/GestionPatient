@@ -18,7 +18,7 @@ class AjoutServiceController extends AbstractController
     {
         $session = $request->getSession();
         $role = $session->get('role');
-        if ($role == 'ROLE_ADMIN'){
+        if ($role == 'ROLE_ADMIN' || $role == 'ROLE_USER'){
             $service = new Service();
 
             $form= $this->createFormBuilder($service)
@@ -34,7 +34,11 @@ class AjoutServiceController extends AbstractController
                 $data = $request->request->get('form');
                 $manager = new TableauService;
                 $retourAPI = $manager->PostService($data);
-                return $this->redirectToRoute('accueil_administrateur');
+                if ($role == 'ROLE_ADMIN'){
+                    return $this->redirectToRoute('accueil_administrateur');
+                }else{
+                    return $this->redirectToRoute('accueil_infirmier');
+                }
             }
 
 
