@@ -44,6 +44,8 @@
                         <td>{{ patients.nom }}</td>
                         <td>
                             <button onclick="window.location.href='/modification/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Modifier</button>
+                            <button onclick="window.location.href='/deplacement/lit/{{ patients.id }}';" type="button" class="btn btn-secondary">Déplacer de Lit</button>
+                            <button onclick="window.location.href='/deplacement/service/{{ patients.id }}';" type="button" class="btn btn-secondary">Déplacer de Service</button>
                             <button onclick="window.location.href='/confirme/delete/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
                         </td>
                     </tr>

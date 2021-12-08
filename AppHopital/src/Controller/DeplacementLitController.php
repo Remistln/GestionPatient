@@ -52,6 +52,8 @@ class DeplacementLitController extends AbstractController
             return $this->render('deplacement_lit/index.html.twig', [
                 'controller_name' => 'DeplacementLitController',
                 'formLit' => $form->createView(),
+                'role'=> $role
+
             ]);
         }else{
             return $this->render('access_denied/index.html.twig', [

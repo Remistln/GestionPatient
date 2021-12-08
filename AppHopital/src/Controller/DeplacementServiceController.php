@@ -81,6 +81,7 @@ class DeplacementServiceController extends AbstractController
             return $this->render('deplacement_service/index.html.twig', [
                 'controller_name' => 'DeplacementServiceController',
                 'formService' => $form->createView(),
+                'role'=> $role
             ]);
         }else{
             return $this->render('access_denied/index.html.twig', [

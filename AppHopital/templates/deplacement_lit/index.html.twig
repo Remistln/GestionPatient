@@ -11,9 +11,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 ">
+                {% if role=='ROLE_ADMIN' %}
+                <button onclick="window.location.href = '/accueil/administrateur';" type="button" class="btn btn-secondary">Retour</button>
+                {% else %}
                 <button onclick="window.location.href = '/accueil/infirmier';" type="button" class="btn btn-secondary">Retour</button>
+                {% endif %}
+
+
             </div>
-            <div class="col-md-4 align-self-center"><h2>Déplacement d'un lit</h2></div>
+            <div class="col-md-4 align-self-center"><h2>Déplacer à un autre lit</h2></div>
 
         </div>
     </div>
