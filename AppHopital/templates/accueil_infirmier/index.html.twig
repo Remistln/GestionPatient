@@ -6,12 +6,9 @@
 
 {% endblock %}
 
-{% block stylesheets %}
-    <style rel="stylesheet" href="acceuil_infirmier"></style>
-    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
-{% endblock %}
 
 {% block body %}
+    <!--header-->
 <div class="container">
     <div class="row">
         <div class="col-md">
@@ -21,6 +18,7 @@
 
     </div>
 </div>
+    <!--Listes patients-->
 <div class="container">
     <p><h4> Listes des patients </h4></p>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -57,7 +55,7 @@
     </div>
 
 </div>
-
+    <!--Listes services-->
     <div class="container">
         <p><h4> Listes des services</h4></p>
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -93,7 +91,7 @@
         </div>
 
     </div>
-
+    <!--Listes lits-->
     <div class="container">
         <p><h4> Listes des lits </h4></p>
 

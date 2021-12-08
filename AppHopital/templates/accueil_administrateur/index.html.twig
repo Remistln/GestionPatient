@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil Admin{% endblock %}
+{% block title %}
+    Accueil Admin
+{% endblock %}
 
 {% block body %}
     <!--header-->
@@ -186,9 +188,9 @@
                         <button onclick="window.location.href='/confirme/delete/service/{{ lits.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
 
                         {% if lits.etat == true %}
-                            <label>OUI</label>
+                            <label>DISPONIBLE</label>
                         {% else %}
-                            <label>NON</label>
+                            <label>NON DISPONIBLE</label>
                         {% endif %}
 
                     </td>

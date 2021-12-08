@@ -3,11 +3,8 @@
 {% block title %}Suppression Service{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
+<div class="container-fluid">
     <h1>Êtes-vous sûr de supprimer ce service?</h1>
     <button  onclick="window.location.href = '{{ route }}';" type="button" class="btn btn-secondary" > Oui </button>
     {% if role=='ROLE_ADMIN' %}
