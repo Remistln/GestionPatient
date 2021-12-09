@@ -37,7 +37,7 @@ class LoginController extends AbstractController
             if ($Admin == true){
                 $mdpAdmin = $Admin[0]->getMdp();
                 $mdpForm = $data['mdp'];
-                if ($mdpAdmin == $mdpForm){
+                if (password_verify($mdpForm, $mdpAdmin)){
                     $user = new Admin();
                     $session->set('role', $user->getRoles());;
                     return $this->redirectToRoute('accueil_administrateur');
@@ -50,7 +50,7 @@ class LoginController extends AbstractController
                 if ($Infirmier == true) {
                     $mdpInfirmier = $Infirmier[0]->getMdp();
                     $mdpForm = $data['mdp'];
-                    if ($mdpInfirmier == $mdpForm) {
+                    if (password_verify($mdpForm, $mdpInfirmier)) {
                         $user = new Infirmier();
                         $session->set('role', $user->getRoles());;
                         return $this->redirectToRoute('accueil_infirmier');

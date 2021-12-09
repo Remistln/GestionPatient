@@ -31,7 +31,7 @@ class AjoutAdminController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
                 $data = $request->request->get('form');
-
+                $data['mdp'] = password_hash($data['mdp'], PASSWORD_DEFAULT);
                 $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
                 $requetteAdmin = curl_init('http://localhost:8000/api/admins');
 
