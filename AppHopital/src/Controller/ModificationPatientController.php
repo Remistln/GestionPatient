@@ -46,7 +46,7 @@ class ModificationPatientController extends AbstractController
                 $data = $request->request->get('form');
 
                 $data["dateNaissance"] = $data["dateNaissance"]["year"] . '-' . $data["dateNaissance"]["month"] . '-' . $data["dateNaissance"]["day"] ;
-                $data["numeroSS"] = intval($data["numeroSS"]);
+                $data["numeroSS"] = $data["numeroSS"];
 
                 $tableauPatient = new TableauPatient;
                 $retourApi = $tableauPatient->PutPatient($id,$data);

@@ -36,7 +36,7 @@
                 <tbody>
                 {% for patients in tableauPatients %}
                     <tr>
-                        <td>{{ patients.nom }}</td>
+                        <td>{{ patients.nom }} {{ patients.prenom }}</td>
                         <td>
                             <button onclick="window.location.href='/modification/patient/{{ patients.id }}';" type="button" class="btn btn-secondary">Modifier</button>
                             <button onclick="window.location.href='/deplacement/lit/{{ patients.id }}';" type="button" class="btn btn-secondary">Déplacer de Lit</button>
@@ -185,7 +185,7 @@
                     <td>Lit n°{{ lits.numero }} Chambre n°{{ lits.chambre }}</td>
                     <td>
                         <button onclick="window.location.href='/modification/lit/{{ lits.id }}';" type="button" class="btn btn-secondary">Modifier</button>
-                        <button onclick="window.location.href='/confirme/delete/service/{{ lits.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
+                        <button onclick="window.location.href='/confirme/delete/lit/{{ lits.id }}';" type="button" class="btn btn-secondary">Supprimer</button>
 
                         {% if lits.etat == true %}
                             <label>DISPONIBLE</label>
