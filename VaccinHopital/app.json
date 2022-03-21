@@ -1,13 +1,18 @@
 {
   "expo": {
-    "name": "VaccinHopital",
-    "slug": "VaccinHopital",
-    "version": "1.0.0",
+    "name": "Now UI React Native",
+    "slug": "now-ui-react-native",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -19,14 +24,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "description": "Now UI React Native, based on Now UI Design System. Coded by Creative Tim"
   }
 }
