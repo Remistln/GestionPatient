@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\InfirmierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,16 @@ class Infirmier
      * @ORM\Column(type="string", length=255)
      */
     private $mdp;
+
+    /**
+     * @ORM\OneToMany(targetEntity=RendezVous::class, mappedBy="infirmier")
+     */
+    private $rendezVous;
+
+    public function __construct()
+    {
+        $this->rendezVous = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +100,36 @@ class Infirmier
     public function setMdp(string $mdp): self
     {
         $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RendezVous[]
+     */
+    public function getRendezVous(): Collection
+    {
+        return $this->rendezVous;
+    }
+
+    public function addRendezVou(RendezVous $rendezVou): self
+    {
+        if (!$this->rendezVous->contains($rendezVou)) {
+            $this->rendezVous[] = $rendezVou;
+            $rendezVou->setInfirmier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRendezVou(RendezVous $rendezVou): self
+    {
+        if ($this->rendezVous->removeElement($rendezVou)) {
+            // set the owning side to null (unless already changed)
+            if ($rendezVou->getInfirmier() === $this) {
+                $rendezVou->setInfirmier(null);
+            }
+        }
 
         return $this;
     }
