@@ -33,6 +33,8 @@ class AjoutInfirmierController extends AbstractController
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()){
                 $data = $request->request->get('form');
+                $data['mdp'] = password_hash($data['mdp'], PASSWORD_DEFAULT);
+
                 dump($data);
                 $donneesInfirmier = json_encode($data, JSON_UNESCAPED_SLASHES, true);
                 $requestInfirmier = curl_init('http://localhost:8000/api/infirmiers');
