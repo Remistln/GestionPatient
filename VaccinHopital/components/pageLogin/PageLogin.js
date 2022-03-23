@@ -3,20 +3,23 @@ import { StyleSheet } from 'react-native';
 
 export default function PageLogin() {
   return (
-    <Block flex row>
+      <Block  style = {styles.block}>
         <Block flex row = {false}>
-            <Block flex ></Block>
-            <Block center flex = {2} >
-                <Text h2>Login</Text>
+
+            <Block  style = {styles.titre} >
+                <Text  style = {styles.TextTitre} h2>Login</Text>
             </Block>
-            <Block left middle flex = {2} width="75%" style ={styles.millieu}>
-                <Text h3 >Nom</Text>
-                <Input></Input>
-                <Text h3>Mot de Passe</Text>
-                <Input secureTextEntry={true}></Input>
+            <Block  style = {styles.nom}>
+                <Text h4>Nom : </Text>
+                <Input ></Input>
             </Block>
-            <Block flex></Block>
-            <Block bottom flex  left >
+
+            <Block  style = {styles.mdp}>
+            <Text h4>Mot de Passe : </Text>
+                <Input  secureTextEntry={true}></Input>
+            </Block>
+
+            <Block  style = {styles.connexion} >
                 <Button bottom>Connexion</Button>
             </Block>
         </Block>
@@ -25,12 +28,37 @@ export default function PageLogin() {
 }
 
 const styles = StyleSheet.create({
-    millieu: {
-        /*
-        borderColor: "blue",
-        borderWidth: 2,
-        */
-        alignSelf: 'center',
+
+    block :
+        {
+            flexDirection: "column",
+            flex: 5,
+            padding : 50
+        },
+    titre: {
+        justifyContent: 'space-evenly',
+        flex: 2,
+        textAlign: "center",
+        fontWeight : 'bold',
     },
+    TextTitre : {
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+    nom: {
+        flex: 2,
+        justifyContent: 'space-evenly',
+
+    },
+    mdp: {
+        flex: 2,
+        justifyContent: 'space-evenly',
+    },
+    connexion : {
+        flex : 2,
+        marginBottom : 10,
+        justifyContent: 'space-evenly',
+        alignItems:'center',
+    }
   });
   

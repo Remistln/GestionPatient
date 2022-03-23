@@ -28,10 +28,10 @@ export default function PageAcceuil() {
 
 const styles = StyleSheet.create({
     millieu: {
-        /*
+
         borderColor: "blue",
         borderWidth: 2,
-        */
+
         alignSelf: 'center',
     },
   });
