@@ -1,10 +1,43 @@
 import { Text, Block, Button, Input } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 
-export default function PageLogin() {
-  return (
-      <Block  style = {styles.block}>
-        <Block flex row = {false}>
+export default class PageLogin extends Component {
+
+    constructor()
+    {
+        super();
+        this.state = {
+            identifiant: '',
+            mdp: ''
+        }
+    }
+
+    connect()
+    {
+        /*
+            Plan:
+            mettre a jour ma bdd
+            coder un appel API pour obtenir le secretaire
+                appel sync
+                si possible en fonction de l'identifiant
+            verifier le mdp
+            passer à la page Acceuil si mdp correct
+                attention debut d'architecture d'app nécessaire
+        */
+        compare(string, hash, function(err, res)
+        {
+            if (res)
+            {
+
+            };
+        }
+        );
+    };
+
+    render(){
+        return (
+        <Block  style = {styles.block}>
+            <Block flex row = {false}>
 
             <Block  style = {styles.titre} >
                 <Text  style = {styles.TextTitre} h2>Login</Text>
@@ -22,9 +55,11 @@ export default function PageLogin() {
             <Block  style = {styles.connexion} >
                 <Button bottom>Connexion</Button>
             </Block>
+            </Block>
         </Block>
-    </Block>
-  );
+        );
+    }
+  
 }
 
 const styles = StyleSheet.create({
@@ -62,6 +97,3 @@ const styles = StyleSheet.create({
     }
   });
   
-
-var sel = "protectMè4Mù"
-
