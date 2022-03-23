@@ -98,3 +98,6 @@ const styles = StyleSheet.create({
     }
   });
   
+
+var sel = "protectMè4Mù"
+
