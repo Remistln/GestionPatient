@@ -6,14 +6,14 @@ export default function PageLogin() {
     <Block flex row>
         <Block flex row = {false}>
             <Block flex ></Block>
-            <Block center flex = {2} shadow shadowColor="red">
+            <Block center flex = {2} >
                 <Text h2>Login</Text>
             </Block>
             <Block left middle flex = {2} width="75%" style ={styles.millieu}>
                 <Text h3 >Nom</Text>
                 <Input></Input>
-                <Text h3>Mots de Passe</Text>
-                <Input></Input>
+                <Text h3>Mot de Passe</Text>
+                <Input secureTextEntry={true}></Input>
             </Block>
             <Block flex></Block>
             <Block bottom flex  left >
