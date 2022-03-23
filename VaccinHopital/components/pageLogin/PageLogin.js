@@ -37,27 +37,24 @@ export default class PageLogin extends Component {
 
     render(){
         return (
-        <Block  style = {styles.block}>
-            <Block flex row = {false}>
-
-            <Block  style = {styles.titre} >
-                <Text  style = {styles.TextTitre} h2>Login</Text>
+            <Block flex row>
+                <Block flex row = {false}>
+                    <Block flex ></Block>
+                    <Block center flex = {2} >
+                        <Text h2>Login</Text>
+                    </Block>
+                    <Block left middle flex = {2} width="75%" style ={styles.millieu}>
+                        <Text h3 >Nom</Text>
+                        <Input onChangeText={(text) => this.setState({identifiant: text})}></Input>
+                        <Text h3>Mot de Passe</Text>
+                        <Input secureTextEntry={true} onChangeText={(text) => this.setState({mdp: text})}></Input>
+                    </Block>
+                    <Block flex></Block>
+                    <Block bottom flex  left >
+                        <Button bottom onPress={() => connect }>Connexion</Button>
+                    </Block>
+                </Block>
             </Block>
-            <Block  style = {styles.nom}>
-                <Text h4>Nom : </Text>
-                <Input ></Input>
-            </Block>
-
-            <Block  style = {styles.mdp}>
-            <Text h4>Mot de Passe : </Text>
-                <Input  secureTextEntry={true}></Input>
-            </Block>
-
-            <Block  style = {styles.connexion} >
-                <Button bottom>Connexion</Button>
-            </Block>
-            </Block>
-        </Block>
         );
     }
   
@@ -98,6 +95,3 @@ const styles = StyleSheet.create({
     }
   });
   
-
-var sel = "protectMè4Mù"
-
