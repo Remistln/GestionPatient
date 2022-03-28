@@ -1,5 +1,6 @@
 import { Text, Block, Button, Input } from 'galio-framework';
 import { StyleSheet } from 'react-native';
+import { Component } from 'react';
 
 export default class PageLogin extends Component {
 

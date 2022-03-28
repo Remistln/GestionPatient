@@ -6,11 +6,11 @@ import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 export default function App() {
   return (
     <View style={styles.container}>
-      <PageAcceuil></PageAcceuil>
+      <PageLogin></PageLogin>
       <StatusBar style="auto" />
     </View>
   );
-}
+}// 
 
 const styles = StyleSheet.create({
   container: {
