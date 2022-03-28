@@ -17,7 +17,8 @@ export default class PageLogin extends Component {
     {
         /*
             Plan:
-            mettre a jour ma bdd
+            mettre a jour ma bdd CHECK
+            mettre a jour fakker pour hasher les mdps CHECK
             coder un appel API pour obtenir le secretaire
                 appel sync
                 si possible en fonction de l'identifiant
