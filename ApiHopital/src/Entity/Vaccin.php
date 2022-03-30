@@ -2,37 +2,49 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\VaccinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=VaccinRepository::class)
+ * @ApiResource(
+ * normalizationContext={
+ * "skip_null_values" = false,
+ *  "groups"={"vaccin_read"}
+ * })
  */
-#[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['reserve' => 'exact'])]
 class Vaccin
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"vaccin_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"vaccin_read"})
      */
     private $datePeremption;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"vaccin_read"})
      */
     private $reserve;
 
     /**
-     * @ORM\OneToMany(targetEntity=TypeVaccin::class, mappedBy="vaccin")
+     * @ORM\ManyToOne(targetEntity=TypeVaccin::class, inversedBy="vaccins")
+     * @Groups({"vaccin_read"})
      */
     private $type;
 
@@ -70,32 +82,14 @@ class Vaccin
         return $this;
     }
 
-    /**
-     * @return Collection|TypeVaccin[]
-     */
-    public function getType(): Collection
+    public function getType(): ?TypeVaccin
     {
         return $this->type;
     }
 
-    public function addType(TypeVaccin $type): self
+    public function setType(?TypeVaccin $type): self
     {
-        if (!$this->type->contains($type)) {
-            $this->type[] = $type;
-            $type->setVaccin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeType(TypeVaccin $type): self
-    {
-        if ($this->type->removeElement($type)) {
-            // set the owning side to null (unless already changed)
-            if ($type->getVaccin() === $this) {
-                $type->setVaccin(null);
-            }
-        }
+        $this->type = $type;
 
         return $this;
     }
