@@ -11,8 +11,7 @@ export default class PageLogin extends Component {
             identifiant: '',
             mdp: '',
         }
-        this.connect();
-    }
+    };
 
     async connect()
     {
@@ -20,10 +19,8 @@ export default class PageLogin extends Component {
             Plan:
             mettre a jour ma bdd CHECK
             mettre a jour fakker pour hasher les mdps CHECK
-            coder un appel API pour obtenir le secretaire
-                appel sync
-                si possible en fonction de l'identifiant
-            verifier le mdp
+            coder un appel API pour obtenir le secretaire CHECK
+            verifier le mdp Ongoing
             passer à la page Acceuil si mdp correct
                 attention debut d'architecture d'app nécessaire
         */
@@ -35,19 +32,28 @@ export default class PageLogin extends Component {
         const ip = "192.168.42.96:8080"; 
 
         const url = 'http://' + ip + '/api/secretaires';
-        var object = await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
+        await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
             .then(response => response.json())
             .then((data) => {
                 console.log(data);
+                for (const secretaire of data['hydra:member'])
+                {
+                    console.log(secretaire.identifiant);
+                    
+                    var bcrypt = require('bcryptjs');
+                    bcrypt.setRandomFallback();
+                    var hash = bcrypt.hashSync(this.state.mdp);
+
+                    bcrypt.compareSync(secretaire.mdp, hash);
+                }
             })
             .catch(function(error) {
                 console.log('There has been a problem with your fetch operation: ' + error.message);
                  // ADD THIS THROW error
                   throw error;
                 });
-            
-      
     };
+
 
     render(){
         return (
@@ -89,12 +95,12 @@ export default class PageLogin extends Component {
                     </Block>
 
                     <Block  style = {styles.connexion} >
-                        <Button bottom>Connexion</Button>
+                        <Button bottom onPress={this.connect.bind(this)}>Connexion</Button>
                     </Block>
                 </Block>
             </Block>
         );
-    }
+    };
   
 }
 
