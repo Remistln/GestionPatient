@@ -9,11 +9,12 @@ export default class PageLogin extends Component {
         super();
         this.state = {
             identifiant: '',
-            mdp: ''
+            mdp: '',
         }
+        this.connect();
     }
 
-    connect()
+    async connect()
     {
         /*
             Plan:
@@ -26,14 +27,26 @@ export default class PageLogin extends Component {
             passer à la page Acceuil si mdp correct
                 attention debut d'architecture d'app nécessaire
         */
-        compare(string, hash, function(err, res)
-        {
-            if (res)
-            {
+        var ApiHeaders = new Headers({
+            'Content-Type': 'application/ld+json'
+        });
 
-            };
-        }
-        );
+        // ip de l'ordinateur où se trouve le serveur
+        const ip = "192.168.42.96:8080"; 
+
+        const url = 'http://' + ip + '/api/secretaires';
+        var object = await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch(function(error) {
+                console.log('There has been a problem with your fetch operation: ' + error.message);
+                 // ADD THIS THROW error
+                  throw error;
+                });
+            
+      
     };
 
     render(){
@@ -45,13 +58,34 @@ export default class PageLogin extends Component {
                         <Text  style = {styles.TextTitre} h2>Login</Text>
                     </Block>
                     <Block  style = {styles.nom}>
-                        <Text h4>Nom : </Text>
-                        <Input ></Input>
+                        <Text h4>Email : </Text>
+                        <Input onChangeText=
+                        {
+                            (text) => 
+                            {
+                                this.setState(
+                                {
+                                    identifiant: text
+                                });
+                            }
+                        }
+                            
+                        ></Input>
                     </Block>
 
                     <Block  style = {styles.mdp}>
                         <Text h4>Mot de Passe : </Text>
-                        <Input  secureTextEntry={true}></Input>
+                        <Input  onChangeText=
+                        {
+                            (text) => 
+                            {
+                                this.setState(
+                                {
+                                    mdp: text
+                                });
+                            }
+                        }
+                            secureTextEntry={true}></Input>
                     </Block>
 
                     <Block  style = {styles.connexion} >
