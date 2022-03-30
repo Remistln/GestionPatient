@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
 
             $identifiantSecretaire = $faker->email();
             $mdpSecretaire = $faker->word();
-            $mdpData .= "    Infirmier : ". $identifiantSecretaire . " mdp : " . $mdpSecretaire . "\n";
+            $mdpData .= "    Secretaire : ". $identifiantSecretaire . " mdp : " . $mdpSecretaire . "\n";
 
             $secretaire = new Secretaire();
             $secretaire->setIdentifiant($identifiantSecretaire)
