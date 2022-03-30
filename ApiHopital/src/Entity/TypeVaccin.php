@@ -4,40 +4,57 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TypeVaccinRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TypeVaccinRepository::class)
+ * @ApiResource(
+ * normalizationContext={
+ * "skip_null_values" = false,
+ *  "groups"={"vaccintype_read"}
+ * })
  */
-#[ApiResource]
 class TypeVaccin
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"vaccintype_read", "vaccin_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"vaccintype_read", "vaccin_read"})
      */
     private $label;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"vaccintype_read", "vaccin_read"})
      */
     private $ageMin;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"vaccintype_read", "vaccin_read"})
      */
     private $ageMax;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Vaccin::class, inversedBy="type")
+     * @ORM\OneToMany(targetEntity=Vaccin::class, mappedBy="type")
+     * @Groups({"vaccintype_read"})
      */
-    private $vaccin;
+    private $vaccins;
+
+    public function __construct()
+    {
+        $this->vaccins = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,14 +97,32 @@ class TypeVaccin
         return $this;
     }
 
-    public function getVaccin(): ?Vaccin
+    /**
+     * @return Collection<int, Vaccin>
+     */
+    public function getVaccins(): Collection
     {
-        return $this->vaccin;
+        return $this->vaccins;
     }
 
-    public function setVaccin(?Vaccin $vaccin): self
+    public function addVaccin(Vaccin $vaccin): self
     {
-        $this->vaccin = $vaccin;
+        if (!$this->vaccins->contains($vaccin)) {
+            $this->vaccins[] = $vaccin;
+            $vaccin->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVaccin(Vaccin $vaccin): self
+    {
+        if ($this->vaccins->removeElement($vaccin)) {
+            // set the owning side to null (unless already changed)
+            if ($vaccin->getType() === $this) {
+                $vaccin->setType(null);
+            }
+        }
 
         return $this;
     }
