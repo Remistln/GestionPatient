@@ -3,36 +3,58 @@ import { StyleSheet } from 'react-native';
 
 export default function PageAcceuil() {
   return (
-    <Block flex row width={'90%'} style ={styles.millieu}>
-        
-        <Block flex row = {false} >
-            <Block flex = {2}></Block>
-            <Block flex = {1}>
-              <Text h2>Bonjour !</Text>
+      <Block  style = {styles.block}>
+
+            <Block style = {styles.titre} >
+              <Text style = {styles.TextTitre} h2>Bonjour [prenom]!</Text>
             </Block>
-            <Block flex = {2}></Block>
-            <Block flex = {3} middle   >
-              <Text h4>Gérer les rendez-vous :</Text>
-              <Button size= 'large' >Ouvrir l'Agenda</Button>
+
+            <Block style = {styles.gererRDV}  >
+              <Text style = {styles.centrer}  h4>Gérer les rendez-vous :</Text>
+                <Button round style = {styles.button} size="large" color="primary">Ouvrir l'Agenda</Button>
             </Block>
-            <Block flex = {3} middle >
-              <Text h4>[nombre] Vaccins périment demain :</Text>
-              <Button size= 'large'>Vacciner sans rendez-vous</Button>
+
+            <Block style = {styles.sansRDV} >
+              <Text  style = {styles.centrer}  h4>[n] Vaccins périment demain :</Text>
+                <Button round  style = {styles.button}  size="large" color="primary">Vacciner sans rendez-vous</Button>
             </Block>
-            <Block flex = {3} ></Block>
-        </Block>
         
     </Block>
   );
 }
 
 const styles = StyleSheet.create({
-    millieu: {
-
-        borderColor: "blue",
-        borderWidth: 2,
-
-        alignSelf: 'center',
+    block :
+        {
+            flexDirection: "column",
+            flex: 5,
+            padding: 50,
+        },
+    titre: {
+        justifyContent: 'space-evenly',
+        flex: 3,
+        textAlign: "left",
     },
+    TextTitre : {
+        marginTop : 10,
+        fontWeight: "bold",
+        textAlign: "left",
+    },
+    gererRDV : {
+        flex: 2,
+        textAlign: "center"
+    },
+    sansRDV : {
+        flex: 4,
+        textAlign: "center"
+    },
+    centrer : {
+        textAlign: "center"
+    },
+    button : {
+        marginTop : '7%',
+    }
+
+
   });
   
