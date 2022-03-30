@@ -98,6 +98,7 @@
       <excludeFolder url="file://$MODULE_DIR$/ApiHopital/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/ApiHopital/vendor/symfony/expression-language" />
       <excludeFolder url="file://$MODULE_DIR$/ApiHopital/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ApiHopital/vendor/symfony/debug-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

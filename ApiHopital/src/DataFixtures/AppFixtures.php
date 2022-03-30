@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
             $vaccin = new Vaccin();
             $vaccin->setReserve($faker->boolean())
                 ->setDatePeremption($faker->dateTime())
-                ->addType($type);
+                ->setType($type);
             $manager->persist($vaccin);
 
             $rdv = new RendezVous();
