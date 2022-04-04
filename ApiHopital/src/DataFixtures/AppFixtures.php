@@ -107,7 +107,9 @@ class AppFixtures extends Fixture
 
             $secretaire = new Secretaire();
             $secretaire->setIdentifiant($identifiantSecretaire)
-                ->setMdp(password_hash($mdpSecretaire, PASSWORD_DEFAULT));
+                ->setMdp(password_hash($mdpSecretaire, PASSWORD_DEFAULT))
+                ->setNom($faker->name())
+                ->setPrenom($faker->firstName());
             $manager->persist($secretaire);
 
 
@@ -120,7 +122,7 @@ class AppFixtures extends Fixture
             $vaccin = new Vaccin();
             $vaccin->setReserve($faker->boolean())
                 ->setDatePeremption($faker->dateTime())
-                ->addType($type);
+                ->setType($type);
             $manager->persist($vaccin);
 
             $rdv = new RendezVous();
