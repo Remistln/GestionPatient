@@ -2,6 +2,8 @@ import { Text, Block, Button, Input } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import { Component } from 'react';
 import * as bcrypt from 'bcryptjs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default class PageLogin extends Component {
 
@@ -49,6 +51,7 @@ export default class PageLogin extends Component {
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         console.log("bon mdp");
+                        this.props.navigation.navigate('Acceuil');
                     }
                 }
             })
