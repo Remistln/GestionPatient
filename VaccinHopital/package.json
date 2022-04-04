@@ -24,7 +24,9 @@
     "moment": "2.27.0",
     "react-native-date-input": "1.0.11",
     "react-native-datepicker": "1.7.2",
-    "react-native-masked-text": "1.13.0"
+    "react-native-masked-text": "1.13.0",
+    "react-native-screens": "~3.10.1",
+    "react-native-safe-area-context": "3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

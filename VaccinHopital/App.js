@@ -1,15 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import PageLogin from './components/pageLogin/PageLogin';
 import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 
+
+
 export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <PageAcceuil></PageAcceuil>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={PageLogin}
+      />
+      <Stack.Screen 
+        name="Acceuil"
+        component={PageAcceuil}
+      />
+      <Stack.Screen 
+        name="SansRdv"
+        component={PageSansRdv}
+      />
+    </Stack.Navigator>
+    <StatusBar style="auto" />
+  </NavigationContainer>
   );
 }// 
 
