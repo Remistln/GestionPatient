@@ -21,7 +21,7 @@ export default class PageLogin extends Component {
             mettre a jour ma bdd CHECK
             mettre a jour fakker pour hasher les mdps CHECK
             coder un appel API pour obtenir le secretaire CHECK
-            verifier le mdp Ongoing
+            verifier le mdp CHECK
             passer à la page Acceuil si mdp correct
                 attention debut d'architecture d'app nécessaire
         */
