@@ -39,19 +39,33 @@ class AppFixtures extends Fixture
             ->setAgeMax(80);
         $manager->persist($astra);
 
+        $mdpFile = "mdp.txt";
+        $mdpData = "Liste des mdps :\n";
+        
+
         for ($i = 0; $i < 10; $i++) {
+
+            $identifiantAdmin = $faker->email();
+            $mdpAdmin = $faker->word();
+            $mdpData .= "    Administrateur : ". $identifiantAdmin . " mdp : " . $mdpAdmin . "\n";
+
             $admin = new Admin();
             $admin->setNom($faker->name());
             $admin->setPrenom($faker->firstName());
-            $admin->setIdentifiant($faker->email());
-            $admin->setMdp($faker->password());
+            $admin->setIdentifiant($identifiantAdmin);
+            $admin->setMdp(password_hash($mdpAdmin, PASSWORD_DEFAULT));
             $manager->persist($admin);
+
+            
+            $identifiantInfirmier = $faker->email();
+            $mdpInfirmier = $faker->word();
+            $mdpData .= "    Infirmier : ". $identifiantInfirmier . " mdp : " . $mdpInfirmier . "\n";
 
             $infirmier = new Infirmier();
             $infirmier->setNom($faker->name());
             $infirmier->setPrenom($faker->firstName());
-            $infirmier->setIdentifiant($faker->email());
-            $infirmier->setMdp($faker->password());
+            $infirmier->setIdentifiant($identifiantInfirmier);
+            $infirmier->setMdp(password_hash($mdpInfirmier, PASSWORD_DEFAULT));
             $manager->persist($infirmier);
 
             $service = new Service();
@@ -87,9 +101,13 @@ class AppFixtures extends Fixture
                 $manager->persist($patient);
             }
 
+            $identifiantSecretaire = $faker->email();
+            $mdpSecretaire = $faker->word();
+            $mdpData .= "    Secretaire : ". $identifiantSecretaire . " mdp : " . $mdpSecretaire . "\n";
+
             $secretaire = new Secretaire();
-            $secretaire->setIdentifiant($faker->email())
-                ->setMdp($faker->word());
+            $secretaire->setIdentifiant($identifiantSecretaire)
+                ->setMdp(password_hash($mdpSecretaire, PASSWORD_DEFAULT));
             $manager->persist($secretaire);
 
 
@@ -114,5 +132,7 @@ class AppFixtures extends Fixture
             $manager->persist($rdv);
         }
         $manager->flush();
+
+        file_put_contents($mdpFile, $mdpData);
     }
 }
