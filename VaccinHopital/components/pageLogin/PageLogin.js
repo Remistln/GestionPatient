@@ -1,6 +1,7 @@
 import { Text, Block, Button, Input } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import { Component } from 'react';
+import * as bcrypt from 'bcryptjs';
 
 export default class PageLogin extends Component {
 
@@ -24,27 +25,31 @@ export default class PageLogin extends Component {
             passer à la page Acceuil si mdp correct
                 attention debut d'architecture d'app nécessaire
         */
+
+        // écrire une fonction qui ignore la casse de l'e-mail
+
         var ApiHeaders = new Headers({
             'Content-Type': 'application/ld+json'
         });
 
         // ip de l'ordinateur où se trouve le serveur
-        const ip = "192.168.42.96:8080"; 
+        const ip = "192.168.42.96:8000"; 
 
         const url = 'http://' + ip + '/api/secretaires';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
             .then(response => response.json())
             .then((data) => {
-                console.log(data);
                 for (const secretaire of data['hydra:member'])
                 {
-                    console.log(secretaire.identifiant);
-                    
-                    var bcrypt = require('bcryptjs');
-                    bcrypt.setRandomFallback();
-                    var hash = bcrypt.hashSync(this.state.mdp);
+                    if (secretaire.identifiant != this.state.identifiant)
+                    {
+                        continue;
+                    }
 
-                    bcrypt.compareSync(secretaire.mdp, hash);
+                    if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
+                    {
+                        console.log("bon mdp");
+                    }
                 }
             })
             .catch(function(error) {
@@ -53,6 +58,7 @@ export default class PageLogin extends Component {
                   throw error;
                 });
     };
+
 
 
     render(){
