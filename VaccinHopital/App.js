@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PageLogin from './components/pageLogin/PageLogin';
 import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
+import PageAgenda from './components/pageAgenda/PageAgenda';
 
 
 
@@ -13,6 +14,10 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
+      <Stack.Screen 
+        name="Agenda"
+        component={PageAgenda}
+      />
       <Stack.Screen
         name="Login"
         component={PageLogin}
@@ -25,6 +30,7 @@ export default function App() {
         name="SansRdv"
         component={PageSansRdv}
       />
+      
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
