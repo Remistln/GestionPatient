@@ -7,29 +7,25 @@ import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 
 
+/*
+Aya's Notes :
+- Pass data to the screens --> {props => <HomeScreen {...props} extraData={someData} />}
+*/
 
+const Stack = createNativeStackNavigator();
 export default function App() {
-  const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={PageLogin}
-      />
-      <Stack.Screen 
-        name="Acceuil"
-        component={PageAcceuil}
-      />
-      <Stack.Screen 
-        name="SansRdv"
-        component={PageSansRdv}
-      />
+    <Stack.Navigator initialRouteName="PageAcceuil">
+      <Stack.Screen name="PageLogin" component={PageLogin}/>
+      <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
+      <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
   );
-}// 
+}
 
 const styles = StyleSheet.create({
   container: {

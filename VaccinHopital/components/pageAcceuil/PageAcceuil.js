@@ -1,24 +1,30 @@
 import { Text, Block, Button } from 'galio-framework';
 import { StyleSheet } from 'react-native';
+import PageSansRdv from "../pageSansRdv/PageSansRdv";
+import { useNavigation } from '@react-navigation/native';
 
-export default function PageAcceuil() {
-  return (
+export default function PageAcceuil(props) {
+
+    return (
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h2>Bonjour [prenom]!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour [prenom]!</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >
               <Text style = {styles.centrer}  h4>Gérer les rendez-vous :</Text>
-                <Button round style = {styles.button} size="large" color="primary">Ouvrir l'Agenda</Button>
+                <Button round style = {styles.button} size="large" color="primary"
+                        onPress={() => this.props.navigation.navigate('PageSansRdv')}
+                >Ouvrir l'Agenda</Button>
             </Block>
 
             <Block style = {styles.sansRDV} >
               <Text  style = {styles.centrer}  h4>[n] Vaccins périment demain :</Text>
-                <Button round  style = {styles.button}  size="large" color="primary">Vacciner sans rendez-vous</Button>
+                <Button round  style = {styles.button}  size="large" color="primary"
+                        onPress={() => this.props.navigation.navigate('PageSansRdv')}>Vacciner sans rendez-vous</Button>
             </Block>
-        
+
     </Block>
   );
 }
@@ -29,6 +35,7 @@ const styles = StyleSheet.create({
             flexDirection: "column",
             flex: 5,
             padding: 50,
+
         },
     titre: {
         justifyContent: 'space-evenly',
@@ -42,17 +49,20 @@ const styles = StyleSheet.create({
     },
     gererRDV : {
         flex: 2,
-        textAlign: "center"
+        alignItems: 'center',
     },
     sansRDV : {
         flex: 4,
-        textAlign: "center"
+        alignItems: 'center',
+
     },
     centrer : {
-        textAlign: "center"
+        textAlign: "center",
     },
     button : {
         marginTop : '7%',
+
+
     }
 
 
