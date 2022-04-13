@@ -18,8 +18,9 @@ export default class PageAgenda extends Component {
             <Button>Retour</Button>
 
             <Text>Agenda Vaccinations</Text>
-            <AgendaJours></AgendaJours>
-
+            <Block flex>
+                <AgendaJours></AgendaJours>
+            </Block>
             </Block>
 
         );
@@ -27,13 +28,13 @@ export default class PageAgenda extends Component {
     
 }
 
-
+;
 
 const styles = StyleSheet.create({
     block :
         {
             flexDirection: "column",
-            flex: 5,
+            flex: 1,
             padding: 50,
         },
 });
