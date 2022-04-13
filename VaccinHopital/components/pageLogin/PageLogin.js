@@ -2,21 +2,21 @@ import { Text, Block, Button, Input } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import { Component } from 'react';
 import * as bcrypt from 'bcryptjs';
-import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default class PageLogin extends Component {
 
-    constructor()
+    constructor({navigation})
     {
-        super();
+        super({navigation});
         this.state = {
             identifiant: '',
             mdp: '',
         }
     };
 
-    async connect()
+    async connect({navigation})
     {
         /*
             Plan:
@@ -35,7 +35,7 @@ export default class PageLogin extends Component {
         });
 
         // ip de l'ordinateur où se trouve le serveur
-        const ip = "192.168.42.96:8000"; 
+        const ip ="172.20.10.4:8000";
 
         const url = 'http://' + ip + '/api/secretaires';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
@@ -51,7 +51,7 @@ export default class PageLogin extends Component {
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         console.log("bon mdp");
-                        this.props.navigation.navigate('Acceuil');
+                        this.props.navigation.navigate('PageAcceuil');
                     }
                 }
             })
