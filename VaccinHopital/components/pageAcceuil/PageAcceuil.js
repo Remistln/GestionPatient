@@ -1,9 +1,10 @@
 import { Text, Block, Button } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import PageSansRdv from "../pageSansRdv/PageSansRdv";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation , NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function PageAcceuil(props) {
+export default function PageAcceuil({navigation}) {
 
     return (
       <Block  style = {styles.block}>
@@ -15,14 +16,14 @@ export default function PageAcceuil(props) {
             <Block style = {styles.gererRDV}  >
               <Text style = {styles.centrer}  h4>Gérer les rendez-vous :</Text>
                 <Button round style = {styles.button} size="large" color="primary"
-                        onPress={() => this.props.navigation.navigate('PageSansRdv')}
+                        onPress={() => navigation.navigate('PageSansRdv')}
                 >Ouvrir l'Agenda</Button>
             </Block>
 
             <Block style = {styles.sansRDV} >
               <Text  style = {styles.centrer}  h4>[n] Vaccins périment demain :</Text>
                 <Button round  style = {styles.button}  size="large" color="primary"
-                        onPress={() => this.props.navigation.navigate('PageSansRdv')}>Vacciner sans rendez-vous</Button>
+                        onPress={() => navigation.navigate('PageSansRdv')}>Vacciner sans rendez-vous</Button>
             </Block>
 
     </Block>
