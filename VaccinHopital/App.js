@@ -13,10 +13,6 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen 
-        name="Agenda Vaccinations"
-        component={PageAgenda}
-      />
       <Stack.Screen
         name="Login"
         component={PageLogin}
@@ -29,7 +25,10 @@ export default function App() {
         name="SansRdv"
         component={PageSansRdv}
       />
-      
+      <Stack.Screen 
+        name="Agenda Vaccinations"
+        component={PageAgenda}
+      />
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
