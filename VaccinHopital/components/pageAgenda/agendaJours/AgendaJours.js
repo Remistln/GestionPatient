@@ -13,9 +13,11 @@ export default function AgendaJours() {
             {agenda(3,2022)}
 
         </Block>
-    );// pour le calendrier : faire une boucle de bouton, les ranger dans une liste, leur attribuer un numéro en fonction du mois
+    );
 }
 
+// affiche une partie de ligne de boutons avec des jours croissants
+// ajouter ici le handler des boutons
 function buttonsSemaine(nombreLundi, nombreJours){
     let nombresSemaine = [];
     for (let index = 0; index < nombreJours; index++) {
@@ -30,8 +32,8 @@ function buttonsSemaine(nombreLundi, nombreJours){
     return buttonsListe;
 }
 
+// affiche la ligne de la première semaine
 function buttonsPremiereSemaine(moisNombre, anneeNombre){
-    console.log(premierLundiMois(moisNombre, anneeNombre));
     let moisDate = new Date();
 
     moisDate.setFullYear(anneeNombre, moisNombre, 1);
@@ -53,6 +55,7 @@ function buttonsPremiereSemaine(moisNombre, anneeNombre){
     )
 }
 
+// affiche la ligne de la dernière semaine
 function buttonsDernièreSemaine(moisNombre, anneeNombre){
     let moisDate = new Date();
     moisDate.setFullYear(anneeNombre, moisNombre+1, 0);
@@ -83,6 +86,7 @@ function buttonsDernièreSemaine(moisNombre, anneeNombre){
 
 }
 
+// donne la date du premier lundi d'un mois
 function premierLundiMois(moisNombre, anneeNombre)
 {
     let moisDate = new Date();
@@ -100,6 +104,7 @@ function premierLundiMois(moisNombre, anneeNombre)
     return 9 - premierJourMois;
 }
 
+// affiche l'agenda complet d'un mois
 function agenda(moisNombre, anneeNombre)
 {
     const lundi = premierLundiMois(moisNombre, anneeNombre);
@@ -121,10 +126,6 @@ function agenda(moisNombre, anneeNombre)
         </>
     )
 }
-/* créé une fonction pour une ligne de 7 boutons avec nombre les premiers et correctes chiffre du mois  Fait
-créé une fonction pour une ligne de 7 boutons avec nombre croissant depuis un index donnéé Fait
-créé une fonction pour une ligne de 7 boutons avec nombre les derniers et correctes chiffre du mois Fait
-créé une fonction qui affiche les 5 lignes */
 
 
 
