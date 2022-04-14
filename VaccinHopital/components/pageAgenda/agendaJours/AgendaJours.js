@@ -10,9 +10,7 @@ export default function AgendaJours() {
                 <Button onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}></Button>
             </Block>
 
-            {buttonsPremiereSemaine(3,2022)}
-
-            {buttonsDernièreSemaine(3,2022)}
+            {agenda(3,2022)}
 
         </Block>
     );// pour le calendrier : faire une boucle de bouton, les ranger dans une liste, leur attribuer un numéro en fonction du mois
@@ -33,6 +31,7 @@ function buttonsSemaine(nombreLundi, nombreJours){
 }
 
 function buttonsPremiereSemaine(moisNombre, anneeNombre){
+    console.log(premierLundiMois(moisNombre, anneeNombre));
     let moisDate = new Date();
 
     moisDate.setFullYear(anneeNombre, moisNombre, 1);
@@ -86,7 +85,41 @@ function buttonsDernièreSemaine(moisNombre, anneeNombre){
 
 function premierLundiMois(moisNombre, anneeNombre)
 {
-    
+    let moisDate = new Date();
+
+    moisDate.setFullYear(anneeNombre, moisNombre, 1);
+    let premierJourMois = moisDate.getDay();
+    if (premierJourMois == 1)
+    {
+        return 1;
+    }
+    if (premierJourMois == 0)
+    {
+        return 2;
+    }
+    return 9 - premierJourMois;
+}
+
+function agenda(moisNombre, anneeNombre)
+{
+    const lundi = premierLundiMois(moisNombre, anneeNombre);
+    return (
+        <>
+        {buttonsPremiereSemaine(0,2022)}
+
+        <Block style = {styles.jours}>
+            {buttonsSemaine(lundi,7)}
+        </Block>
+        <Block style = {styles.jours}>
+            {buttonsSemaine(lundi + 7,7)}
+        </Block>
+        <Block style = {styles.jours}>
+            {buttonsSemaine(lundi + 14,7)}
+        </Block>
+
+        {buttonsDernièreSemaine(3,2022)}
+        </>
+    )
 }
 /* créé une fonction pour une ligne de 7 boutons avec nombre les premiers et correctes chiffre du mois  Fait
 créé une fonction pour une ligne de 7 boutons avec nombre croissant depuis un index donnéé Fait
