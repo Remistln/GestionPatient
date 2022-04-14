@@ -8,14 +8,13 @@ import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
 
 
-
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen 
-        name="Agenda"
+        name="Agenda Vaccinations"
         component={PageAgenda}
       />
       <Stack.Screen
@@ -34,6 +33,7 @@ export default function App() {
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
+
   );
 }// 
 
@@ -45,3 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+/*
+
+*/

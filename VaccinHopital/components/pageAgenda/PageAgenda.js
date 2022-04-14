@@ -14,13 +14,15 @@ export default class PageAgenda extends Component {
     };
     render (){
         return(
-            <Block  style = {styles.block}>
-            <Button>Retour</Button>
+            <Block style = {styles.block}>
+                <Block style = {styles.boutton}>
+                    <Button>Retour</Button>
+                </Block>
+            
 
-            <Text>Agenda Vaccinations</Text>
-            <Block flex>
-                <AgendaJours></AgendaJours>
-            </Block>
+                <Block style = {styles.agenda}>
+                    <AgendaJours></AgendaJours>
+                </Block>
             </Block>
 
         );
@@ -32,9 +34,20 @@ export default class PageAgenda extends Component {
 
 const styles = StyleSheet.create({
     block :
-        {
-            flexDirection: "column",
-            flex: 1,
-            padding: 50,
-        },
+    {
+        flexDirection: "column",
+        flex: 1,
+    },
+
+    boutton :
+    {
+        flex: 1,
+    },
+
+    agenda :
+    {
+        flex: 4,
+        marginHorizontal: 20,
+        marginBottom: 45,
+    },
 });

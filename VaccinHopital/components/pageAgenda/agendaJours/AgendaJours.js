@@ -2,16 +2,24 @@ import { Text, Block, Button, Input, Radio, Icon } from 'galio-framework';
 import { StyleSheet, View } from "react-native";
 
 export default function AgendaJours() {
+
+    let mois = 3;
+    let annee = 2022;
+
+    const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
     return (
         <Block  style = {styles.block}>
-            <Block flex row = {true}>
+            <Block style = {styles.entete}>
                 <Button onlyIcon icon="left" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff"  style={{ width: 40, height: 40 }}></Button>
-                <Text>[mois] [annee]</Text>
+                <Text h4>{moisListe[mois]} {annee}</Text>
                 <Button onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}></Button>
             </Block>
-
-            {agenda(3,2022)}
-
+            
+            <Block style = {styles.agenda}>
+                {agenda(mois,annee)}
+            </Block>
+            
         </Block>
     );
 }
@@ -104,12 +112,29 @@ function premierLundiMois(moisNombre, anneeNombre)
     return 9 - premierJourMois;
 }
 
+function legendeSemaine()
+{
+    return(
+        <Block style = {styles.jours}>
+            <Text h3 style = {styles.legende}>L</Text>
+            <Text h3 style = {styles.legende}>M</Text>
+            <Text h3 style = {styles.legende}>M</Text>
+            <Text h3 style = {styles.legende}>J</Text>
+            <Text h3 style = {styles.legende}>V</Text>
+            <Text h3 style = {styles.legende}>S</Text>
+            <Text h3 style = {styles.legende}>D</Text>
+        </Block>
+    )
+}
+
 // affiche l'agenda complet d'un mois
 function agenda(moisNombre, anneeNombre)
 {
     const lundi = premierLundiMois(moisNombre, anneeNombre);
     return (
         <>
+        {legendeSemaine()}
+
         {buttonsPremiereSemaine(0,2022)}
 
         <Block style = {styles.jours}>
@@ -128,28 +153,52 @@ function agenda(moisNombre, anneeNombre)
 }
 
 
-
 const styles = StyleSheet.create({
 
     block :
-        {
-            flexDirection: "column",
-            flex: 1,
-            padding: 50,
-            justifyContent: 'flex-start',
-        },
+    {
+        flexDirection: "column",
+        flex: 1,
+        justifyContent: 'flex-start',
+            
+        borderColor: "black",
+        borderWidth: 5,
+        padding:15,
+    },
+
+    agenda: 
+    {
+        flex: 4,
+    },
+    
+    entete: 
+    {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems:"center",
+        borderColor: "black",
+        borderWidth: 4,
+
+    },
     
     jours :
-        {
-            flex: 1,
-            justifyContent: 'space-evenly',
-            flexDirection: 'row',
-        },
+    {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
+        alignItems:"center",
+    },
     
     jour :
-        {
-            width: 45,
-            height: 45,
-        }
-   
+    {
+        width: 45,
+        height: 45,
+    },
+
+    legende :
+    {
+        marginHorizontal: 22.5,
+    },
+
 });
