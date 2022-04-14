@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PageLogin from './components/pageLogin/PageLogin';
 import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
-
+import PageAgenda from './components/pageAgenda/PageAgenda';
 
 
 export default function App() {
@@ -25,9 +25,14 @@ export default function App() {
         name="SansRdv"
         component={PageSansRdv}
       />
+      <Stack.Screen 
+        name="Agenda Vaccinations"
+        component={PageAgenda}
+      />
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
+
   );
 }// 
 
@@ -39,3 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+/*
+
+*/
