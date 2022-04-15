@@ -17,30 +17,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-<<<<<<< HEAD
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={PageLogin}
-      />
-      <Stack.Screen 
-        name="Acceuil"
-        component={PageAcceuil}
-      />
-      <Stack.Screen 
-        name="SansRdv"
-        component={PageSansRdv}
-      />
-      <Stack.Screen 
-        name="Agenda Vaccinations"
-        component={PageAgenda}
-      />
-=======
-    <Stack.Navigator initialRouteName="PageLogin">
+    <Stack.Navigator initialRouteName="AgendaVaccinations">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
->>>>>>> feature/NavigateLoginAcceuil
+      <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
