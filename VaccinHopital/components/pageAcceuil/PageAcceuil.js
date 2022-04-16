@@ -1,16 +1,17 @@
 import { Text, Block, Button } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import PageSansRdv from "../pageSansRdv/PageSansRdv";
+
 import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function PageAcceuil({navigation}) {
+export default function PageAcceuil({navigation, route}) {
 
     return (
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h3>Bonjour [prenom]!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour {route.params.paramKey}!</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >

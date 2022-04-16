@@ -7,17 +7,14 @@ import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
 
-/*
-Aya's Notes :
-- Pass data to the screens --> {props => <HomeScreen {...props} extraData={someData} />}
-*/
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="AgendaVaccinations">
+    <Stack.Navigator initialRouteName="PageLogin">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>

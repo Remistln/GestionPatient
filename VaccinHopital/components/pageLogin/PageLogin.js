@@ -13,6 +13,7 @@ export default class PageLogin extends Component {
         this.state = {
             identifiant: '',
             mdp: '',
+            prenom:''
         }
     };
 
@@ -35,7 +36,7 @@ export default class PageLogin extends Component {
         });
 
         // ip de l'ordinateur où se trouve le serveur
-        const ip ="172.20.10.4:8000";
+        const ip ="172.20.10.9:8000";
 
         const url = 'http://' + ip + '/api/secretaires';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
@@ -45,13 +46,14 @@ export default class PageLogin extends Component {
                 {
                     if (secretaire.identifiant != this.state.identifiant)
                     {
+                        console.log("bon mdp");
                         continue;
                     }
 
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         console.log("bon mdp");
-                        this.props.navigation.navigate('PageAcceuil');
+                        this.props.navigation.navigate('PageAcceuil', {paramKey:secretaire.prenom });
                     }
                 }
             })
