@@ -1,12 +1,19 @@
 import { Text, Block, Button } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import PageSansRdv from "../pageSansRdv/PageSansRdv";
-
+import PageAgenda from "../pageAgenda/PageAgenda";
 import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function PageAcceuil({navigation, route}) {
-
+/*
+A mettre en place :
+-Class pageAcceuil
+-Fonction async pr appel api
+- algo qui permet de compter le nombre de vaccins dans la table
+OU algo qui permet de vérifier si il y a au moin un vaccin
+- Afficher le nombre de vaccins dans la pageAcceuil
+* */
     return (
       <Block  style = {styles.block}>
 
@@ -17,7 +24,7 @@ export default function PageAcceuil({navigation, route}) {
             <Block style = {styles.gererRDV}  >
               <Text style = {styles.centrer}  h4>Gérer les rendez-vous :</Text>
                 <Button round style = {styles.button} size="large" color="primary"
-                        onPress={() => navigation.navigate('PageSansRdv')}
+                        onPress={() => navigation.navigate('PageAgenda')}
                 >Ouvrir l'Agenda</Button>
             </Block>
 

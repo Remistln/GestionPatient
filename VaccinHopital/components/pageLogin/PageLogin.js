@@ -44,7 +44,7 @@ export default class PageLogin extends Component {
             .then((data) => {
                 for (const secretaire of data['hydra:member'])
                 {
-                    if (secretaire.identifiant != this.state.identifiant)
+                    if (secretaire.identifiant !== this.state.identifiant)
                     {
                         console.log("bon mdp");
                         continue;

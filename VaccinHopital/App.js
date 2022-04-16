@@ -18,7 +18,7 @@ export default function App() {
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
-      <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
+      <Stack.Screen name="PageAgenda" component={PageAgenda}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
