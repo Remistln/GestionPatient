@@ -1,5 +1,5 @@
-import { Text, Block, Button, Input, Radio, Icon } from 'galio-framework';
-import { StyleSheet, View } from "react-native";
+import { Text, Block, Button, Icon } from 'galio-framework';
+import { StyleSheet } from "react-native";
 import React, { useState } from 'react';
 
 export default function AgendaJours() {
