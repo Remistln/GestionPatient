@@ -8,19 +8,31 @@ export default class PageAgenda extends Component {
     constructor()
     {
         super();
+
+        const laDate = new Date();
+
         this.state = {
-            identifiant: '',
-            mdp: '',
+            annee: laDate.getFullYear(),
+            mois: laDate.getMonth(),
+            choisirMois : false,
         }
     };
 
     agenda()
     {
-        return(
-            <AgendaJours></AgendaJours>
-        );
-    }//<AgendaMois></AgendaMois>
-
+        if (this.state.choisirMois) 
+        {
+            return(
+                <AgendaMois anneeInitiale = {this.state.annee}></AgendaMois>
+            );
+        } else
+        {
+            return(
+                <AgendaJours moisInitial = {this.state.mois} anneeInitiale = {this.state.annee} ></AgendaJours>
+            );
+        };
+        
+    }
     render (){
         return(
             <Block style = {styles.block}>

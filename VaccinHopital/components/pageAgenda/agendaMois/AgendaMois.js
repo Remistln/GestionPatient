@@ -2,10 +2,9 @@ import {Text, Block, Button, Icon } from 'galio-framework';
 import { StyleSheet } from "react-native";
 import React, { useState } from 'react';
 
-export default function AgendaMois() {
-    let anneeInitiale = 2022;
+export default function AgendaMois(props) {
     
-    const [annee, setAnnee] = useState(anneeInitiale);
+    const [annee, setAnnee] = useState(props.anneeInitiale);
 
     const moisListe1 = ["Janvier", "Février", "Mars"];
     const moisListe2 = [ "Avril", "Mai", "Juin"];
