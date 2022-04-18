@@ -13,6 +13,14 @@ export default class PageAgenda extends Component {
             mdp: '',
         }
     };
+
+    agenda()
+    {
+        return(
+            <AgendaJours></AgendaJours>
+        );
+    }//<AgendaMois></AgendaMois>
+
     render (){
         return(
             <Block style = {styles.block}>
@@ -22,13 +30,12 @@ export default class PageAgenda extends Component {
             
 
                 <Block style = {styles.agenda}>
-                    <AgendaMois></AgendaMois>
+                    {this.agenda()}
                 </Block>
             </Block>
 
-        );//<AgendaJours></AgendaJours>
-    }
-    
+        );//
+    };   
 }
 
 ;
