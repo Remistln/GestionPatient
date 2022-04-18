@@ -2,6 +2,7 @@ import { Text, Block, Button } from 'galio-framework';
 import { StyleSheet } from 'react-native';
 import { Component } from 'react';
 import AgendaJours from './agendaJours/AgendaJours';
+import AgendaMois from './agendaMois/AgendaMois';
 
 export default class PageAgenda extends Component {
     constructor()
@@ -21,11 +22,11 @@ export default class PageAgenda extends Component {
             
 
                 <Block style = {styles.agenda}>
-                    <AgendaJours></AgendaJours>
+                    <AgendaMois></AgendaMois>
                 </Block>
             </Block>
 
-        );
+        );//<AgendaJours></AgendaJours>
     }
     
 }
