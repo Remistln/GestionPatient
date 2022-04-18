@@ -7,6 +7,11 @@ export default function AgendaMois() {
     
     const [annee, setAnnee] = useState(anneeInitiale);
 
+    const moisListe1 = ["Janvier", "Février", "Mars"];
+    const moisListe2 = [ "Avril", "Mai", "Juin"];
+    const moisListe3 = [ "Juillet", "Août", "Septembre"];
+    const moisListe4 = [ "Octobre", "Novembre", "Décembre"];
+
     return(
         <Block style = {styles.block}>
             <Block style = {styles.entete}>
@@ -24,23 +29,33 @@ export default function AgendaMois() {
                         }}
                     ></Button>
             </Block>
-            <Block style = {styles.agenda}>
-                {calendrier(annee)}
+            <Block style = {styles.calendrier}>
+                <Block style = {styles.troisMois}>
+                    {calendrier(annee, moisListe1,0)}
+                </Block>
+                <Block style = {styles.troisMois}>
+                    {calendrier(annee, moisListe2,3)}
+                </Block>
+                <Block style = {styles.troisMois}>
+                    {calendrier(annee, moisListe3,6)}
+                </Block>
+                <Block style = {styles.troisMois}>
+                    {calendrier(annee, moisListe4,9)}
+                </Block>
             </Block>
         </Block>
     );
 };
 
 
-function calendrier(annee)
+function calendrier(annee, moisListe, nombre)
 {
-    const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-    let nombre = 0;
+
     let buttonsListe=moisListe.map((mois)=>{
         nombre += 1;
         return (
-        <Button style = {styles.jour} color="info" key={nombre}>
-            <Text color="white">{mois}</Text>
+        <Button style = {styles.mois} color="info" key={nombre}>
+            <Text color="white" h6>{mois}</Text>
         </Button>)
       });
     return buttonsListe;
@@ -61,23 +76,24 @@ const styles = StyleSheet.create({
         padding:15,
     },
 
-    agenda: 
+    calendrier: 
     {
         flex: 4,
+        justifyContent: "space-around",
     },
     
     entete: 
     {
         flex: 1,
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems:"center",
         borderColor: "black",
         borderWidth: 4,
 
     },
     
-    jours :
+    troisMois :
     {
         flex: 1,
         justifyContent: 'space-evenly',
@@ -85,10 +101,10 @@ const styles = StyleSheet.create({
         alignItems:"center",
     },
     
-    jour :
+    mois :
     {
-        width: 45,
-        height: 45,
+        width: 95,
+        height: 50,
     },
 
 });
