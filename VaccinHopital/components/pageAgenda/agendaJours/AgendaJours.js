@@ -1,19 +1,47 @@
-import { Text, Block, Button, Input, Radio, Icon } from 'galio-framework';
-import { StyleSheet, View } from "react-native";
+import { Text, Block, Button, Icon } from 'galio-framework';
+import { StyleSheet } from "react-native";
+import React, { useState } from 'react';
 
 export default function AgendaJours() {
 
-    let mois = 1;
-    let annee = 2024;
+    let moisInitial = 3;
+    let anneeInitiale = 2022;
+
+    const [mois, setMois] = useState(moisInitial);
+    const [annee, setAnnee] = useState(anneeInitiale);
 
     const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
     return (
         <Block  style = {styles.block}>
             <Block style = {styles.entete}>
-                <Button onlyIcon icon="left" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff"  style={{ width: 40, height: 40 }}></Button>
+                <Button 
+                    onlyIcon icon="left" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff"  style={{ width: 40, height: 40 }}
+                    onPress= {() => {
+                        if (mois != 0)
+                        {
+                            setMois( mois - 1);
+                        } else 
+                        {
+                            setMois(11);
+                            setAnnee(annee - 1);
+                        }
+                    }}
+                    ></Button>
                 <Text h4>{moisListe[mois]} {annee}</Text>
-                <Button onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}></Button>
+                <Button 
+                    onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}
+                    onPress= {() => {
+                        if (mois != 11)
+                        {
+                            setMois( mois + 1);
+                        } else 
+                        {
+                            setMois(0);
+                            setAnnee(annee + 1);
+                        }
+                    }}
+                    ></Button>
             </Block>
             
             <Block style = {styles.agenda}>
