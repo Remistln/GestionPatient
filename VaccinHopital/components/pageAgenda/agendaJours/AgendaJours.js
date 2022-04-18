@@ -3,8 +3,8 @@ import { StyleSheet, View } from "react-native";
 
 export default function AgendaJours() {
 
-    let mois = 3;
-    let annee = 2022;
+    let mois = 1;
+    let annee = 2024;
 
     const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -103,7 +103,7 @@ function premierLundiMois(moisNombre, anneeNombre)
     let premierJourMois = moisDate.getDay();
     if (premierJourMois == 1)
     {
-        return 1;
+        return 8;
     }
     if (premierJourMois == 0)
     {
@@ -130,12 +130,12 @@ function legendeSemaine()
 // affiche l'agenda complet d'un mois
 function agenda(moisNombre, anneeNombre)
 {
-    const lundi = premierLundiMois(moisNombre, anneeNombre);
+    let lundi = premierLundiMois(moisNombre, anneeNombre);
     return (
         <>
         {legendeSemaine()}
 
-        {buttonsPremiereSemaine(0,2022)}
+        {buttonsPremiereSemaine(moisNombre,anneeNombre)}
 
         <Block style = {styles.jours}>
             {buttonsSemaine(lundi,7)}
@@ -147,7 +147,7 @@ function agenda(moisNombre, anneeNombre)
             {buttonsSemaine(lundi + 14,7)}
         </Block>
 
-        {buttonsDernièreSemaine(3,2022)}
+        {buttonsDernièreSemaine(moisNombre,anneeNombre)}
         </>
     )
 }
