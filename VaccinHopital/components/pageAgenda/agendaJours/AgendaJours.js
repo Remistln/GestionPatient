@@ -26,7 +26,7 @@ export default function AgendaJours(props) {
                         }
                     }}
                     ></Button>
-                <Text h4>{moisListe[mois]} {annee}</Text>
+                <Text h4 onPress= {props.handlers.choixDuMois_handler}>{moisListe[mois]} {annee}</Text>
                 <Button 
                     onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}
                     onPress= {() => {
