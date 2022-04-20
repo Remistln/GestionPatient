@@ -30,36 +30,43 @@ export default function AgendaMois(props) {
             </Block>
             <Block style = {styles.calendrier}>
                 <Block style = {styles.troisMois}>
-                    {calendrier(annee, moisListe1,0)}
+                    {calendrier(annee, moisListe1,0, props.handlers )}
                 </Block>
                 <Block style = {styles.troisMois}>
-                    {calendrier(annee, moisListe2,3)}
+                    {calendrier(annee, moisListe2,3, props.handlers )}
                 </Block>
                 <Block style = {styles.troisMois}>
-                    {calendrier(annee, moisListe3,6)}
+                    {calendrier(annee, moisListe3,6, props.handlers )}
                 </Block>
                 <Block style = {styles.troisMois}>
-                    {calendrier(annee, moisListe4,9)}
+                    {calendrier(annee, moisListe4,9, props.handlers )}
                 </Block>
             </Block>
         </Block>
     );
 };
 
-
-function calendrier(annee, moisListe, nombre)
+//ici travail de la magie covidée
+function calendrier(annee, moisListe, nombre, handler)
 {
-
+    const toutMoisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
     let buttonsListe=moisListe.map((mois)=>{
         nombre += 1;
         return (
-        <Button style = {styles.mois} color="info" key={nombre}>
+        <Button style = {styles.mois} color="info" key={nombre}
+        onPress = {()=> 
+            {
+                handler.mois_handler(toutMoisListe.indexOf(mois));
+                handler.annee_handler(annee);
+                handler.choixDuMois_handler();
+            }
+        }
+        >
             <Text color="white" h6>{mois}</Text>
         </Button>)
       });
     return buttonsListe;
 };
-
 
 
 const styles = StyleSheet.create({

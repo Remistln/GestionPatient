@@ -17,7 +17,13 @@ export default class PageAgenda extends Component {
             choisirMois : false,
         }
 
-        this.jour_handlers = {
+        this.agenda_handlers = {
+            choixDuMois_handler: this.choixDuMois_handler.bind(this),
+        }
+
+        this.choixMois_handlers = {
+            mois_handler: this.mois_handler.bind(this),
+            annee_handler: this.annee_handler.bind(this),
             choixDuMois_handler: this.choixDuMois_handler.bind(this),
         }
     };
@@ -27,18 +33,31 @@ export default class PageAgenda extends Component {
         this.setState({choisirMois: ! this.state.choisirMois});
     }
     
+    mois_handler(mois)
+    {
+        this.setState({mois: mois});
+    }
+
+    annee_handler(annee)
+    {
+        this.setState({annee: annee});
+    }
+
+
+
     agenda()
     {
         if (this.state.choisirMois) 
         {
             return(
-                <AgendaMois anneeInitiale = {this.state.annee}></AgendaMois>
+                <AgendaMois anneeInitiale = {this.state.annee}
+                handlers = {this.choixMois_handlers}></AgendaMois>
             );
         } else
         {
             return(
                 <AgendaJours moisInitial = {this.state.mois} anneeInitiale = {this.state.annee} 
-                handlers = {this.jour_handlers}></AgendaJours>
+                handlers = {this.agenda_handlers}></AgendaJours>
             );
         };
         
