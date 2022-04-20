@@ -157,6 +157,61 @@ function legendeSemaine()
 function agenda(moisNombre, anneeNombre)
 {
     let lundi = premierLundiMois(moisNombre, anneeNombre);
+
+    let moisDate = new Date();
+    moisDate.setFullYear(anneeNombre, moisNombre+1, 0);
+    const dernierJourMoisDate = moisDate.getDate();
+
+    if ( moisNombre != 1){
+        if ( lundi === 2 || (lundi === 3 && dernierJourMoisDate === 31 ) )
+        {
+            return (
+                <>
+                {legendeSemaine()}
+    
+                {buttonsPremiereSemaine(moisNombre,anneeNombre)}
+    
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 7,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 14,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 21,7)}
+                </Block>
+    
+                {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+                </>
+            )
+        }
+        return (
+            <>
+            {legendeSemaine()}
+
+            {buttonsPremiereSemaine(moisNombre,anneeNombre)}
+
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi,7)}
+            </Block>
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi + 7,7)}
+            </Block>
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi + 14,7)}
+            </Block>
+
+            {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+
+            <Block style = {styles.jours}>
+                {buttonsSemaine(1,7)}
+            </Block>
+            </>
+        )
+    }
     return (
         <>
         {legendeSemaine()}
@@ -176,6 +231,7 @@ function agenda(moisNombre, anneeNombre)
         {buttonsDernièreSemaine(moisNombre,anneeNombre)}
         </>
     )
+    
 }
 
 
