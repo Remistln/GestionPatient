@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  "groups"={"vaccin_read"}
  * })
  */
-#[ApiFilter(SearchFilter::class, properties: ['reserve' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['reserve' => 'exact', 'datePeremption' => 'exact', 'type' => 'exact'])]
 class Vaccin
 {
     /**

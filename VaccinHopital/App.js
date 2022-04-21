@@ -7,7 +7,7 @@ import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 export default function App() {
   return (
     <View style={styles.container}>
-      <PageLogin></PageLogin>
+      <PageSansRdv></PageSansRdv>
       <StatusBar style="auto" />
     </View>
   );
