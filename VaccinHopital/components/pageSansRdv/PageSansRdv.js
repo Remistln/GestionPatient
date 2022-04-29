@@ -1,5 +1,5 @@
 import { Text, Block, Button, Input, Radio } from 'galio-framework';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import MyDatePicker from "../datePicker/DatePicker";
 
 export default function PageSansRdv() {
