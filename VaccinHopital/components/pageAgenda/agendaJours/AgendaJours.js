@@ -188,6 +188,7 @@ function agenda(moisNombre, anneeNombre)
                 </>
             )
         }
+        lundi = premierLundiMois(moisNombre + 1, anneeNombre);
         return (
             <>
             {legendeSemaine()}
@@ -207,7 +208,7 @@ function agenda(moisNombre, anneeNombre)
             {buttonsDernièreSemaine(moisNombre,anneeNombre)}
 
             <Block style = {styles.jours}>
-                {buttonsSemaine(1,7)}
+                {buttonsSemaine(lundi,7)}
             </Block>
             </>
         )
