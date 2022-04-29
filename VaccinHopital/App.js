@@ -6,6 +6,7 @@ import PageLogin from './components/pageLogin/PageLogin';
 import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
+import PagePriseRdv from './components/pagePriseRdv/PagePriseRdv';
 
 /*
 Aya's Notes :
@@ -17,11 +18,12 @@ export default function App() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="AgendaVaccinations">
+    <Stack.Navigator initialRouteName="PagePriseRdv">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
       <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
+      <Stack.Screen name="PagePriseRdv" component={PagePriseRdv}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
