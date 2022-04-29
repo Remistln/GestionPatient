@@ -65,10 +65,7 @@ export default class PageAgenda extends Component {
     render (){
         return(
             <Block style = {styles.block}>
-                <Block style = {styles.boutton}>
-                    <Button>Retour</Button>
-                </Block>
-            
+ 
 
                 <Block style = {styles.agenda}>
                     {this.agenda()}
