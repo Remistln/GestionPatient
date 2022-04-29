@@ -4,12 +4,14 @@ import { Component } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
 
+
+
 export default class PagePriseRdv extends Component 
 {
     constructor({navigation})
     {
         super({navigation});
-        const placeholderDate = this.formatToday();
+        this.placeholderDate = this.formatToday();
         this.state = {
             jour: 1,
             mois: "janvier",
@@ -17,7 +19,7 @@ export default class PagePriseRdv extends Component
 
             nom:"",
             prenom:"",
-            dateNaissance: placeholderDate,
+            dateNaissance: this.placeholderDate,
 
             horaires: [
                 {label: "une heure", value: "une heure"},
@@ -45,6 +47,11 @@ export default class PagePriseRdv extends Component
             placeholderDate = aujourdhuis.getDate().toString() +"-"+ (aujourdhuis.getMonth() + 1).toString() +"-"+ aujourdhuis.getFullYear().toString();
         }
         return placeholderDate;
+    }
+
+    validation()
+    {
+        return (this.state.nom != "" && this.state.prenom != "" && this.state.heure != "la première heure" && this.state.vaccin != "la picure" && this.state.dateNaissance != this.placeholderDate);
     }
 
     render()
@@ -144,7 +151,10 @@ export default class PagePriseRdv extends Component
             </Block>
 
             <Block style={ styles.block}>
-                <Button>Valider</Button>
+                <Button onPress={ ()=>{
+                    if (this.validation())
+                    {};}
+                }>Valider</Button>
             </Block>
 
         </Block>
