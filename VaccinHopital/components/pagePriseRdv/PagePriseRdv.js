@@ -55,7 +55,7 @@ export default class PagePriseRdv extends Component
                 <Block >
                     <Text h4>Date :</Text>
                 </Block>
-                <Block>
+                <Block style={ styles.ligne}>
                     <Text h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
                 </Block>
             </Block>
@@ -65,7 +65,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Nom :</Text>
                 </Block>
                 <Block>
-                    <Input onChange={text => {this.setState({nom: text})}}></Input>
+                    <Input style={ styles.input} onChange={text => {this.setState({nom: text})}}></Input>
                 </Block>
             </Block>
 
@@ -74,7 +74,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Prénom :</Text>
                 </Block>
                 <Block>
-                    <Input onChange={text => {this.setState({prenom: text})}}></Input>
+                    <Input style={ styles.input} onChange={text => {this.setState({prenom: text})}}></Input>
                 </Block>
             </Block>
 
@@ -90,7 +90,7 @@ export default class PagePriseRdv extends Component
                             locale="fr"
                             placeholder="Choisir"
                             format="DD-MM-YYYY"
-                            minDate="1900-01-01"
+                            minDate="01-01-1900"
 
                             customStyles={{
                                 dateInput: {
@@ -100,6 +100,7 @@ export default class PagePriseRdv extends Component
                                 },
                             }}
                             showIcon={false}
+                            style={styles.boutonDate}
                             onDateChange={(date) => {
                                 this.setState({dateNaissance: date});
                             }}
@@ -157,6 +158,7 @@ const styles = StyleSheet.create({
     {
         flexDirection: "column",
         flex: 1,
+        marginHorizontal: 5,
     },
 
     ligne :
@@ -168,6 +170,16 @@ const styles = StyleSheet.create({
     {
         color: 'black',
     },
+
+    input :
+    {
+        height: 30,
+    },
+
+    boutonDate:
+    {
+        width: 70,
+    }
 });
 
 const pickerSelectStyles = StyleSheet.create({
