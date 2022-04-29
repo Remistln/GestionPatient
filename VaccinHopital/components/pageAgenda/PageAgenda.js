@@ -8,26 +8,64 @@ export default class PageAgenda extends Component {
     constructor()
     {
         super();
+
+        const laDate = new Date();
+
         this.state = {
-            identifiant: '',
-            mdp: '',
+            annee: laDate.getFullYear(),
+            mois: laDate.getMonth(),
+            choisirMois : false,
+        }
+
+        this.agenda_handlers = {
+            choixDuMois_handler: this.choixDuMois_handler.bind(this),
+        }
+
+        this.choixMois_handlers = {
+            mois_handler: this.mois_handler.bind(this),
+            annee_handler: this.annee_handler.bind(this),
+            choixDuMois_handler: this.choixDuMois_handler.bind(this),
         }
     };
 
+    choixDuMois_handler()
+    {
+        this.setState({choisirMois: ! this.state.choisirMois});
+    }
+    
+    mois_handler(mois)
+    {
+        this.setState({mois: mois});
+    }
+
+    annee_handler(annee)
+    {
+        this.setState({annee: annee});
+    }
+
+
+
     agenda()
     {
-        return(
-            <AgendaJours></AgendaJours>
-        );
-    }//<AgendaMois></AgendaMois>
-
+        if (this.state.choisirMois) 
+        {
+            return(
+                <AgendaMois anneeInitiale = {this.state.annee}
+                handlers = {this.choixMois_handlers}></AgendaMois>
+            );
+        } else
+        {
+            return(
+                <AgendaJours moisInitial = {this.state.mois} anneeInitiale = {this.state.annee} 
+                handlers = {this.agenda_handlers}></AgendaJours>
+            );
+        };
+        
+    }
     render (){
         return(
             <Block style = {styles.block}>
-                <Block style = {styles.boutton}>
-                    <Button>Retour</Button>
-                </Block>
-            
+ 
 
                 <Block style = {styles.agenda}>
                     {this.agenda()}

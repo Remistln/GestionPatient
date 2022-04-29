@@ -2,13 +2,11 @@ import { Text, Block, Button, Icon } from 'galio-framework';
 import { StyleSheet } from "react-native";
 import React, { useState } from 'react';
 
-export default function AgendaJours() {
+export default function AgendaJours(props) {
 
-    let moisInitial = 3;
-    let anneeInitiale = 2022;
 
-    const [mois, setMois] = useState(moisInitial);
-    const [annee, setAnnee] = useState(anneeInitiale);
+    const [mois, setMois] = useState(props.moisInitial);
+    const [annee, setAnnee] = useState(props.anneeInitiale);
 
     const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -28,7 +26,7 @@ export default function AgendaJours() {
                         }
                     }}
                     ></Button>
-                <Text h4>{moisListe[mois]} {annee}</Text>
+                <Text h4 onPress= {props.handlers.choixDuMois_handler}>{moisListe[mois]} {annee}</Text>
                 <Button 
                     onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}
                     onPress= {() => {
@@ -159,6 +157,62 @@ function legendeSemaine()
 function agenda(moisNombre, anneeNombre)
 {
     let lundi = premierLundiMois(moisNombre, anneeNombre);
+
+    let moisDate = new Date();
+    moisDate.setFullYear(anneeNombre, moisNombre+1, 0);
+    const dernierJourMoisDate = moisDate.getDate();
+
+    if ( moisNombre != 1){
+        if ( lundi === 2 || (lundi === 3 && dernierJourMoisDate === 31 ) )
+        {
+            return (
+                <>
+                {legendeSemaine()}
+    
+                {buttonsPremiereSemaine(moisNombre,anneeNombre)}
+    
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 7,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 14,7)}
+                </Block>
+                <Block style = {styles.jours}>
+                    {buttonsSemaine(lundi + 21,7)}
+                </Block>
+    
+                {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+                </>
+            )
+        }
+        lundi = premierLundiMois(moisNombre + 1, anneeNombre);
+        return (
+            <>
+            {legendeSemaine()}
+
+            {buttonsPremiereSemaine(moisNombre,anneeNombre)}
+
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi,7)}
+            </Block>
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi + 7,7)}
+            </Block>
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi + 14,7)}
+            </Block>
+
+            {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+
+            <Block style = {styles.jours}>
+                {buttonsSemaine(lundi,7)}
+            </Block>
+            </>
+        )
+    }
     return (
         <>
         {legendeSemaine()}
@@ -178,6 +232,7 @@ function agenda(moisNombre, anneeNombre)
         {buttonsDernièreSemaine(moisNombre,anneeNombre)}
         </>
     )
+    
 }
 
 
