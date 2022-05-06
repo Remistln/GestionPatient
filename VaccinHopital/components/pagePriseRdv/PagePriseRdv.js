@@ -92,29 +92,32 @@ export default class PagePriseRdv extends Component
                 </Block>
                 <Block style = {styles.centrer }>
                     <Text style = {styles.centrer } h5>{this.state.dateNaissance}</Text>
-                    <DatePicker
-                            date={this.setState.dateNaissance}
-                            mode="date"
-                            locale="fr"
-                            placeholder="Choisir"
-                            format="DD-MM-YYYY"
-                            minDate={'01-01-1900'}
-                            maxDate={moment().format('DD-MM-YYYY')}
-                            confirmBtnText="Confirmer"
-                            cancelBtnText="Annuler"
-                            customStyles={{
-                                dateInput: {
-                                    backgroundColor: 'white',
-                                    borderWidth: 1,
-                                    borderColor: 'black',
-                                },
-                            }}
-                            showIcon={false}
-                            style={styles.boutonDate}
-                            onDateChange={(date) => {
-                                this.setState({dateNaissance: date});
-                            }}
-                        />
+                    <Block style={styles.container}>
+                        <DatePicker
+                                date={this.setState.dateNaissance}
+                                androidMode="spinner"
+                                mode="date"
+                                locale="fr"
+                                placeholder="DD/MM/YYYY"
+                                format="DD-MM-YYYY"
+                                minDate={'01-01-1900'}
+                                maxDate={moment().format('DD-MM-YYYY')}
+                                confirmBtnText="Confirmer"
+                                cancelBtnText="Annuler"
+                                customStyles={{
+                                    dateInput: {
+                                        backgroundColor: 'white',
+                                        borderWidth: 1,
+                                        borderColor: 'black',
+                                    },
+                                }}
+                                showIcon={false}
+                                style={styles.boutonDate}
+                                onDateChange={(date) => {
+                                    this.setState({dateNaissance: date});
+                                }}
+                            />
+                    </Block>
                 </Block>
             </Block>
 
@@ -153,7 +156,7 @@ export default class PagePriseRdv extends Component
             </Block>
 
             <Block style={ styles.centrer}>
-                <Button style={ styles.centrer} onPress={ ()=>{
+                <Button style={ styles.valider} onPress={ ()=>{
                     if (this.validation())
                     {};}
                 }>Valider</Button>
@@ -198,7 +201,14 @@ const styles = StyleSheet.create({
         alignItems : "center",
         alignContent : "center",
         textAlign : "center"
-    }
+    },
+    valider  :
+        {
+            marginBottom : "15%",
+            alignItems : "center",
+
+        }
+
 
 });
 
