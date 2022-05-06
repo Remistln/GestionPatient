@@ -121,7 +121,7 @@ class AppFixtures extends Fixture
             }
             $vaccin = new Vaccin();
             $vaccin->setReserve($faker->boolean())
-                ->setDatePeremption($faker->dateTime())
+                ->setDatePeremption($faker->dateTimeBetween('+1 day', '+1 day'))
                 ->setType($type);
             $manager->persist($vaccin);
 

@@ -94,6 +94,7 @@
       <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/expression-language" />
       <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/ApiHopital/vendor/symfony/debug-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

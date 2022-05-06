@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\TypeVaccinRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TypeVaccinRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=TypeVaccinRepository::class)
@@ -17,6 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  "groups"={"vaccintype_read"}
  * })
  */
+ #[ApiFilter(SearchFilter::class, properties: ['label' => "exact"])]
 class TypeVaccin
 {
     /**
