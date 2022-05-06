@@ -1,0 +1,10 @@
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\BackOfficeHopital.exe.config
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\BackOfficeHopital.exe
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\BackOfficeHopital.pdb
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.AssemblyReference.cache
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.SuggestedBindingRedirects.cache
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.Properties.Resources.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.GenerateResource.cache
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.CoreCompileInputs.cache
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.exe
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.pdb
