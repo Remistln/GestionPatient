@@ -19,7 +19,7 @@
     "expo-status-bar": "~1.2.0",
     "galio-framework": "^0.8.0",
     "ios": "0.0.1",
-    "moment": "2.27.0",
+    "moment": "^2.29.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
