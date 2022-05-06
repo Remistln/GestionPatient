@@ -8,3 +8,4 @@ D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.CoreCompileInputs.cache
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.exe
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.pdb
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageLogin.resources
