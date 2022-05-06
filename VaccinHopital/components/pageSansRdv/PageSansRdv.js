@@ -9,9 +9,12 @@ export default function PageSansRdv() {
 	const [today, setToday] = useState(new Date);
 	const [message, setMessage] = useState("")
 	const [vaccinPeremptionList, letVaccinPeremptionList] = useState([]);
-	const [status, setStatus] = useState("non")
+	const [status, setStatus] = useState(false)
+	const [deleteItem, setDeleteItem] = useState()
 
 	useEffect(() => {
+		setStatus(true)
+
 		let datemtn = new Date
 		let formatted_date = datemtn.getFullYear() + "-" + (datemtn.getMonth() + 1) + "-" + datemtn.getDate()
 
@@ -22,20 +25,11 @@ export default function PageSansRdv() {
 		getVaccinPeremtion(formatted_tomorrow);
 	}, [])
 
-	function ckeckInfo(chosenVaccin) {
-
-		if (birthDate !== "") {
-			// console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
-			getTypeVaccin(chosenVaccin)
-		}
-		setStatus("non")
-	}
-
 	async function getVaccinPeremtion(formatted_tomorrow){
 
 		//A changer quand on aura des vaccins en temps reel
 		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
-		let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=2022-04-18"
+		let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
 
 		fetch(requete, {
 			headers: {
@@ -45,20 +39,27 @@ export default function PageSansRdv() {
 			.then(response => {
 				return response.json();
 			}).then(res => {
-			vaccinPeremptionList.push(res)
+				letVaccinPeremptionList(res)
+
+			console.log("le resultat")
+			console.log(vaccinPeremptionList)
 		}).catch(error => console.log(error))
 	}
 
-	function checkAge(Vaccin) {
-		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
-			getNumberVaccin(Vaccin.label)
-		} else {
-			setMessage("Vous n'avez pas l'age pour utiliser ce vaccin (Entre " + Vaccin.ageMin + " et " + Vaccin.ageMax + " ans)")
-			setStatus("non")
+	function ckeckInfo(chosenVaccin) {
+
+		if (birthDate !== "") {
+			// console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
+			console.log("une date")
+			getTypeVaccin(chosenVaccin)
+		}else{
+			console.log("pas de date")
+			setStatus(true)
 		}
 	}
 
 	async function getTypeVaccin(chosenVaccin) {
+		console.log("je suis dans typevaccin")
 		fetch("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin, {
 			headers: {
 				'Accept': 'application/json'
@@ -68,25 +69,48 @@ export default function PageSansRdv() {
 				return response.json();
 			}).then(res => {
 			checkAge(res[0])
+			console.log("fetch reussi")
 		}).catch(error => console.log("ERROR" + error))
+		console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
+	}
+
+	function checkAge(Vaccin) {
+		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
+			getNumberVaccin(Vaccin.label)
+		} else {
+			setMessage("Vous n'avez pas l'age pour utiliser ce vaccin (Entre " + Vaccin.ageMin + " et " + Vaccin.ageMax + " ans)")
+			setStatus(true)
+		}
 	}
 
 	function getNumberVaccin(chosenVaccin){
 		let numberVaccinsLeft = 0
-		let i = 0
-		for (i ; i < vaccinPeremptionList[0].length; i++){
-			if (vaccinPeremptionList[0][i].type.label === chosenVaccin && vaccinPeremptionList[0][i].reserve === false){
+
+		vaccinPeremptionList.map(item => {
+			if (item.type.label === chosenVaccin && item.reserve === false){
 				numberVaccinsLeft++
+				// console.log(item)
+				setDeleteItem(item.id)
+				// console.log(item.id)
 			}
-		}
+		} )
 
 		if (numberVaccinsLeft > 0){
 			setMessage("Vaccins restants : " + numberVaccinsLeft)
-			setStatus("oui")
+			setStatus(false)
 		}else{
 			setMessage("Il n'y a plus de vaccins")
-			setStatus("non")
+			setStatus(true)
 		}
+	}
+
+	async function deleteVaccin(){
+		console.log("suppression du " + deleteItem)
+		fetch('http://192.168.1.14:8000/api/vaccins/' + deleteItem, {
+			method: 'DELETE',
+		}).then(response => {
+			response.json()
+		})
 	}
 
 	return (
@@ -139,10 +163,10 @@ export default function PageSansRdv() {
 			</Block>
 
 			<Block style={styles.valider}>
-				<Text>{age}</Text>
+				<Text>{age} ans</Text>
 				<Text>{message}</Text>
 				<Text>{status}</Text>
-				<Button>Valider</Button>
+				<Button disabled={status} onPress={deleteVaccin}>Valider</Button>
 			</Block>
 
 		</Block>
