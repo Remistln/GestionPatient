@@ -8,9 +8,9 @@ import DatePicker from 'react-native-datepicker';
 
 export default class PagePriseRdv extends Component 
 {
-    constructor({navigation})
+    constructor()
     {
-        super({navigation});
+        super();
         this.placeholderDate = this.formatToday();
         this.state = {
             jour: 1,
