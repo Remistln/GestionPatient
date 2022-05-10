@@ -46,13 +46,11 @@ export default class PageLogin extends Component {
                 {
                     if (secretaire.identifiant !== this.state.identifiant)
                     {
-                        console.log("bon mdp");
                         continue;
                     }
 
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
-                        console.log("bon mdp");
                         this.props.navigation.navigate('PageAcceuil', {paramKey:secretaire.prenom });
                     }
                 }

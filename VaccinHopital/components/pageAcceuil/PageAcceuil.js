@@ -5,7 +5,7 @@ import PageAgenda from "../pageAgenda/PageAgenda";
 import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function PageAcceuil({navigation, route}) {
+export default function PageAcceuil({navigation}) {
 /*
 A mettre en place :
 -Class pageAcceuil
@@ -18,7 +18,7 @@ OU algo qui permet de vérifier si il y a au moin un vaccin
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h3>Bonjour {route.params.paramKey}!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour !</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >
