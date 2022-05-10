@@ -5,8 +5,10 @@ import React, { useState } from 'react';
 export default function AgendaJours(props) {
 
 
+
     const [mois, setMois] = useState(props.moisInitial);
     const [annee, setAnnee] = useState(props.anneeInitiale);
+
 
     const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -73,7 +75,7 @@ function buttonsPremiereSemaine(moisNombre, anneeNombre){
     moisDate.setFullYear(anneeNombre, moisNombre, 1);
     let premierJourMois = moisDate.getDay();
 
-    if (premierJourMois == 0)
+    if (premierJourMois === 0)
     {
         premierJourMois = 7;
     }
@@ -96,13 +98,13 @@ function buttonsDernièreSemaine(moisNombre, anneeNombre){
     const dernierJourMoisDate = moisDate.getDate();
     let dernierJourMoisSemaine = moisDate.getDay();
 
-    if (dernierJourMoisSemaine == 0)
+    if (dernierJourMoisSemaine === 0)
     {
         dernierJourMoisSemaine = 7;
     }
 
     //gestion du cas d'un février contenue dans 4 semaines au lieu de 5 semaines
-    if (moisNombre == 1 && dernierJourMoisSemaine == 7)
+    if (moisNombre === 1 && dernierJourMoisSemaine === 7)
     {
         return (
             <Block style = {styles.jours}>
@@ -127,11 +129,11 @@ function premierLundiMois(moisNombre, anneeNombre)
 
     moisDate.setFullYear(anneeNombre, moisNombre, 1);
     let premierJourMois = moisDate.getDay();
-    if (premierJourMois == 1)
+    if (premierJourMois === 1)
     {
         return 8;
     }
-    if (premierJourMois == 0)
+    if (premierJourMois === 0)
     {
         return 2;
     }
@@ -243,15 +245,16 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flex: 1,
         justifyContent: 'flex-start',
-            
         borderColor: "black",
         borderWidth: 5,
         padding:15,
+        backgroundColor : "red"
     },
 
     agenda: 
     {
         flex: 4,
+        backgroundColor : "green"
     },
     
     entete: 
@@ -262,6 +265,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         borderColor: "black",
         borderWidth: 4,
+        backgroundColor : "yellow"
 
     },
     
@@ -271,6 +275,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'row',
         alignItems:"center",
+
     },
     
     jour :

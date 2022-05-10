@@ -13,6 +13,7 @@ export default class PageLogin extends Component {
         this.state = {
             identifiant: '',
             mdp: '',
+            prenom:''
         }
     };
 
@@ -43,15 +44,16 @@ export default class PageLogin extends Component {
             .then((data) => {
                 for (const secretaire of data['hydra:member'])
                 {
-                    if (secretaire.identifiant != this.state.identifiant)
+                    if (secretaire.identifiant !== this.state.identifiant)
                     {
+                        console.log("bon mdp");
                         continue;
                     }
 
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         console.log("bon mdp");
-                        this.props.navigation.navigate('PageAcceuil');
+                        this.props.navigation.navigate('PageAcceuil', {paramKey:secretaire.prenom });
                     }
                 }
             })
