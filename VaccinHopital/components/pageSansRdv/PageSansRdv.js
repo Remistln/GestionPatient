@@ -3,7 +3,7 @@ import {StyleSheet, View} from "react-native";
 import DatePicker from "react-native-datepicker";
 import {useEffect, useState} from "react";
 
-export default function PageSansRdv() {
+export default function PageSansRdv({navigation}) {
 	const [birthDate, setBirthDate] = useState("");
 	const [age, setAge] = useState("");
 	const [today, setToday] = useState(new Date);
@@ -112,6 +112,7 @@ export default function PageSansRdv() {
 			response.json()
 		})
 	}
+
 
 	return (
 		<Block style={styles.block}>

@@ -9,9 +9,9 @@ import moment from "moment";
 
 export default class PagePriseRdv extends Component 
 {
-    constructor()
+    constructor({navigation})
     {
-        super();
+        super({navigation});
         this.placeholderDate = this.formatToday();
         this.state = {
             jour: 1,
@@ -55,6 +55,12 @@ export default class PagePriseRdv extends Component
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
     }
 
+    async enregistrement()
+    {
+
+
+        this.props.navigation.navigate('AgendaVaccinations');
+    }
     render()
     {
     return(
@@ -158,7 +164,9 @@ export default class PagePriseRdv extends Component
             <Block style={ styles.centrer}>
                 <Button style={ styles.valider} onPress={ ()=>{
                     if (this.validation())
-                    {};}
+                    {
+                        this.enregistrement();
+                    };}
                 }>Valider</Button>
             </Block>
 
