@@ -52,6 +52,7 @@ export default class PageLogin extends Component {
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         this.props.navigation.navigate('PageAcceuil', {nom: secretaire.prenom });
+                        
                     }
                 }
             })
