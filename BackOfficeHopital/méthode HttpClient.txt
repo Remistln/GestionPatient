@@ -1,0 +1,6 @@
+Etape 1 : création d'objets qui contiendra le retour typé de l'API
+Etape 2 : création d'objets qui contiendra le retour string de l'API
+	syntaxe des propriétés des objets :
+		[JsonPropertyName("userId")]
+        public string UserId { get; set; }
+

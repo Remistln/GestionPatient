@@ -7,14 +7,8 @@
     <list default="true" id="a10a7010-6adb-4ffe-82e8-6c3c94e7969c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackOfficeHopital.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackOfficeHopital.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageLogin.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageLogin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +17,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Documents/EPSI/Cours C# B2/Seance_4/AppelEcole/AppelEcole.WinForms/Etudiant.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651841120162</updated>
-      <workItem from="1651841133577" duration="2006000" />
+      <workItem from="1651841133577" duration="4419000" />
     </task>
     <servers />
   </component>

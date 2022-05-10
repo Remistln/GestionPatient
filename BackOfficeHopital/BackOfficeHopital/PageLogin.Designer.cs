@@ -36,6 +36,7 @@ namespace BackOfficeHopital
             this.mdpLabel = new System.Windows.Forms.Label();
             this.mailInput = new System.Windows.Forms.TextBox();
             this.mdpInput = new System.Windows.Forms.TextBox();
+            this.valitationButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titreLabel
@@ -68,6 +69,7 @@ namespace BackOfficeHopital
             this.mailInput.Name = "mailInput";
             this.mailInput.Size = new System.Drawing.Size(75, 20);
             this.mailInput.TabIndex = 3;
+            this.mailInput.TextChanged += new System.EventHandler(this.mailInput_TextChanged);
             // 
             // mdpInput
             // 
@@ -75,12 +77,23 @@ namespace BackOfficeHopital
             this.mdpInput.Name = "mdpInput";
             this.mdpInput.Size = new System.Drawing.Size(75, 20);
             this.mdpInput.TabIndex = 4;
+            this.mdpInput.TextChanged += new System.EventHandler(this.mdpInput_TextChanged);
+            // 
+            // valitationButton
+            // 
+            this.valitationButton.Location = new System.Drawing.Point(252, 235);
+            this.valitationButton.Name = "valitationButton";
+            this.valitationButton.Size = new System.Drawing.Size(67, 27);
+            this.valitationButton.TabIndex = 5;
+            this.valitationButton.Text = "Valider";
+            this.valitationButton.UseVisualStyleBackColor = true;
             // 
             // PageLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.valitationButton);
             this.Controls.Add(this.mdpInput);
             this.Controls.Add(this.mailInput);
             this.Controls.Add(this.mdpLabel);
@@ -91,6 +104,8 @@ namespace BackOfficeHopital
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button valitationButton;
 
         private System.Windows.Forms.Label mdpLabel;
         private System.Windows.Forms.TextBox mailInput;

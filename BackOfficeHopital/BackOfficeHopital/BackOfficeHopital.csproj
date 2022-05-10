@@ -46,6 +46,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Entities\Administrateur.cs" />
         <Compile Include="PageLit.cs">
           <SubType>Form</SubType>
         </Compile>
