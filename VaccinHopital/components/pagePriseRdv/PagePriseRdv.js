@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Component } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
+import moment from "moment";
 
 
 
@@ -51,7 +52,7 @@ export default class PagePriseRdv extends Component
 
     validation()
     {
-        return (this.state.nom != "" && this.state.prenom != "" && this.state.heure != "la première heure" && this.state.vaccin != "la picure" && this.state.dateNaissance != this.placeholderDate);
+        return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
     }
 
     render()
@@ -59,11 +60,11 @@ export default class PagePriseRdv extends Component
     return(
         <Block style={ styles.block}> 
             <Block style={ styles.block}>
-                <Block >
+                <Block style = {styles.date } >
                     <Text h4>Date :</Text>
                 </Block>
-                <Block style={ styles.ligne}>
-                    <Text h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
+                <Block  style={ styles.centrer}>
+                    <Text style={ styles.centrer} h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
                 </Block>
             </Block>
 
@@ -89,29 +90,34 @@ export default class PagePriseRdv extends Component
                 <Block>
                     <Text h4>Date de Naissance :</Text>
                 </Block>
-                <Block style={ styles.ligne}>
-                    <Text h5>{this.state.dateNaissance}</Text>
-                    <DatePicker
-                            date={this.setState.dateNaissance}
-                            mode="date"
-                            locale="fr"
-                            placeholder="Choisir"
-                            format="DD-MM-YYYY"
-                            minDate="01-01-1900"
-
-                            customStyles={{
-                                dateInput: {
-                                    backgroundColor: 'white',
-                                    borderWidth: 1,
-                                    borderColor: 'black',
-                                },
-                            }}
-                            showIcon={false}
-                            style={styles.boutonDate}
-                            onDateChange={(date) => {
-                                this.setState({dateNaissance: date});
-                            }}
-                        />
+                <Block style = {styles.centrer }>
+                    <Text style = {styles.centrer } h5>{this.state.dateNaissance}</Text>
+                    <Block style={styles.container}>
+                        <DatePicker
+                                date={this.setState.dateNaissance}
+                                androidMode="spinner"
+                                mode="date"
+                                locale="fr"
+                                placeholder="DD/MM/YYYY"
+                                format="DD-MM-YYYY"
+                                minDate={'01-01-1900'}
+                                maxDate={moment().format('DD-MM-YYYY')}
+                                confirmBtnText="Confirmer"
+                                cancelBtnText="Annuler"
+                                customStyles={{
+                                    dateInput: {
+                                        backgroundColor: 'white',
+                                        borderWidth: 1,
+                                        borderColor: 'black',
+                                    },
+                                }}
+                                showIcon={false}
+                                style={styles.boutonDate}
+                                onDateChange={(date) => {
+                                    this.setState({dateNaissance: date});
+                                }}
+                            />
+                    </Block>
                 </Block>
             </Block>
 
@@ -119,8 +125,7 @@ export default class PagePriseRdv extends Component
                 <Block>
                     <Text h4>Heure de Passage :</Text>
                 </Block>
-                <Block style={ styles.ligne}>
-                    <Text h5>{this.state.heure}</Text>
+                <Block style = {styles.centrer } >
                     <RNPickerSelect
                     items={this.state.horaires}
                     onValueChange = {
@@ -136,8 +141,8 @@ export default class PagePriseRdv extends Component
                 <Block>
                     <Text h4>Vaccins :</Text>
                 </Block>
-                <Block style={ styles.ligne}>
-                    <Text h5>{this.state.vaccin}</Text>
+                <Block style = {styles.centrer } >
+
                     <RNPickerSelect
                         items={this.state.vaccins}
                         onValueChange = {
@@ -150,8 +155,8 @@ export default class PagePriseRdv extends Component
                 </Block>
             </Block>
 
-            <Block style={ styles.block}>
-                <Button onPress={ ()=>{
+            <Block style={ styles.centrer}>
+                <Button style={ styles.valider} onPress={ ()=>{
                     if (this.validation())
                     {};}
                 }>Valider</Button>
@@ -169,12 +174,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flex: 1,
         marginHorizontal: 5,
-    },
 
-    ligne :
-    {
-        flexDirection: "row",
-        flex: 1,
     },
     select :
     {
@@ -183,13 +183,33 @@ const styles = StyleSheet.create({
 
     input :
     {
-        height: 30,
+        height: 40,
+
     },
 
     boutonDate:
     {
-        width: 70,
-    }
+        width: 300,
+
+    },
+    date :
+    {
+        textAlign : "right",
+    },
+    centrer :
+    {
+        alignItems : "center",
+        alignContent : "center",
+        textAlign : "center"
+    },
+    valider  :
+        {
+            marginBottom : "15%",
+            alignItems : "center",
+
+        }
+
+
 });
 
 const pickerSelectStyles = StyleSheet.create({
