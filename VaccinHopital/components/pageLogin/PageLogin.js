@@ -17,7 +17,7 @@ export default class PageLogin extends Component {
         }
     };
 
-    async connect({navigation})
+    async connect()
     {
         /*
             Plan:

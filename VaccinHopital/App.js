@@ -7,6 +7,7 @@ import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
 import PageConsulterRdv from "./components/pageConsulterRdv/PageConsulterRdv";
+import PagePriseRdv from "./components/pagePriseRdv/PagePriseRdv";
 
 
 
