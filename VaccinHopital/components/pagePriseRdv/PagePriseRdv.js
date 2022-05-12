@@ -5,50 +5,21 @@ import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
 import moment from "moment";
 
-let premierChargement = false;
-let listeChargee = false;
+const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-async function getVaccinListe()
-{
-    if (premierChargement){
-        return;
-    }
-    premierChargement = true;
-    var ApiHeaders = new Headers({
-        'Content-Type': 'application/ld+json'
-    });
 
-    // ip de l'ordinateur où se trouve le serveur
-    const ip ="192.168.42.96:8000";
 
-    const url = 'http://' + ip + '/api/vaccins';
-    await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
-    .then(response => response.json())
-    .then((data) => {
-        let vaccinListe = []
-        for (const vaccin of data['hydra:member'])
-        {
-            vaccinListe.push(vaccin);
-            
-        };
-        listeChargee = true;
-        return vaccinListe;
-    })
-}
-
-const vaccinListe = getVaccinListe();
-console.log(vaccinListe);
 
 export default class PagePriseRdv extends Component 
 {
-    constructor({navigation})
+    constructor({navigation, route})
     {
-        super({navigation});
+        super({navigation, route});
         this.placeholderDate = this.formatToday();
         this.state = {
-            jour: 5,
-            mois: "Février",
-            annee: 2022,
+            jour: route.params.jour,
+            mois: route.params.mois,
+            annee: route.params.annee,
 
             nom:"",
             prenom:"",
@@ -68,10 +39,23 @@ export default class PagePriseRdv extends Component
             vaccin: "la picure",
         };
 
+
     };
-
-    
-
+/*
+    vaccinsDisponibles()
+    {
+        console.log("C'est bon");
+        for (const vaccin of route.params)
+        {
+            var dateDePeremption = new Date(vaccins.datePeremption);
+            var dateRdv = new Date(this.state.annee, this.state.mois,this.state.jour,0,0,0,0);
+            if (dateDePeremption > dateRdv)
+            {
+                console.log(vaccin);
+            };
+        };
+    };
+*/
     formatToday()
     {
         let aujourdhuis = new Date();
@@ -83,19 +67,21 @@ export default class PagePriseRdv extends Component
             placeholderDate = aujourdhuis.getDate().toString() +"-"+ (aujourdhuis.getMonth() + 1).toString() +"-"+ aujourdhuis.getFullYear().toString();
         }
         return placeholderDate;
-    }
+    };
 
     validation()
     {
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
-    }
+    };
 
     async enregistrement()
     {
 
 
         this.props.navigation.navigate('AgendaVaccinations');
-    }
+    };
+
+
     render()
     {
     return(
@@ -105,7 +91,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Date :</Text>
                 </Block>
                 <Block  style={ styles.centrer}>
-                    <Text style={ styles.centrer} h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
+                    <Text style={ styles.centrer} h5>{this.state.jour}-{moisListe[this.state.mois]}-{this.state.annee}</Text>
                 </Block>
             </Block>
 

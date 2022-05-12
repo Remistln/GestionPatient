@@ -7,6 +7,7 @@ import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
 import PagePriseRdv from './components/pagePriseRdv/PagePriseRdv';
+import PageChargementRdv from './components/pageChargementRdv/PageChargementRdv';
 
 
 
@@ -16,12 +17,13 @@ export default function App() {
   return (
     <NavigationContainer>
 
-    <Stack.Navigator initialRouteName="PagePriseRdv">
+    <Stack.Navigator initialRouteName="PageChargement">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
       <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
       <Stack.Screen name="PagePriseRdv" component={PagePriseRdv}/>
+      <Stack.Screen name="PageChargement" component={PageChargementRdv}/>
 
     </Stack.Navigator>
     <StatusBar style="auto" />
