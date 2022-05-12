@@ -37,6 +37,7 @@ async function getVaccinListe()
 }
 
 const vaccinListe = getVaccinListe();
+console.log(vaccinListe);
 
 export default class PagePriseRdv extends Component 
 {
