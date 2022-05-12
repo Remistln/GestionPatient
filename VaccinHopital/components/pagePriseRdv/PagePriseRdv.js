@@ -49,6 +49,7 @@ export default class PagePriseRdv extends Component
             heure : "la première heure",
 
             vaccins : this.vaccinsDisponibles(route.params.jour, route.params.mois, route.params.annee),
+            typeVaccin : "le type",
             vaccin: "la picure",
         };
 
@@ -100,6 +101,17 @@ export default class PagePriseRdv extends Component
         return placeholderDate;
     };
 
+    loadVaccin()
+    {
+        for (const vaccin of this.listeVacins)
+        {
+            if (vaccin.type.label ==  this.state.typeVaccin)
+            {
+
+            };
+        };
+    }
+
     validation()
     {
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
@@ -107,9 +119,26 @@ export default class PagePriseRdv extends Component
 
     async enregistrement()
     {
+        var ApiHeaders = new Headers({
+            'Content-Type': 'application/ld+json'
+        });
+        // ip de l'ordinateur où se trouve le serveur
+        const ip ="192.168.42.96:8000";
+        const url = 'http://' + ip + '/api/rendez_vouses';
 
+        const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
 
-        this.props.navigation.navigate('AgendaVaccinations');
+        const Rdv = {
+            vaccin: this.state.vaccin, 
+            Date: date.toString(),
+            nom: this.state.nom,
+            prenom: this.state.prenom,
+            heure: this.state.heure,
+        };
+
+        await fetch(url, { method: 'POST', headers: ApiHeaders, body: JSON.stringify(Rdv)}) 
+            .then(this.props.navigation.navigate('AgendaVaccinations'));
+
     };
 
 
