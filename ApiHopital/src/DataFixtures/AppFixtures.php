@@ -128,8 +128,10 @@ class AppFixtures extends Fixture
             $rdv = new RendezVous();
                 //date_format("2012-03-24 17:00:00", 'Y-m-d H:i:s')
             $rdv
-                ->setDate(\DateTime::createFromFormat('d-m-Y H:i', '25-12-2001 20:30'))
-                ->setInfirmier($infirmier)
+                ->setDate(\DateTime::createFromFormat('d-m-Y', '25-12-2001'))
+                ->setHeure(\DateTime::createFromFormat('H:i', '17:00'))
+                ->setNom($faker->name())
+                ->setPrenom($faker->firstName())
                 ->setVaccin($vaccin);
             $manager->persist($rdv);
         }

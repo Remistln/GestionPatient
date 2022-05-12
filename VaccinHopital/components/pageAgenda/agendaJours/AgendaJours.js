@@ -248,13 +248,13 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth: 5,
         padding:15,
-        backgroundColor : "red"
+        //backgroundColor : "red"
     },
 
     agenda: 
     {
         flex: 4,
-        backgroundColor : "green"
+        //backgroundColor : "green"
     },
     
     entete: 
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         borderColor: "black",
         borderWidth: 4,
-        backgroundColor : "yellow"
+        //backgroundColor : "yellow"
 
     },
     

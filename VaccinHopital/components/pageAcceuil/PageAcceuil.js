@@ -4,6 +4,12 @@ import PageSansRdv from "../pageSansRdv/PageSansRdv";
 import PageAgenda from "../pageAgenda/PageAgenda";
 import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useEffect, useState } from 'react';
+
+//var nbVaccins = 0; 
+var countEnd = false ; 
+
+
 
 export default function PageAcceuil({navigation, route}) {
 /*
@@ -14,22 +20,58 @@ A mettre en place :
 OU algo qui permet de vérifier si il y a au moin un vaccin
 - Afficher le nombre de vaccins dans la pageAcceuil
 * */
+const [nbVaccins, setNbVaccins] = useState(0);
+
+useEffect(() => {
+  if (countEnd)
+  {return};
+  var ApiHeaders = new Headers({
+    'Content-Type': 'application/ld+json'
+  }) 
+  
+  // ip de l'ordinateur où se trouve le serveur
+  const ip ="192.168.42.96:8000";
+  
+  //url
+  const url = 'http://'+ ip +'/api/vaccins'; 
+  
+  fetch (url, {method : 'GET', headers : ApiHeaders})
+    .then(response => response.json())
+    .then (data => 
+      {
+        var dateAuj = new Date();
+        dateAuj.setDate(dateAuj.getDate() + 1);
+        let count =0;
+        for( const vaccins of data['hydra:member']){
+          
+          var dateDePeremption = new Date(vaccins.datePeremption)
+
+          if (dateDePeremption.getDate() === dateAuj.getDate() && dateDePeremption.getMonth() === dateAuj.getMonth() && dateDePeremption.getFullYear() === dateAuj.getFullYear()) {
+            count = count + 1;
+          }
+          setNbVaccins(count);
+          countEnd =true;
+        }
+  
+    })
+  });
+
     return (
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h3>Bonjour {route.params.paramKey}!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour {route.params.nom}!</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >
               <Text style = {styles.centrer}  h4>Gérer les rendez-vous :</Text>
                 <Button round style = {styles.button} size="large" color="primary"
-                        onPress={() => navigation.navigate('PageAgenda')}
+                        onPress={() => navigation.navigate('AgendaVaccinations')}
                 >Ouvrir l'Agenda</Button>
             </Block>
 
             <Block style = {styles.sansRDV} >
-              <Text  style = {styles.centrer}  h4>[n] Vaccins périment demain :</Text>
+              <Text  style = {styles.centrer}  h4>{nbVaccins} Vaccins périment demain :</Text>
                 <Button round  style = {styles.button}  size="large" color="primary"
                         onPress={() => navigation.navigate('PageSansRdv')}>Vacciner sans rendez-vous</Button>
             </Block>
