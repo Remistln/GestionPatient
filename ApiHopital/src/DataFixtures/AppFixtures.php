@@ -39,6 +39,12 @@ class AppFixtures extends Fixture
             ->setAgeMax(80);
         $manager->persist($astra);
 
+        $moderna = new TypeVaccin();
+        $moderna->setLabel("Moderna")
+            ->setAgeMin(30)
+            ->setAgeMax(150);
+        $manager->persist($moderna);
+
         $mdpFile = "mdp.txt";
         $mdpData = "Liste des mdps :\n";
         
@@ -112,12 +118,14 @@ class AppFixtures extends Fixture
                 ->setPrenom($faker->firstName());
             $manager->persist($secretaire);
 
-
-            $num = rand(1, 2);
+            $type = $pfizer;
+            $num = rand(1, 3);
             if ($num == 1) {
                 $type = $pfizer;
             } elseif ($num == 2) {
                 $type = $astra;
+            }elseif ($num == 3) {
+                $type = $moderna;
             }
             $vaccin = new Vaccin();
             $vaccin->setReserve($faker->boolean())

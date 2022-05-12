@@ -29,7 +29,7 @@ export default function PageChargementRdv({navigation, route})
             {
                 //route.params reccupérer la date
                 const jour= 5;
-                const mois= 5;
+                const mois= 1;
                 const annee= 2022;
                 navigation.navigate('PagePriseRdv', {vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });

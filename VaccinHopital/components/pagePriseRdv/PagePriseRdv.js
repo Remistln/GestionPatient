@@ -16,6 +16,7 @@ export default class PagePriseRdv extends Component
     {
         super({navigation, route});
         this.placeholderDate = this.formatToday();
+        this.listeVacins = route.params.vaccinListe;
         this.state = {
             jour: route.params.jour,
             mois: route.params.mois,
@@ -31,31 +32,45 @@ export default class PagePriseRdv extends Component
                 ],
             heure : "la première heure",
 
-            vaccins : [
-                {label: "Pfizer", value: "Pfizer"},
-                {label: "Astra Zeneca", value: "Astra Zeneca"},
-                {label: "Moderna", value: "Moderna"},
-            ],
+            vaccins : this.vaccinsDisponibles(route.params.jour, route.params.mois, route.params.annee),
             vaccin: "la picure",
         };
 
-
     };
-/*
-    vaccinsDisponibles()
+
+    vaccinsDisponibles(jour, mois, annee)
     {
-        console.log("C'est bon");
-        for (const vaccin of route.params)
+        let typeVaccins = [];
+        let pfizer = true;
+        let astra = true;
+        let moderna = true;
+        for (const vaccin of this.listeVacins)
         {
-            var dateDePeremption = new Date(vaccins.datePeremption);
-            var dateRdv = new Date(this.state.annee, this.state.mois,this.state.jour,0,0,0,0);
+            var dateDePeremption = new Date(vaccin.datePeremption);
+            var dateRdv = new Date(annee, mois, jour,0,0,0,0);
             if (dateDePeremption > dateRdv)
             {
-                console.log(vaccin);
+                if (pfizer && vaccin.type.label == "Pfizer")
+                {
+                    typeVaccins.push({label: "Pfizer", value: "Pfizer"});
+                    pfizer = false;
+                }
+                if (astra && vaccin.type.label == "AstraZeneca")
+                {
+                    typeVaccins.push({label: "Astra Zeneca", value: "AstraZeneca"});
+                    astra = false;
+                }
+                if (moderna && vaccin.type.label == "Moderna")
+                {
+                    typeVaccins.push({label: "Moderna", value: "Moderna"});
+                    moderna = false;
+                }
+
             };
         };
+        return typeVaccins ;
     };
-*/
+
     formatToday()
     {
         let aujourdhuis = new Date();
