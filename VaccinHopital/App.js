@@ -6,14 +6,15 @@ import PageLogin from './components/pageLogin/PageLogin';
 import PageAcceuil from './components/pageAcceuil/PageAcceuil';
 import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
-import PagePriseRdv from './components/pagePriseRdv/PagePriseRdv';
+import PageConsulterRdv from "./components/pageConsulterRdv/PageConsulterRdv";
 
 
 
 const Stack = createNativeStackNavigator();
 export default function App() {
 
-  return (
+
+ return (
     <NavigationContainer>
     <Stack.Navigator initialRouteName="PageLogin">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
@@ -21,12 +22,13 @@ export default function App() {
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>
       <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
       <Stack.Screen name="PagePriseRdv" component={PagePriseRdv}/>
-
+      <Stack.Screen name="PageConsulterRdv" component={PageConsulterRdv}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
-
   );
+
+
 }
 
 const styles = StyleSheet.create({

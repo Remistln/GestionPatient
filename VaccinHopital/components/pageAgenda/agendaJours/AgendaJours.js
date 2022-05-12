@@ -92,7 +92,7 @@ function buttonsPremiereSemaine(moisNombre, anneeNombre){
 }
 
 // affiche la ligne de la dernière semaine
-function buttonsDernièreSemaine(moisNombre, anneeNombre){
+function buttonsDerniereSemaine(moisNombre, anneeNombre){
     let moisDate = new Date();
     moisDate.setFullYear(anneeNombre, moisNombre+1, 0);
     const dernierJourMoisDate = moisDate.getDate();
@@ -186,7 +186,7 @@ function agenda(moisNombre, anneeNombre)
                     {buttonsSemaine(lundi + 21,7)}
                 </Block>
     
-                {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+                {buttonsDerniereSemaine(moisNombre,anneeNombre)}
                 </>
             )
         }
@@ -207,7 +207,7 @@ function agenda(moisNombre, anneeNombre)
                 {buttonsSemaine(lundi + 14,7)}
             </Block>
 
-            {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+            {buttonsDerniereSemaine(moisNombre,anneeNombre)}
 
             <Block style = {styles.jours}>
                 {buttonsSemaine(lundi,7)}
@@ -231,7 +231,7 @@ function agenda(moisNombre, anneeNombre)
             {buttonsSemaine(lundi + 14,7)}
         </Block>
 
-        {buttonsDernièreSemaine(moisNombre,anneeNombre)}
+        {buttonsDerniereSemaine(moisNombre,anneeNombre)}
         </>
     )
     
