@@ -87,9 +87,6 @@ export default class PagePriseRdv extends Component
 
             };
         };
-        console.log(Moderna);
-        console.log(Astra);
-        console.log(Pfizer);
         return typeVaccins ;
     };
 
