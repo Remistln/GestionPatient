@@ -1,5 +1,5 @@
 import { Text, Block, Button } from 'galio-framework';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import PageSansRdv from "../pageSansRdv/PageSansRdv";
 import PageAgenda from "../pageAgenda/PageAgenda";
 import { useNavigation , NavigationContainer} from '@react-navigation/native';
@@ -41,18 +41,32 @@ useEffect(() => {
       {
         var dateAuj = new Date();
         dateAuj.setDate(dateAuj.getDate() + 1);
-        let count =0;
+        let countSansRdv =0;
+        let countVaccin =0;
         for( const vaccins of data['hydra:member']){
           
           var dateDePeremption = new Date(vaccins.datePeremption)
 
           if (dateDePeremption.getDate() === dateAuj.getDate() && dateDePeremption.getMonth() === dateAuj.getMonth() && dateDePeremption.getFullYear() === dateAuj.getFullYear()) {
-            count = count + 1;
+            countSansRdv = countSansRdv + 1;
           }
-          setNbVaccins(count);
+          setNbVaccins(countSansRdv);
+
+          if (dateAuj < dateDePeremption && ! vaccins.reserve)
+          {countVaccin = countVaccin + 1;};
+          
           countEnd =true;
         }
-  
+        if (countVaccin < 20)
+        {
+          Alert.alert(
+            "Alerte Stock",
+            "Le Stock des vaccins est bas : moins de vingt vaccins disponibles",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+          );
+        }
     })
   });
 

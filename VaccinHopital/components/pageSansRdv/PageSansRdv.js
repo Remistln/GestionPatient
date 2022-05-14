@@ -30,7 +30,7 @@ export default function PageSansRdv({navigation}) {
 
 		//A changer quand on aura des vaccins en temps reel
 		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
-		let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
+		let requete = "http://192.168.42.96:8000/api/vaccins?datePeremption=" + formatted_tomorrow
 
 		fetch(requete, {
 			headers: {
@@ -61,7 +61,7 @@ export default function PageSansRdv({navigation}) {
 
 	async function getTypeVaccin(chosenVaccin) {
 		console.log("je suis dans typevaccin")
-		fetch("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin, {
+		fetch("http://192.168.42.96:8000:8000/api/type_vaccins?label=" + chosenVaccin, {
 			headers: {
 				'Accept': 'application/json'
 			}
@@ -72,7 +72,7 @@ export default function PageSansRdv({navigation}) {
 			checkAge(res[0])
 			console.log("fetch reussi")
 		}).catch(error => console.log("ERROR" + error))
-		console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
+		console.log("http://192.168.42.96:8000:8000/api/type_vaccins?label=" + chosenVaccin)
 	}
 
 	function checkAge(Vaccin) {
@@ -107,7 +107,7 @@ export default function PageSansRdv({navigation}) {
 
 	async function deleteVaccin(){
 		console.log("suppression du " + deleteItem)
-		fetch('http://192.168.1.14:8000/api/vaccins/' + deleteItem, {
+		fetch('http://192.168.42.96:8000:8000/api/vaccins/' + deleteItem, {
 			method: 'DELETE',
 		}).then(response => {
 			response.json()
