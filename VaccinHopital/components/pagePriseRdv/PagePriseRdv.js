@@ -146,15 +146,15 @@ export default class PagePriseRdv extends Component
         const url = 'http://' + ip + '/api/rendez_vouses';
 
         const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
-
+        const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
         const Rdv = {
-            vaccin: this.state.vaccin, 
+            vaccin: iriVaccin, 
             Date: date.toString(),
             nom: this.state.nom,
             prenom: this.state.prenom,
             heure: this.state.heure,
         };
-
+        console.log(Rdv);
         await fetch(url, { method: 'POST', headers: ApiHeaders, body: JSON.stringify(Rdv)}) 
             .then(this.props.navigation.navigate('AgendaVaccinations'));
 
@@ -179,7 +179,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Nom :</Text>
                 </Block>
                 <Block>
-                    <Input style={ styles.input} onChange={text => {this.setState({nom: text})}}></Input>
+                    <Input style={ styles.input} onChangeText={text => {this.setState({nom: text})}}></Input>
                 </Block>
             </Block>
 
@@ -188,7 +188,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Prénom :</Text>
                 </Block>
                 <Block>
-                    <Input style={ styles.input} onChange={text => {this.setState({prenom: text})}}></Input>
+                    <Input style={ styles.input} onChangeText={text => {this.setState({prenom: text})}}></Input>
                 </Block>
             </Block>
 
