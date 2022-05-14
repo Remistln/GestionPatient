@@ -63,7 +63,7 @@ useEffect(() => {
             "Alerte Stock",
             "Le Stock des vaccins est bas : moins de vingt vaccins disponibles",
             [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
+              { text: "OK"}
             ]
           );
         }
