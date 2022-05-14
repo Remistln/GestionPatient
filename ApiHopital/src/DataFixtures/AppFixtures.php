@@ -25,6 +25,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $list_services = ["Urgences", "Radiologie", "Cardiologie", "Maternité", "Chirurgie", "Medecin general", "Pneumologie", "Covid", "Pharmacie", "Neurologie"];
+        $horraires = ["09:00","09:30","10:00","10:30","11:00","11:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30"];
         $faker = Factory::create();
 
         $pfizer = new TypeVaccin();
@@ -117,7 +118,10 @@ class AppFixtures extends Fixture
                 ->setNom($faker->name())
                 ->setPrenom($faker->firstName());
             $manager->persist($secretaire);
+        }
 
+        for ($i = 0; $i < 10; $i++)
+        {
             $type = $pfizer;
             $num = rand(1, 3);
             if ($num == 1) {
@@ -128,21 +132,41 @@ class AppFixtures extends Fixture
                 $type = $moderna;
             }
             $vaccin = new Vaccin();
-            $vaccin->setReserve($faker->boolean())
-                ->setDatePeremption($faker->dateTimeBetween('+1 day', '+1 day'))
+            $vaccin->setReserve(true)
+                ->setDatePeremption($faker->dateTimeBetween('+20 day', '+30 day'))
                 ->setType($type);
             $manager->persist($vaccin);
 
             $rdv = new RendezVous();
                 //date_format("2012-03-24 17:00:00", 'Y-m-d H:i:s')
+            $dateRdv = $faker->dateTimeBetween('+2 day', '+18 day');
             $rdv
-                ->setDate(\DateTime::createFromFormat('d-m-Y', '25-12-2001'))
-                ->setHeure(\DateTime::createFromFormat('H:i', '17:00'))
+                ->setDate($dateRdv)
+                ->setHeure(\DateTime::createFromFormat('H:i', $horraires[rand(0, 17)]))
                 ->setNom($faker->name())
                 ->setPrenom($faker->firstName())
                 ->setVaccin($vaccin);
             $manager->persist($rdv);
         }
+
+        for ($i = 0; $i < 25; $i++)
+        {
+            $type = $pfizer;
+            $num = rand(1, 3);
+            if ($num == 1) {
+                $type = $pfizer;
+            } elseif ($num == 2) {
+                $type = $astra;
+            }elseif ($num == 3) {
+                $type = $moderna;
+            }
+            $vaccin = new Vaccin();
+            $vaccin->setReserve(false)
+                ->setDatePeremption($faker->dateTimeBetween('+1 day', '+2 day'))
+                ->setType($type);
+            $manager->persist($vaccin);
+        }
+
         $manager->flush();
 
         file_put_contents($mdpFile, $mdpData);
