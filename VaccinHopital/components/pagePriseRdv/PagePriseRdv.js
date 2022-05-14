@@ -7,7 +7,9 @@ import moment from "moment";
 
 const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-
+let Pfizer = true;
+let Astra = true;
+let Moderna = true;
 
 
 export default class PagePriseRdv extends Component 
@@ -17,6 +19,7 @@ export default class PagePriseRdv extends Component
         super({navigation, route});
         this.placeholderDate = this.formatToday();
         this.listeVacins = route.params.vaccinListe;
+
         this.state = {
             jour: route.params.jour,
             mois: route.params.mois,
@@ -53,39 +56,54 @@ export default class PagePriseRdv extends Component
             vaccin: "la picure",
         };
 
+
     };
 
     vaccinsDisponibles(jour, mois, annee)
     {
         let typeVaccins = [];
-        let pfizer = true;
-        let astra = true;
-        let moderna = true;
+        
         for (const vaccin of this.listeVacins)
         {
             var dateDePeremption = new Date(vaccin.datePeremption);
             var dateRdv = new Date(annee, mois, jour,0,0,0,0);
-            if (dateDePeremption > dateRdv)
+            if (dateDePeremption > dateRdv && vaccin.reserve > 0)
             {
-                if (pfizer && vaccin.type.label == "Pfizer")
+                if (Pfizer && vaccin.type.label == "Pfizer")
                 {
                     typeVaccins.push({label: "Pfizer", value: "Pfizer"});
-                    pfizer = false;
+                    Pfizer = false;
                 }
-                if (astra && vaccin.type.label == "AstraZeneca")
+                if (Astra && vaccin.type.label == "AstraZeneca")
                 {
                     typeVaccins.push({label: "Astra Zeneca", value: "AstraZeneca"});
-                    astra = false;
+                    Astra = false;
                 }
-                if (moderna && vaccin.type.label == "Moderna")
+                if (Moderna && vaccin.type.label == "Moderna")
                 {
                     typeVaccins.push({label: "Moderna", value: "Moderna"});
-                    moderna = false;
+                    Moderna = false;
                 }
 
             };
         };
         return typeVaccins ;
+    };
+
+    typeVaccinParAge(date)
+    {
+        const naissance = date.split('-');
+        const aujourdhuis = new Date();
+        const age = aujourdhuis.getFullYear() - naissance[2];
+        if (age >= 5 && age <= 20){Pfizer = true;}
+        else {Pfizer = false;}
+        if (age >= 20) {Astra = true;}
+        else {Astra = false;}
+        if (age >= 30) {Moderna = true;}
+        else {Moderna = false;}
+    
+        this.setState({vaccins : this.vaccinsDisponibles(this.state.jour, this.state.mois, this.state.annee)})
+        
     };
 
     formatToday()
@@ -101,13 +119,14 @@ export default class PagePriseRdv extends Component
         return placeholderDate;
     };
 
-    loadVaccin()
+    loadVaccin(typeVaccin)
     {
         for (const vaccin of this.listeVacins)
         {
-            if (vaccin.type.label ==  this.state.typeVaccin)
+            if (vaccin.type.label ===  typeVaccin)
             {
-
+                this.setState({vaccin: vaccin.id});
+                break;
             };
         };
     }
@@ -202,6 +221,7 @@ export default class PagePriseRdv extends Component
                                 style={styles.boutonDate}
                                 onDateChange={(date) => {
                                     this.setState({dateNaissance: date});
+                                    this.typeVaccinParAge(date);
                                 }}
                             />
                     </Block>
@@ -232,8 +252,10 @@ export default class PagePriseRdv extends Component
 
                     <RNPickerSelect
                         items={this.state.vaccins}
-                        onValueChange = {
-                            value => this.setState( { vaccin: value} )
+                        onValueChange = {value => {
+                            this.setState( { typeVaccin: value} );
+                            this.loadVaccin(value);
+                        }
                         }
                         value = {this.state.vaccin}
                         style={pickerSelectStyles}
