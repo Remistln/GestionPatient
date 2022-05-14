@@ -57,7 +57,7 @@ class AppFixtures extends Fixture
             $mdpData .= "    Administrateur : ". $identifiantAdmin . " mdp : " . $mdpAdmin . "\n";
 
             $admin = new Admin();
-            $admin->setNom($faker->name());
+            $admin->setNom($faker->lastName());
             $admin->setPrenom($faker->firstName());
             $admin->setIdentifiant($identifiantAdmin);
             $admin->setMdp(password_hash($mdpAdmin, PASSWORD_DEFAULT));
@@ -69,7 +69,7 @@ class AppFixtures extends Fixture
             $mdpData .= "    Infirmier : ". $identifiantInfirmier . " mdp : " . $mdpInfirmier . "\n";
 
             $infirmier = new Infirmier();
-            $infirmier->setNom($faker->name());
+            $infirmier->setNom($faker->lastName());
             $infirmier->setPrenom($faker->firstName());
             $infirmier->setIdentifiant($identifiantInfirmier);
             $infirmier->setMdp(password_hash($mdpInfirmier, PASSWORD_DEFAULT));
@@ -101,7 +101,7 @@ class AppFixtures extends Fixture
                     $patient = new Patient();
                     $patient->setLit($lit->getId());
                     $patient->setService($service->getId());
-                    $patient->setNom($faker->name());
+                    $patient->setNom($faker->lastName());
                     $patient->setPrenom($faker->firstName());
                     $patient->setDateNaissance($faker->dateTime());
                     $patient->setLieuNaissance($faker->city());
@@ -132,7 +132,7 @@ class AppFixtures extends Fixture
             $secretaire = new Secretaire();
             $secretaire->setIdentifiant($identifiantSecretaire)
                 ->setMdp(password_hash($mdpSecretaire, PASSWORD_DEFAULT))
-                ->setNom($faker->name())
+                ->setNom($faker->lastName())
                 ->setPrenom($faker->firstName());
             $manager->persist($secretaire);
         }
@@ -160,7 +160,7 @@ class AppFixtures extends Fixture
             $rdv
                 ->setDate($dateRdv)
                 ->setHeure(\DateTime::createFromFormat('H:i', $horraires[rand(0, 17)]))
-                ->setNom($faker->name())
+                ->setNom($faker->lastName())
                 ->setPrenom($faker->firstName())
                 ->setVaccin($vaccin);
             $manager->persist($rdv);
