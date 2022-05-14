@@ -67,7 +67,7 @@ export default class PagePriseRdv extends Component
         {
             var dateDePeremption = new Date(vaccin.datePeremption);
             var dateRdv = new Date(annee, mois, jour,0,0,0,0);
-            if (dateDePeremption > dateRdv && vaccin.reserve > 0)
+            if (dateDePeremption > dateRdv )
             {
                 if (Pfizer && vaccin.type.label == "Pfizer")
                 {
@@ -87,6 +87,9 @@ export default class PagePriseRdv extends Component
 
             };
         };
+        console.log(Moderna);
+        console.log(Astra);
+        console.log(Pfizer);
         return typeVaccins ;
     };
 
@@ -138,15 +141,21 @@ export default class PagePriseRdv extends Component
 
     async enregistrement()
     {
-        var ApiHeaders = new Headers({
+        var ApiHeadersPost = new Headers({
             'Content-Type': 'application/ld+json'
+        });
+        var ApiHeadersPatch = new Headers({
+            'Content-Type': 'application/merge-patch+json'
         });
         // ip de l'ordinateur où se trouve le serveur
         const ip ="192.168.42.96:8000";
-        const url = 'http://' + ip + '/api/rendez_vouses';
+        const urlRdv = 'http://' + ip + '/api/rendez_vouses';
+
+        const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
+        const urlVaccin = 'http://' + ip + iriVaccin;
 
         const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
-        const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
+        
         const Rdv = {
             vaccin: iriVaccin, 
             Date: date.toString(),
@@ -154,9 +163,16 @@ export default class PagePriseRdv extends Component
             prenom: this.state.prenom,
             heure: this.state.heure,
         };
-        console.log(Rdv);
-        await fetch(url, { method: 'POST', headers: ApiHeaders, body: JSON.stringify(Rdv)}) 
-            .then(this.props.navigation.navigate('AgendaVaccinations'));
+
+        const vaccinAJour = {
+            reserve: true
+        }
+        await fetch(urlRdv, { method: 'POST', headers: ApiHeadersPost, body: JSON.stringify(Rdv)})
+            .then(
+                await fetch(urlVaccin, {method: 'PATCH', headers: ApiHeadersPatch, body: JSON.stringify(vaccinAJour)})
+                    .then(this.props.navigation.navigate('AgendaVaccinations'))
+            );
+            
 
     };
 

@@ -20,7 +20,7 @@ export default function PageChargementRdv({navigation, route})
             let vaccinListe = []
             for (const vaccin of data['hydra:member'])
             {
-                if (vaccin.reserve > 0)
+                if (! vaccin.reserve )
                 {
                     vaccinListe.push(vaccin);
                 }
