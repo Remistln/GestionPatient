@@ -5,72 +5,106 @@ import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
 import moment from "moment";
 
-let premierChargement = false;
-let listeChargee = false;
+const moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-async function getVaccinListe()
-{
-    if (premierChargement){
-        return;
-    }
-    premierChargement = true;
-    var ApiHeaders = new Headers({
-        'Content-Type': 'application/ld+json'
-    });
+let Pfizer = true;
+let Astra = true;
+let Moderna = true;
 
-    // ip de l'ordinateur où se trouve le serveur
-    const ip ="192.168.42.96:8000";
-
-    const url = 'http://' + ip + '/api/vaccins';
-    await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
-    .then(response => response.json())
-    .then((data) => {
-        let vaccinListe = []
-        for (const vaccin of data['hydra:member'])
-        {
-            vaccinListe.push(vaccin);
-            
-        };
-        listeChargee = true;
-        return vaccinListe;
-    })
-}
-
-const vaccinListe = getVaccinListe();
-console.log(vaccinListe);
 
 export default class PagePriseRdv extends Component 
 {
-    constructor({navigation})
+    constructor({navigation, route})
     {
-        super({navigation});
+        super({navigation, route});
         this.placeholderDate = this.formatToday();
+        this.listeVacins = route.params.vaccinListe;
+
         this.state = {
-            jour: 5,
-            mois: "Février",
-            annee: 2022,
+            jour: route.params.jour,
+            mois: route.params.mois,
+            annee: route.params.annee,
 
             nom:"",
             prenom:"",
             dateNaissance: this.placeholderDate,
 
             horaires: [
-                {label: "une heure", value: "une heure"},
-                {label: "une autre heure", value: "une autre heure"},
+                {label: "9h00", value: "09:00:00"},
+                {label: "9h30", value: "09:30:00"},
+                {label: "10h00", value: "10:00:00"},
+                {label: "10h30", value: "10:30:00"},
+                {label: "11h00", value: "11:00:00"},
+                {label: "11h30", value: "11:30:00"},
+                {label: "13h00", value: "13:00:00"},
+                {label: "13h30", value: "13:30:00"},
+                {label: "14h00", value: "14:00:00"},
+                {label: "14h30", value: "14:30:00"},
+                {label: "15h00", value: "15:00:00"},
+                {label: "15h30", value: "15:30:00"},
+                {label: "16h00", value: "16:00:00"},
+                {label: "16h30", value: "16:30:00"},
+                {label: "17h00", value: "17:00:00"},
+                {label: "17h30", value: "17:30:00"},
+                {label: "18h00", value: "18:00:00"},
+                {label: "18h30", value: "18:30:00"},
                 ],
             heure : "la première heure",
 
-            vaccins : [
-                {label: "Pfizer", value: "Pfizer"},
-                {label: "Astra Zeneca", value: "Astra Zeneca"},
-                {label: "Moderna", value: "Moderna"},
-            ],
+            vaccins : this.vaccinsDisponibles(route.params.jour, route.params.mois, route.params.annee),
+            typeVaccin : "le type",
             vaccin: "la picure",
         };
 
+
     };
 
+    vaccinsDisponibles(jour, mois, annee)
+    {
+        let typeVaccins = [];
+        
+        for (const vaccin of this.listeVacins)
+        {
+            var dateDePeremption = new Date(vaccin.datePeremption);
+            var dateRdv = new Date(annee, mois, jour,0,0,0,0);
+            if (dateDePeremption > dateRdv )
+            {
+                if (Pfizer && vaccin.type.label == "Pfizer")
+                {
+                    typeVaccins.push({label: "Pfizer", value: "Pfizer"});
+                    Pfizer = false;
+                }
+                if (Astra && vaccin.type.label == "AstraZeneca")
+                {
+                    typeVaccins.push({label: "Astra Zeneca", value: "AstraZeneca"});
+                    Astra = false;
+                }
+                if (Moderna && vaccin.type.label == "Moderna")
+                {
+                    typeVaccins.push({label: "Moderna", value: "Moderna"});
+                    Moderna = false;
+                }
+
+            };
+        };
+        return typeVaccins ;
+    };
+
+    typeVaccinParAge(date)
+    {
+        const naissance = date.split('-');
+        const aujourdhuis = new Date();
+        const age = aujourdhuis.getFullYear() - naissance[2];
+        if (age >= 5 && age <= 20){Pfizer = true;}
+        else {Pfizer = false;}
+        if (age >= 20) {Astra = true;}
+        else {Astra = false;}
+        if (age >= 30) {Moderna = true;}
+        else {Moderna = false;}
     
+        this.setState({vaccins : this.vaccinsDisponibles(this.state.jour, this.state.mois, this.state.annee)})
+        
+    };
 
     formatToday()
     {
@@ -83,19 +117,63 @@ export default class PagePriseRdv extends Component
             placeholderDate = aujourdhuis.getDate().toString() +"-"+ (aujourdhuis.getMonth() + 1).toString() +"-"+ aujourdhuis.getFullYear().toString();
         }
         return placeholderDate;
+    };
+
+    loadVaccin(typeVaccin)
+    {
+        for (const vaccin of this.listeVacins)
+        {
+            if (vaccin.type.label ===  typeVaccin)
+            {
+                this.setState({vaccin: vaccin.id});
+                break;
+            };
+        };
     }
 
     validation()
     {
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
-    }
+    };
 
     async enregistrement()
     {
+        var ApiHeadersPost = new Headers({
+            'Content-Type': 'application/ld+json'
+        });
+        var ApiHeadersPatch = new Headers({
+            'Content-Type': 'application/merge-patch+json'
+        });
+        // ip de l'ordinateur où se trouve le serveur
+        const ip ="192.168.42.96:8000";
+        const urlRdv = 'http://' + ip + '/api/rendez_vouses';
+
+        const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
+        const urlVaccin = 'http://' + ip + iriVaccin;
+
+        const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
+        
+        const Rdv = {
+            vaccin: iriVaccin, 
+            Date: date.toString(),
+            nom: this.state.nom,
+            prenom: this.state.prenom,
+            heure: this.state.heure,
+        };
+
+        const vaccinAJour = {
+            reserve: true
+        }
+        await fetch(urlRdv, { method: 'POST', headers: ApiHeadersPost, body: JSON.stringify(Rdv)})
+            .then(
+                await fetch(urlVaccin, {method: 'PATCH', headers: ApiHeadersPatch, body: JSON.stringify(vaccinAJour)})
+                    .then(this.props.navigation.navigate('AgendaVaccinations'))
+            );
+            
+
+    };
 
 
-        this.props.navigation.navigate('AgendaVaccinations');
-    }
     render()
     {
     return(
@@ -105,7 +183,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Date :</Text>
                 </Block>
                 <Block  style={ styles.centrer}>
-                    <Text style={ styles.centrer} h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
+                    <Text style={ styles.centrer} h5>{this.state.jour}-{moisListe[this.state.mois]}-{this.state.annee}</Text>
                 </Block>
             </Block>
 
@@ -114,7 +192,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Nom :</Text>
                 </Block>
                 <Block>
-                    <Input style={ styles.input} onChange={text => {this.setState({nom: text})}}></Input>
+                    <Input style={ styles.input} onChangeText={text => {this.setState({nom: text})}}></Input>
                 </Block>
             </Block>
 
@@ -123,7 +201,7 @@ export default class PagePriseRdv extends Component
                     <Text h4>Prénom :</Text>
                 </Block>
                 <Block>
-                    <Input style={ styles.input} onChange={text => {this.setState({prenom: text})}}></Input>
+                    <Input style={ styles.input} onChangeText={text => {this.setState({prenom: text})}}></Input>
                 </Block>
             </Block>
 
@@ -156,6 +234,7 @@ export default class PagePriseRdv extends Component
                                 style={styles.boutonDate}
                                 onDateChange={(date) => {
                                     this.setState({dateNaissance: date});
+                                    this.typeVaccinParAge(date);
                                 }}
                             />
                     </Block>
@@ -186,8 +265,10 @@ export default class PagePriseRdv extends Component
 
                     <RNPickerSelect
                         items={this.state.vaccins}
-                        onValueChange = {
-                            value => this.setState( { vaccin: value} )
+                        onValueChange = {value => {
+                            this.setState( { typeVaccin: value} );
+                            this.loadVaccin(value);
+                        }
                         }
                         value = {this.state.vaccin}
                         style={pickerSelectStyles}

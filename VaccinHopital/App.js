@@ -8,6 +8,7 @@ import PageSansRdv from "./components/pageSansRdv/PageSansRdv";
 import PageAgenda from './components/pageAgenda/PageAgenda';
 import PageConsulterRdv from "./components/pageConsulterRdv/PageConsulterRdv";
 import PagePriseRdv from "./components/pagePriseRdv/PagePriseRdv";
+import PageChargementRdv from './components/pageChargementRdv/PageChargementRdv';
 
 
 
@@ -24,6 +25,8 @@ export default function App() {
       <Stack.Screen name="AgendaVaccinations" component={PageAgenda}/>
       <Stack.Screen name="PagePriseRdv" component={PagePriseRdv}/>
       <Stack.Screen name="PageConsulterRdv" component={PageConsulterRdv}/>
+      <Stack.Screen name="PageChargement" component={PageChargementRdv}/>
+
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
