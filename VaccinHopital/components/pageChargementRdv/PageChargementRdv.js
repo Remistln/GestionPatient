@@ -12,6 +12,7 @@ export default function PageChargementRdv({navigation, route})
 
         // ip de l'ordinateur où se trouve le serveur
         const ip ="192.168.42.96:8000";
+        //const ip ="192.168.42.96:8000";//Aya
 
         const url = 'http://' + ip + '/api/vaccins';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 

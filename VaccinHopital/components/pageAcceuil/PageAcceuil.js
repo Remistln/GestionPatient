@@ -6,7 +6,7 @@ import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
 
-//var nbVaccins = 0; 
+
 var countEnd = false ; 
 
 
@@ -24,13 +24,14 @@ const [nbVaccins, setNbVaccins] = useState(0);
 
 useEffect(() => {
   if (countEnd)
-  {return};
+    {return}
   var ApiHeaders = new Headers({
     'Content-Type': 'application/ld+json'
   }) 
   
   // ip de l'ordinateur où se trouve le serveur
-  const ip ="192.168.42.96:8000";
+    //const ip ="192.168.42.96:8000";
+    const ip ="172.20.10.9:8000";
   
   //url
   const url = 'http://'+ ip +'/api/vaccins'; 
@@ -69,12 +70,12 @@ useEffect(() => {
         }
     })
   });
-
+//Bonjour {route.params.nom}! si on a le temps, mettre en place ça
     return (
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h3>Bonjour {route.params.nom}!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour!</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >

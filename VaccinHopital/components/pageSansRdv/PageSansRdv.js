@@ -1,5 +1,5 @@
 import {Text, Block, Button, Input, Radio} from 'galio-framework';
-import {StyleSheet, View} from "react-native";
+import {Alert, StyleSheet, View} from "react-native";
 import DatePicker from "react-native-datepicker";
 import {useEffect, useState} from "react";
 
@@ -24,12 +24,17 @@ export default function PageSansRdv({navigation}) {
 		const formatted_tomorrow = tomorrow.getFullYear() + "-" + (tomorrow.getMonth() + 1) + "-" + tomorrow.getDate()
 
 		getVaccinPeremtion(formatted_tomorrow);
-	}, [])
+	}, []) ;
+
 
 	async function getVaccinPeremtion(formatted_tomorrow){
 
 		//A changer quand on aura des vaccins en temps reel
 		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
+
+		//let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
+		//let requete = "http://172.20.10.9:8000/api/vaccins?datePeremption=" + formatted_tomorrow //Aya
+
 		let requete = "http://192.168.42.96:8000/api/vaccins?datePeremption=" + formatted_tomorrow
 
 		fetch(requete, {
@@ -61,7 +66,10 @@ export default function PageSansRdv({navigation}) {
 
 	async function getTypeVaccin(chosenVaccin) {
 		console.log("je suis dans typevaccin")
+//fetch("http://172.20.10.9:8000/api/type_vaccins?label=" + chosenVaccin, { //Aya
+
 		fetch("http://192.168.42.96:8000:8000/api/type_vaccins?label=" + chosenVaccin, {
+
 			headers: {
 				'Accept': 'application/json'
 			}
@@ -72,12 +80,16 @@ export default function PageSansRdv({navigation}) {
 			checkAge(res[0])
 			console.log("fetch reussi")
 		}).catch(error => console.log("ERROR" + error))
-		console.log("http://192.168.42.96:8000:8000/api/type_vaccins?label=" + chosenVaccin)
+
+		//console.log("http://172.20.10.9:8000/api/type_vaccins?label=" + chosenVaccin) //Aya
+
+
 	}
 
 	function checkAge(Vaccin) {
 		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
 			getNumberVaccin(Vaccin.label)
+			console.log(Vaccin.label)
 		} else {
 			setMessage("Vous n'avez pas l'age pour utiliser ce vaccin (Entre " + Vaccin.ageMin + " et " + Vaccin.ageMax + " ans)")
 			setStatus(true)
@@ -107,6 +119,7 @@ export default function PageSansRdv({navigation}) {
 
 	async function deleteVaccin(){
 		console.log("suppression du " + deleteItem)
+	//fetch('http://172.20.10.9:8000/api/vaccins/' + deleteItem, { //Aya
 		fetch('http://192.168.42.96:8000:8000/api/vaccins/' + deleteItem, {
 			method: 'DELETE',
 		}).then(response => {
@@ -114,6 +127,16 @@ export default function PageSansRdv({navigation}) {
 		})
 	}
 
+
+
+	let  alertRdvPris = () =>
+		Alert.alert(
+			"Status Rdv",
+			"Prise de vaccin sans rendez-vous enregistrée",
+			[
+				{ text: "OK", onPress: () => navigation.navigate("PageAcceuil") }
+			]
+		);
 
 	return (
 		<Block style={styles.block}>
@@ -133,7 +156,8 @@ export default function PageSansRdv({navigation}) {
 						placeholder="Date"
 						format="YYYY-MM-DD"
 						minDate="1900-01-01"
-
+						confirmBtnText="Confirmer"
+						cancelBtnText="Annuler"
 						customStyles={{
 							dateInput: {
 								backgroundColor: 'white',
@@ -168,7 +192,7 @@ export default function PageSansRdv({navigation}) {
 				<Text>{age} ans</Text>
 				<Text>{message}</Text>
 				<Text>{status}</Text>
-				<Button disabled={status} onPress={deleteVaccin}>Valider</Button>
+				<Button disabled={status} onPress={deleteVaccin && alertRdvPris }>Valider</Button>
 			</Block>
 
 		</Block>
