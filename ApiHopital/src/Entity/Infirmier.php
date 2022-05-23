@@ -104,33 +104,4 @@ class Infirmier
         return $this;
     }
 
-    /**
-     * @return Collection|RendezVous[]
-     */
-    public function getRendezVous(): Collection
-    {
-        return $this->rendezVous;
-    }
-
-    public function addRendezVou(RendezVous $rendezVou): self
-    {
-        if (!$this->rendezVous->contains($rendezVou)) {
-            $this->rendezVous[] = $rendezVou;
-            $rendezVou->setInfirmier($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRendezVou(RendezVous $rendezVou): self
-    {
-        if ($this->rendezVous->removeElement($rendezVou)) {
-            // set the owning side to null (unless already changed)
-            if ($rendezVou->getInfirmier() === $this) {
-                $rendezVou->setInfirmier(null);
-            }
-        }
-
-        return $this;
-    }
 }
