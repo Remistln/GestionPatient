@@ -31,7 +31,7 @@ useEffect(() => {
   
   // ip de l'ordinateur où se trouve le serveur
     //const ip ="192.168.42.96:8000";
-    const ip ="172.20.10.9:8000";
+    const ip ="172.20.10.4:8000"; //ip aya
   
   //url
   const url = 'http://'+ ip +'/api/vaccins'; 
