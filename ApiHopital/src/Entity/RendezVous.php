@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\RendezVousRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -16,6 +18,8 @@ use Symfony\Component\Validator\Constraints\DateTime;
  *  "groups"={"rdv_read"}
  * })
  */
+
+#[ApiFilter(SearchFilter::class, properties: ['Date' => 'exact'])]
 class RendezVous
 {
     /**
