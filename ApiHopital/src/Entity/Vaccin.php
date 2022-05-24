@@ -44,7 +44,7 @@ class Vaccin
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeVaccin::class, inversedBy="vaccins")
-     * @Groups({"vaccin_read"})
+     * @Groups({"vaccin_read", "rdv_read"})
      */
     private $type;
 

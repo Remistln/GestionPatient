@@ -32,13 +32,13 @@ class TypeVaccin
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"vaccintype_read", "vaccin_read"})
+     * @Groups({"vaccintype_read", "vaccin_read", "rdv_read"})
      */
     private $label;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"vaccintype_read", "vaccin_read"})
+     * @Groups({"vaccintype_read", "vaccin_read", "rdv_read"})
      */
     private $ageMin;
 
