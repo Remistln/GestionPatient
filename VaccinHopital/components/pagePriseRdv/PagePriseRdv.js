@@ -1,5 +1,5 @@
 import { Text, Block, Button, Input } from 'galio-framework';
-import { StyleSheet } from 'react-native';
+import {Alert, StyleSheet} from 'react-native';
 import { Component } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
@@ -69,17 +69,17 @@ export default class PagePriseRdv extends Component
             var dateRdv = new Date(annee, mois, jour,0,0,0,0);
             if (dateDePeremption > dateRdv )
             {
-                if (Pfizer && vaccin.type.label == "Pfizer")
+                if (Pfizer && vaccin.type.label === "Pfizer")
                 {
                     typeVaccins.push({label: "Pfizer", value: "Pfizer"});
                     Pfizer = false;
                 }
-                if (Astra && vaccin.type.label == "AstraZeneca")
+                if (Astra && vaccin.type.label === "AstraZeneca")
                 {
                     typeVaccins.push({label: "Astra Zeneca", value: "AstraZeneca"});
                     Astra = false;
                 }
-                if (Moderna && vaccin.type.label == "Moderna")
+                if (Moderna && vaccin.type.label === "Moderna")
                 {
                     typeVaccins.push({label: "Moderna", value: "Moderna"});
                     Moderna = false;
@@ -136,6 +136,15 @@ export default class PagePriseRdv extends Component
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
     };
 
+    alertRdvPris = () =>
+        Alert.alert(
+            "Status Rdv",
+            "Le rendez-vous est enregistré! ",
+            [
+                { text: "OK", onPress: () => this.props.navigation.navigate("AgendaVaccinations") }
+            ]
+        );
+
     async enregistrement()
     {
         var ApiHeadersPost = new Headers({
@@ -145,7 +154,8 @@ export default class PagePriseRdv extends Component
             'Content-Type': 'application/merge-patch+json'
         });
         // ip de l'ordinateur où se trouve le serveur
-        const ip ="192.168.42.96:8000";
+        const ip ="172.20.10.4:8000"; //ip aya
+        //const ip ="192.168.42.96:8000";
         const urlRdv = 'http://' + ip + '/api/rendez_vouses';
 
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
@@ -169,9 +179,11 @@ export default class PagePriseRdv extends Component
                 await fetch(urlVaccin, {method: 'PATCH', headers: ApiHeadersPatch, body: JSON.stringify(vaccinAJour)})
                     .then(this.props.navigation.navigate('AgendaVaccinations'))
             );
-            
+
+
 
     };
+
 
 
     render()
@@ -281,8 +293,8 @@ export default class PagePriseRdv extends Component
                 <Button style={ styles.valider} onPress={ ()=>{
                     if (this.validation())
                     {
-                        this.enregistrement();
-                    };}
+                        this.enregistrement() && this.alertRdvPris();
+                    } }
                 }>Valider</Button>
             </Block>
 

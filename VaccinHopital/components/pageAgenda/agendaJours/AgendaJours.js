@@ -15,13 +15,13 @@ export default function AgendaJours(props) {
     return (
         <Block  style = {styles.block}>
             <Block style = {styles.entete}>
-                <Button 
+                <Button
                     onlyIcon icon="left" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff"  style={{ width: 40, height: 40 }}
                     onPress= {() => {
                         if (mois != 0)
                         {
                             setMois( mois - 1);
-                        } else 
+                        } else
                         {
                             setMois(11);
                             setAnnee(annee - 1);
@@ -71,7 +71,6 @@ function buttonsSemaine(nombreLundi, nombreJours){
 // affiche la ligne de la première semaine
 function buttonsPremiereSemaine(moisNombre, anneeNombre){
     let moisDate = new Date();
-
     moisDate.setFullYear(anneeNombre, moisNombre, 1);
     let premierJourMois = moisDate.getDay();
 
