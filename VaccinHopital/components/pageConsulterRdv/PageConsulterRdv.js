@@ -1,11 +1,11 @@
 import {Card, Text, Block, Button} from 'galio-framework';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import {useNavigation, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect, useState} from "react";
 
 export default function PageConsulterRdv({
-	                                         choosenDate = "2022-05-01"
+	                                         choosenDate = "2001-12-25"
                                          }) {
 
 	const [rdvList, letRdvList] = useState([]);
@@ -32,33 +32,35 @@ export default function PageConsulterRdv({
 	get_rdv()
 
 	return (
-		<Block style={styles.block}>
-			<Block style={styles.titre}>
-				<Text style={styles.TextTitre} h5>Rendez-vous le {choosenDate}</Text>
-			</Block>
-			<Block style={styles.btnBlock}>
-				<Button round style={styles.button} color="primary">Ajouter un RDV</Button>
-			</Block>
-
-			{rdvList.map((rdv) => {
-				let cardTitle = rdv.nom + " " + rdv.prenom
-
-				return (
-					<Block style={styles.cardBlock}>
-						<Card
-							flex
-							borderless={false}
-							style={styles.card}
-							title={cardTitle}
-							caption={rdv.vaccin.type.label}
-						/>
+		<SafeAreaView>
+			<ScrollView>
+				<Block style={styles.block}>
+					<Block style={styles.titre}>
+						<Text style={styles.TextTitre} h5>Rendez-vous le {choosenDate}</Text>
 					</Block>
-				)
+					<Block style={styles.btnBlock}>
+						<Button round style={styles.button} color="primary">Ajouter un RDV</Button>
+					</Block>
 
-			})}
+					{rdvList.map((rdv) => {
+						let cardTitle = rdv.nom + " " + rdv.prenom
 
+						return (
+							<Block style={styles.cardBlock}>
+								<Card
+									flex
+									borderless={false}
+									style={styles.card}
+									title={cardTitle}
+									caption={rdv.vaccin.type.label}
+								/>
+							</Block>
+						)
 
-		</Block>
+					})}
+				</Block>
+			</ScrollView>
+		</SafeAreaView>
 
 
 	);
