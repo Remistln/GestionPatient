@@ -12,6 +12,10 @@ export default function PageConsulterRdv({
 
 
 	function get_rdv() {
+
+		//Ip de l'ordi
+		//remi : 192.168.1.14:8000
+
 		let requete = "http://192.168.1.14:8000/api/rendez_vouses?Date=" + choosenDate
 
 		fetch(requete, {
