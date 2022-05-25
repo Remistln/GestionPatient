@@ -77,6 +77,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Entities\Administrateur.cs" />
+        <Compile Include="Entities\Infirmier.cs" />
+        <Compile Include="Entities\Secretaire.cs" />
         <Compile Include="PageLit.cs">
           <SubType>Form</SubType>
         </Compile>

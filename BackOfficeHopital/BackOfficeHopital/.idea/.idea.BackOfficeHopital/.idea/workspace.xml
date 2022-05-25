@@ -7,21 +7,12 @@
     <list default="true" id="a10a7010-6adb-4ffe-82e8-6c3c94e7969c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackOfficeHopital.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackOfficeHopital.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageLit.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLit.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageLit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PagePatient.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PagePatient.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PagePatient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PagePatient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageRdv.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageRdv.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageRdv.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageRdv.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageService.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageService.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Administrateur.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Administrateur.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageUtilisateur.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageUtilisateur.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageUtilisateur.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageUtilisateur.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageVaccin.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageVaccin.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageVaccin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageVaccin.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" afterDir="false" />
@@ -95,6 +86,8 @@
       <workItem from="1653472566742" duration="3799000" />
       <workItem from="1653482306816" duration="872000" />
       <workItem from="1653483282743" duration="380000" />
+      <workItem from="1653483857986" duration="830000" />
+      <workItem from="1653484720582" duration="2172000" />
     </task>
     <servers />
   </component>
