@@ -163,7 +163,7 @@ function agenda(moisNombre, anneeNombre)
     moisDate.setFullYear(anneeNombre, moisNombre+1, 0);
     const dernierJourMoisDate = moisDate.getDate();
 
-    if ( moisNombre != 1){
+    if ( moisNombre !== 1){
         if ( lundi === 2 || (lundi === 3 && dernierJourMoisDate === 31 ) )
         {
             return (
