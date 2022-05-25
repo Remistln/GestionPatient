@@ -31,28 +31,34 @@ namespace BackOfficeHopital
 
         private async void valitationButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
             using (var loginApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
                 loginApi.BaseAddress = new Uri("http://" + ip );
                 loginApi.DefaultRequestHeaders.Accept.Clear();
-                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/ld+json"));
-                HttpResponseMessage response = await loginApi.GetAsync("api/Department/1");
+                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await loginApi.GetAsync("api/admins");
                 
-                Administrateur administrateur = null;
+                Administrateur[] administrateurs = null;
                 
                 if (response.IsSuccessStatusCode)
                 {
-                    
-                    administrateur = await response.Content.ReadAsAsync<Administrateur>();
-                    Console.WriteLine(administrateur);
+                    administrateurs = await response.Content.ReadAsAsync<Administrateur[]>();
+                    //this.consoleLabel.Text = administrateurs[1].identifiant;
                 }
                 else
                 {
-                    Console.WriteLine("Internal server Error");
+                    this.consoleLabel.Text = "Internal server Error";
                 }
             }
         }
+
+        private bool verificationMdp()
+        {
+            throw new System.NotImplementedException();
+        }
+        
+        
     }
 }
