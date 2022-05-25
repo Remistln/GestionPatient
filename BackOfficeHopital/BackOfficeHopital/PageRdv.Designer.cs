@@ -31,11 +31,31 @@ namespace BackOfficeHopital
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // menuButton
+            // 
+            this.menuButton.Location = new System.Drawing.Point(415, 42);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(64, 28);
+            this.menuButton.TabIndex = 0;
+            this.menuButton.Text = "Menu";
+            this.menuButton.UseVisualStyleBackColor = true;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
+            // PageRdv
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuButton);
+            this.Name = "PageRdv";
             this.Text = "PageRdv";
+            this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button menuButton;
 
         #endregion
     }
