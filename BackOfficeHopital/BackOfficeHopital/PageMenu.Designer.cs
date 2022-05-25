@@ -48,6 +48,7 @@ namespace BackOfficeHopital
             this.litButton.TabIndex = 0;
             this.litButton.Text = "Lits";
             this.litButton.UseVisualStyleBackColor = true;
+            this.litButton.Click += new System.EventHandler(this.litButton_Click);
             // 
             // patientButton
             // 
@@ -57,6 +58,7 @@ namespace BackOfficeHopital
             this.patientButton.TabIndex = 1;
             this.patientButton.Text = "Patients";
             this.patientButton.UseVisualStyleBackColor = true;
+            this.patientButton.Click += new System.EventHandler(this.patientButton_Click);
             // 
             // rdvButton
             // 
@@ -66,6 +68,7 @@ namespace BackOfficeHopital
             this.rdvButton.TabIndex = 2;
             this.rdvButton.Text = "Rendez-vous";
             this.rdvButton.UseVisualStyleBackColor = true;
+            this.rdvButton.Click += new System.EventHandler(this.rdvButton_Click);
             // 
             // serviceButton
             // 
@@ -75,6 +78,7 @@ namespace BackOfficeHopital
             this.serviceButton.TabIndex = 3;
             this.serviceButton.Text = "Services";
             this.serviceButton.UseVisualStyleBackColor = true;
+            this.serviceButton.Click += new System.EventHandler(this.serviceButton_Click);
             // 
             // utilisateurButton
             // 
@@ -84,6 +88,7 @@ namespace BackOfficeHopital
             this.utilisateurButton.TabIndex = 4;
             this.utilisateurButton.Text = "Utilisateurs";
             this.utilisateurButton.UseVisualStyleBackColor = true;
+            this.utilisateurButton.Click += new System.EventHandler(this.utilisateurButton_Click);
             // 
             // vaccinButton
             // 
@@ -93,6 +98,7 @@ namespace BackOfficeHopital
             this.vaccinButton.TabIndex = 5;
             this.vaccinButton.Text = "Vaccins";
             this.vaccinButton.UseVisualStyleBackColor = true;
+            this.vaccinButton.Click += new System.EventHandler(this.vaccinButton_Click);
             // 
             // decoButton
             // 
@@ -102,6 +108,7 @@ namespace BackOfficeHopital
             this.decoButton.TabIndex = 6;
             this.decoButton.Text = "Déconnexion";
             this.decoButton.UseVisualStyleBackColor = true;
+            this.decoButton.Click += new System.EventHandler(this.decoButton_Click);
             // 
             // PageMenu
             // 
