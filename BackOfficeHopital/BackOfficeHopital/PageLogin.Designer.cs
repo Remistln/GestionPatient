@@ -37,6 +37,7 @@ namespace BackOfficeHopital
             this.mailInput = new System.Windows.Forms.TextBox();
             this.mdpInput = new System.Windows.Forms.TextBox();
             this.valitationButton = new System.Windows.Forms.Button();
+            this.consoleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titreLabel
@@ -89,11 +90,20 @@ namespace BackOfficeHopital
             this.valitationButton.UseVisualStyleBackColor = true;
             this.valitationButton.Click += new System.EventHandler(this.valitationButton_Click);
             // 
+            // consoleLabel
+            // 
+            this.consoleLabel.Location = new System.Drawing.Point(381, 152);
+            this.consoleLabel.Name = "consoleLabel";
+            this.consoleLabel.Size = new System.Drawing.Size(240, 109);
+            this.consoleLabel.TabIndex = 6;
+            this.consoleLabel.Text = "label1";
+            // 
             // PageLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.consoleLabel);
             this.Controls.Add(this.valitationButton);
             this.Controls.Add(this.mdpInput);
             this.Controls.Add(this.mailInput);
@@ -105,6 +115,8 @@ namespace BackOfficeHopital
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label consoleLabel;
 
         private System.Windows.Forms.Button valitationButton;
 
