@@ -31,7 +31,7 @@ namespace BackOfficeHopital
 
         private async void valitationButton_Click(object sender, EventArgs e)
         {
-            //throw new System.NotImplementedException();
+            throw new System.NotImplementedException();
             using (var loginApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
