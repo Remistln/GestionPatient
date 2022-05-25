@@ -87,6 +87,7 @@ namespace BackOfficeHopital
             this.valitationButton.TabIndex = 5;
             this.valitationButton.Text = "Valider";
             this.valitationButton.UseVisualStyleBackColor = true;
+            this.valitationButton.Click += new System.EventHandler(this.valitationButton_Click);
             // 
             // PageLogin
             // 

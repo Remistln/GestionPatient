@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/BackOfficeHopital.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackOfficeHopital.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageLogin.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageLogin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.AssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651841120162</updated>
       <workItem from="1651841133577" duration="4419000" />
+      <workItem from="1653460372469" duration="3637000" />
     </task>
     <servers />
   </component>
@@ -72,7 +74,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

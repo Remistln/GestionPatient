@@ -9,3 +9,8 @@ D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.exe
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.pdb
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageLogin.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\Newtonsoft.Json.dll
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\System.Net.Http.Formatting.dll
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\Newtonsoft.Json.xml
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\System.Net.Http.Formatting.xml
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.csproj.CopyComplete
