@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a10a7010-6adb-4ffe-82e8-6c3c94e7969c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackOfficeHopital.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackOfficeHopital.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageLogin.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PageLogin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageLogin.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" afterDir="false" />
@@ -14,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/packages.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +73,7 @@
       <updated>1651841120162</updated>
       <workItem from="1651841133577" duration="4419000" />
       <workItem from="1653460372469" duration="3637000" />
-      <workItem from="1653465338740" duration="3750000" />
+      <workItem from="1653465338740" duration="4793000" />
     </task>
     <servers />
   </component>

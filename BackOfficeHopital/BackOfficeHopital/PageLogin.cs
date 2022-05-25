@@ -45,6 +45,7 @@ namespace BackOfficeHopital
                 if (response.IsSuccessStatusCode)
                 {
                     administrateurs = await response.Content.ReadAsAsync<Administrateur[]>();
+                    this.verificationMdp(administrateurs);
                     //this.consoleLabel.Text = administrateurs[1].identifiant;
                 }
                 else
@@ -54,9 +55,17 @@ namespace BackOfficeHopital
             }
         }
 
-        private bool verificationMdp()
+        private void verificationMdp(Administrateur[] administrateurs)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            foreach (var admin in administrateurs)
+            {
+                if ( BCrypt.Net.BCrypt.Verify(this.mdp, admin.mdp) )
+                {
+                    this.consoleLabel.Text = "validée";
+                }
+
+            }
         }
         
         
