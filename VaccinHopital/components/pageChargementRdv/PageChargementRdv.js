@@ -31,8 +31,8 @@ export default function PageChargementRdv({navigation, route})
         .then( vaccinListe => 
             {
                 //route.params reccupérer la date
-                const jour= 5;
-                const mois= 1;
+                const jour= 12;
+                const mois= 12;
                 const annee= 2022;
                 navigation.navigate('PagePriseRdv', {vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });
