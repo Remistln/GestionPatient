@@ -4,9 +4,11 @@ namespace BackOfficeHopital
 {
     public partial class PagePatient : Form
     {
-        public PagePatient()
+        private PageMenu menu;
+        public PagePatient(PageMenu menu)
         {
             InitializeComponent();
+            this.menu = menu;
         }
     }
 }
