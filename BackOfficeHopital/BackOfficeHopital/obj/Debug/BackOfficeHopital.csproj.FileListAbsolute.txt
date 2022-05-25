@@ -24,3 +24,10 @@ D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\System.Memory.xml
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\System.Numerics.Vectors.xml
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageMenu.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageLit.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PagePatient.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageRdv.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageService.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageUtilisateur.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageVaccin.resources

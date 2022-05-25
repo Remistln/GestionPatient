@@ -127,8 +127,29 @@
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <EmbeddedResource Include="PageLit.resx">
+          <DependentUpon>PageLit.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="PageLogin.resx">
           <DependentUpon>PageLogin.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PageMenu.resx">
+          <DependentUpon>PageMenu.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PagePatient.resx">
+          <DependentUpon>PagePatient.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PageRdv.resx">
+          <DependentUpon>PageRdv.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PageService.resx">
+          <DependentUpon>PageService.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PageUtilisateur.resx">
+          <DependentUpon>PageUtilisateur.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="PageVaccin.resx">
+          <DependentUpon>PageVaccin.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>

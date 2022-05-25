@@ -11,10 +11,12 @@ namespace BackOfficeHopital
     {
         private string mail;
         private string mdp;
+        private PageMenu menu;
 
-        public PageLogin()
+        public PageLogin(PageMenu menu)
         {
             InitializeComponent();
+            this.menu = menu;
             this.mail = "";
             this.mdp = "";
         }
@@ -46,11 +48,6 @@ namespace BackOfficeHopital
                 {
                     administrateurs = await response.Content.ReadAsAsync<Administrateur[]>();
                     this.verificationMdp(administrateurs);
-                    //this.consoleLabel.Text = administrateurs[1].identifiant;
-                }
-                else
-                {
-                    this.consoleLabel.Text = "Internal server Error";
                 }
             }
         }
@@ -62,7 +59,8 @@ namespace BackOfficeHopital
             {
                 if ( BCrypt.Net.BCrypt.Verify(this.mdp, admin.mdp) )
                 {
-                    this.consoleLabel.Text = "validée";
+                    this.Hide();
+                    this.menu.goToMenu();
                 }
 
             }
