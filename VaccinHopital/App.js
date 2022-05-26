@@ -13,12 +13,13 @@ import PageChargementRdv from './components/pageChargementRdv/PageChargementRdv'
 
 
 const Stack = createNativeStackNavigator();
+
 export default function App() {
 
 
  return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="PageConsulterRdv">
+    <Stack.Navigator initialRouteName="AgendaVaccinations">
       <Stack.Screen name="PageLogin" component={PageLogin}/>
       <Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
       <Stack.Screen  name="PageSansRdv" component={PageSansRdv}/>

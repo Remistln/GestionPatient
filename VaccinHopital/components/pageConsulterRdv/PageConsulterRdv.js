@@ -4,8 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect, useState} from "react";
 
 
-export default function PageConsulterRdv({choosenDate = "2022-06-10", navigation})
-{
+export default function PageConsulterRdv({route, navigation}) {
+
+	const { choosenDate} = route.params;
 
 	const [rdvList, letRdvList] = useState([]);
 
@@ -13,9 +14,10 @@ export default function PageConsulterRdv({choosenDate = "2022-06-10", navigation
 	function get_rdv() {
 
 		//Ip de l'ordi
-		//remi : 192.168.1.14:8000
-		const ip ="172.20.10.4:8000"; //ip aya
-		let requete = "http://"+ip+"/api/rendez_vouses?Date=" + choosenDate
+		const ip =  "192.168.1.14:8000"; //remi chez lui
+		//const ip = "172.20.10.4:8000"; //ip aya
+
+		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
 
 		fetch(requete, {
 			headers: {
@@ -40,21 +42,19 @@ export default function PageConsulterRdv({choosenDate = "2022-06-10", navigation
 				<Text style={styles.TextTitre} h5>Rendez-vous le {choosenDate}</Text>
 			</Block>
 			<Block style={styles.block}>
-			<ScrollView>
+				<ScrollView>
 					{rdvList.map((rdv) => {
 						let cardTitle = rdv.nom + " " + rdv.prenom
-
 						return (
-							<Block  style={styles.cardBlock}>
-								<Card 
-
+							<Block style={styles.cardBlock}>
+								<Card
 									flex
 									borderless={false}
 									style={styles.card}
 									title={cardTitle}
 									caption={rdv.vaccin.type.label}
-										>
-									<Button  color="warning" style={styles.btnCard}  >Annuler le RDV</Button>
+								>
+									<Button color="warning" style={styles.btnCard}>Annuler le RDV</Button>
 
 								</Card>
 
@@ -63,11 +63,11 @@ export default function PageConsulterRdv({choosenDate = "2022-06-10", navigation
 
 					})}
 
-			</ScrollView>
+				</ScrollView>
 			</Block>
 			<Block style={styles.btnBlock}>
 				<Button round style={styles.button} color="primary"
-						onPress={() => navigation.navigate('PageChargementRdv')}>Ajouter un RDV</Button>
+				        onPress={() => navigation.navigate('PageChargementRdv')}>Ajouter un RDV</Button>
 			</Block>
 		</SafeAreaView>
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 	TextTitre:
 		{
 			fontWeight: "bold",
-			marginTop: 10 ,
+			marginTop: 10,
 			height: 60,
 			textAlign: "center",
 			zIndex: 0,
@@ -111,20 +111,19 @@ const styles = StyleSheet.create({
 			fontSize: 20
 
 
-
 		},
 	card:
 		{
 			//backgroundColor : "yellow",
 			alignItems: "center",
-			height: 100,
+			height: 10,
 			marginLeft: 70,
 			marginRight: 70,
 			flex: 1,
 			marginTop: 7,
 			fontSize: 20
 		},
-	btnCard :
+	btnCard:
 		{
 
 			width: 100,
