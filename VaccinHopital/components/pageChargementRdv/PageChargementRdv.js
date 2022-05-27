@@ -12,7 +12,7 @@ export default function PageChargementRdv({navigation, route})
 
         // ip de l'ordinateur où se trouve le serveur
         //const ip ="192.168.42.96:8000";
-        const ip ="172.20.10.4:8000"; //ip aya
+        const ip ="172.20.10.9:8000"; //ip aya
 
         const url = 'http://' + ip + '/api/vaccins';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
@@ -31,8 +31,8 @@ export default function PageChargementRdv({navigation, route})
         .then( vaccinListe => 
             {
                 //route.params reccupérer la date
-                const jour= 12;
-                const mois= 12;
+                const jour= 10;
+                const mois= 6;
                 const annee= 2022;
                 navigation.navigate('PagePriseRdv', {vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });
