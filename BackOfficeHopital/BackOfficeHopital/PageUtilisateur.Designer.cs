@@ -158,6 +158,7 @@ namespace BackOfficeHopital
             this.modifSecrButton.TabIndex = 11;
             this.modifSecrButton.Text = "Modifier";
             this.modifSecrButton.UseVisualStyleBackColor = true;
+            this.modifSecrButton.Click += new System.EventHandler(this.modifSecrButton_Click);
             // 
             // ajoutSecrButton
             // 
@@ -190,7 +191,7 @@ namespace BackOfficeHopital
             this.Name = "PageUtilisateur";
             this.Text = "PageUtilisateur";
             this.Shown += new System.EventHandler(this.PageUtilisateur_Shown);
-            this.Click += new System.EventHandler(this.PageUtilisateur_Click);
+            this.VisibleChanged += new System.EventHandler(this.PageUtilisateur_Shown);
             this.ResumeLayout(false);
         }
 

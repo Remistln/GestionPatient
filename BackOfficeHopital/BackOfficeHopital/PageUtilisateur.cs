@@ -38,13 +38,13 @@ namespace BackOfficeHopital
         
         public async void getAdministrateur()
         {
-            using (var loginApi = new HttpClient())
+            using (var utilisateurApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
-                loginApi.BaseAddress = new Uri("http://" + ip );
-                loginApi.DefaultRequestHeaders.Accept.Clear();
-                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await loginApi.GetAsync("api/admins");
+                utilisateurApi.BaseAddress = new Uri("http://" + ip );
+                utilisateurApi.DefaultRequestHeaders.Accept.Clear();
+                utilisateurApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await utilisateurApi.GetAsync("api/admins");
                 
                 Administrateur[] administrateurs = null;
                 
@@ -59,13 +59,13 @@ namespace BackOfficeHopital
         
         public async void getInfirmier()
         {
-            using (var loginApi = new HttpClient())
+            using (var utilisateurApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
-                loginApi.BaseAddress = new Uri("http://" + ip );
-                loginApi.DefaultRequestHeaders.Accept.Clear();
-                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await loginApi.GetAsync("api/infirmiers");
+                utilisateurApi.BaseAddress = new Uri("http://" + ip );
+                utilisateurApi.DefaultRequestHeaders.Accept.Clear();
+                utilisateurApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await utilisateurApi.GetAsync("api/infirmiers");
                 
                 Infirmier[] infirmiers = null;
                 
@@ -80,13 +80,13 @@ namespace BackOfficeHopital
         
         public async void getSecretaire()
         {
-            using (var loginApi = new HttpClient())
+            using (var utilisateurApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
-                loginApi.BaseAddress = new Uri("http://" + ip );
-                loginApi.DefaultRequestHeaders.Accept.Clear();
-                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await loginApi.GetAsync("api/secretaires");
+                utilisateurApi.BaseAddress = new Uri("http://" + ip );
+                utilisateurApi.DefaultRequestHeaders.Accept.Clear();
+                utilisateurApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await utilisateurApi.GetAsync("api/secretaires");
                 
                 Secretaire[] secretaires = null;
                 
@@ -102,16 +102,16 @@ namespace BackOfficeHopital
         // 0 pour administrateur, 1 pour secretaire, 2 pour infirmier
         private async void delete(int type, int id)
         {
-            using (var loginApi = new HttpClient())
+            using (var deleteApi = new HttpClient())
             {
                 String ip = "192.168.42.96:8000/";
-                loginApi.BaseAddress = new Uri("http://" + ip);
-                loginApi.DefaultRequestHeaders.Accept.Clear();
-                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                deleteApi.BaseAddress = new Uri("http://" + ip);
+                deleteApi.DefaultRequestHeaders.Accept.Clear();
+                deleteApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                string[] entiteeUri = new[] {"api/admins/", "api/secretaires/", "api/infirmiers/"};
+                string[] entiteeUri = new[] {"api/admins/", "api/infirmiers/", "api/secretaires/"};
 
-                HttpResponseMessage response = await loginApi.DeleteAsync(entiteeUri[type] + id);
+                HttpResponseMessage response = await deleteApi.DeleteAsync(entiteeUri[type] + id);
 
             }
         }
@@ -125,17 +125,19 @@ namespace BackOfficeHopital
 
         private void PageUtilisateur_Shown(object sender, EventArgs e)
         {
-            this.getUtilisateur();
+            if (this.Visible) {this.getUtilisateur();}
+            
         }
 
         private void ajoutAdminbutton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 0);
+            formUtilisateur.Show();
+            Hide();
         }
 
         private void supprAdminButton_Click(object sender, EventArgs e)
         {
-            //throw new System.NotImplementedException();
             Administrateur admin = (Administrateur) AdminListBox.Items[AdminListBox.SelectedIndex];
             delete(0, admin.id);
             getAdministrateur();
@@ -143,41 +145,54 @@ namespace BackOfficeHopital
 
         private void modifAdminButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Administrateur admin = (Administrateur) AdminListBox.Items[AdminListBox.SelectedIndex];
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 0, admin);
+            formUtilisateur.Show();
+            Hide();
         }
 
         private void ajoutInfirmButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 1);
+            formUtilisateur.Show();
+            Hide();
         }
 
         private void supprInfirmButton_Click(object sender, EventArgs e)
         {
             Infirmier infirmier = (Infirmier) InfirmierListBox.Items[InfirmierListBox.SelectedIndex];
-            delete(2, infirmier.id);
+            delete(1, infirmier.id);
             getInfirmier();
         }
 
         private void modifInfirmButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Infirmier infirmier = (Infirmier) InfirmierListBox.Items[InfirmierListBox.SelectedIndex];
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 1,infirmier);
+            formUtilisateur.Show();
+            Hide();
         }
 
         private void ajoutSecrButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 2);
+            formUtilisateur.Show();
+            Hide();
         }
 
         private void supprSecrButton_Click(object sender, EventArgs e)
         {
             Secretaire secretaire = (Secretaire) SecretaireListBox.Items[SecretaireListBox.SelectedIndex];
-            delete(1, secretaire.id);
+            delete(2, secretaire.id);
             getSecretaire();
         }
 
-        private void PageUtilisateur_Click(object sender, EventArgs e)
+        private void modifSecrButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Secretaire secretaire = (Secretaire) SecretaireListBox.Items[SecretaireListBox.SelectedIndex];
+            FormUtilisateur formUtilisateur = new FormUtilisateur(menu, 2,secretaire);
+            formUtilisateur.Show();
+            Hide();
         }
     }
 }
