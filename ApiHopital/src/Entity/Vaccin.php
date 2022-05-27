@@ -26,19 +26,19 @@ class Vaccin
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"vaccin_read"})
+     * @Groups({"vaccin_read", "rdv_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"vaccin_read"})
+     * @Groups({"vaccin_read", "rdv_read"})
      */
     private $datePeremption;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"vaccin_read"})
+     * @Groups({"vaccin_read", "rdv_read"})
      */
     private $reserve;
 

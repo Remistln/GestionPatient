@@ -2,20 +2,35 @@ import {Card, Text, Block, Button} from 'galio-framework';
 import {StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect, useState} from "react";
+import {useNavigation} from "@react-navigation/native";
 
 
-export default function PageConsulterRdv({route, navigation}) {
+export default function PageConsulterRdv({route}) {
 
 	const { choosenDate} = route.params;
 
 	const [rdvList, letRdvList] = useState([]);
 
+	//Ip de l'ordi
+	const ip =  "192.168.1.14:8000"; //remi chez lui
+	//const ip = "172.20.10.4:8000"; //ip aya
 
-	function get_rdv() {
+	function delete_rdv(ip, id){
+		let requete = "http://" + ip + "/api/rendez_vouses/" + id
 
-		//Ip de l'ordi
-		const ip =  "192.168.1.14:8000"; //remi chez lui
-		//const ip = "172.20.10.4:8000"; //ip aya
+		console.log("///////////////////////////////////////////////////////////////////")
+		console.log(requete)
+
+		fetch(requete, {
+			method : 'DELETE',
+		})
+			.then(res => res.json())
+			.then(res => console.log(res))
+	}
+
+	function get_rdv(ip) {
+
+
 
 		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
 
@@ -34,7 +49,9 @@ export default function PageConsulterRdv({route, navigation}) {
 		}).catch(error => console.log(error))
 	}
 
-	get_rdv()
+	get_rdv(ip)
+
+	const navigation = useNavigation()
 
 	return (
 		<SafeAreaView>
@@ -54,7 +71,8 @@ export default function PageConsulterRdv({route, navigation}) {
 									title={cardTitle}
 									caption={rdv.vaccin.type.label}
 								>
-									<Button color="warning" style={styles.btnCard}>Annuler le RDV</Button>
+									{/*<Button color="warning" style={styles.btnCard} onPress={() => {navigation.navigate('SupprimerRdv', {rdvid: rdv.id})}}>Annuler le RDV</Button>*/}
+									<Button color="warning" style={styles.btnCard} onPress= {() => {delete_rdv(ip, rdv.id)}}>Annuler le RDV</Button>
 
 								</Card>
 
