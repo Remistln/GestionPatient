@@ -2,13 +2,13 @@
 
 namespace BackOfficeHopital.Entities
 {
-    public class Administrateur : Utilisateur
+    public class Secretaire : Utilisateur
     {
         public int id { get; set; }
-
+        
         public override string ToString()
         {
-            return $"Administrateur {nom} {prenom} : {identifiant}";
+            return $"Secretaire {nom} {prenom} : {identifiant}";
         }
     }
 

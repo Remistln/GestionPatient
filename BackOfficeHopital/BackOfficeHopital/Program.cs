@@ -18,7 +18,7 @@ namespace BackOfficeHopital
             Application.SetCompatibleTextRenderingDefault(false);
 
             PageMenu menu = new PageMenu();
-            Form[] listePage = new Form[7];
+            Form[] listePage = new Form[8];
 
             listePage[0] = new PageLogin(menu);
             listePage[1] = new PageUtilisateur(menu);

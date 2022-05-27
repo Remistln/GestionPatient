@@ -77,6 +77,15 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Entities\Administrateur.cs" />
+        <Compile Include="Entities\Infirmier.cs" />
+        <Compile Include="Entities\Secretaire.cs" />
+        <Compile Include="Entities\Utilisateur.cs" />
+        <Compile Include="FormUtilisateur.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="FormUtilisateur.Designer.cs">
+          <DependentUpon>FormUtilisateur.cs</DependentUpon>
+        </Compile>
         <Compile Include="PageLit.cs">
           <SubType>Form</SubType>
         </Compile>
@@ -127,6 +136,9 @@
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <EmbeddedResource Include="FormUtilisateur.resx">
+          <DependentUpon>FormUtilisateur.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="PageLit.resx">
           <DependentUpon>PageLit.cs</DependentUpon>
         </EmbeddedResource>
