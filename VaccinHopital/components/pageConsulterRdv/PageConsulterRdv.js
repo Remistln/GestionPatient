@@ -14,7 +14,7 @@ export default function PageConsulterRdv({choosenDate = "2022-06-10", navigation
 
 		//Ip de l'ordi
 		//remi : 192.168.1.14:8000
-		const ip ="172.20.10.4:8000"; //ip aya
+		const ip ="172.20.10.9:8000"; //ip aya
 		let requete = "http://"+ip+"/api/rendez_vouses?Date=" + choosenDate
 
 		fetch(requete, {
