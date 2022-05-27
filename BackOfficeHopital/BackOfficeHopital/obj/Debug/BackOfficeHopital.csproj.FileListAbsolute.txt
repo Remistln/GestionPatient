@@ -31,3 +31,4 @@ D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageService.resources
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageUtilisateur.resources
 D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.PageVaccin.resources
+D:\EPSI-Volumineux\Projet Transversale Symfony\GestionPatient\BackOfficeHopital\BackOfficeHopital\obj\Debug\BackOfficeHopital.FormUtilisateur.resources
