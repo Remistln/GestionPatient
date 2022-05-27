@@ -98,7 +98,25 @@ namespace BackOfficeHopital
                 }
             }
         }
-        
+
+        // 0 pour administrateur, 1 pour secretaire, 2 pour infirmier
+        private async void delete(int type, int id)
+        {
+            using (var loginApi = new HttpClient())
+            {
+                String ip = "192.168.42.96:8000/";
+                loginApi.BaseAddress = new Uri("http://" + ip);
+                loginApi.DefaultRequestHeaders.Accept.Clear();
+                loginApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string[] entiteeUri = new[] {"api/admins/", "api/secretaires/", "api/infirmiers/"};
+
+                HttpResponseMessage response = await loginApi.DeleteAsync(entiteeUri[type] + id);
+
+            }
+        }
+
+
         private void menuButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -108,6 +126,58 @@ namespace BackOfficeHopital
         private void PageUtilisateur_Shown(object sender, EventArgs e)
         {
             this.getUtilisateur();
+        }
+
+        private void ajoutAdminbutton_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void supprAdminButton_Click(object sender, EventArgs e)
+        {
+            //throw new System.NotImplementedException();
+            Administrateur admin = (Administrateur) AdminListBox.Items[AdminListBox.SelectedIndex];
+            delete(0, admin.id);
+            getAdministrateur();
+        }
+
+        private void modifAdminButton_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ajoutInfirmButton_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void supprInfirmButton_Click(object sender, EventArgs e)
+        {
+            Infirmier infirmier = (Infirmier) InfirmierListBox.Items[InfirmierListBox.SelectedIndex];
+            delete(2, infirmier.id);
+            getInfirmier();
+        }
+
+        private void modifInfirmButton_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ajoutSecrButton_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void supprSecrButton_Click(object sender, EventArgs e)
+        {
+            Secretaire secretaire = (Secretaire) SecretaireListBox.Items[SecretaireListBox.SelectedIndex];
+            delete(1, secretaire.id);
+            getSecretaire();
+        }
+
+        private void PageUtilisateur_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
