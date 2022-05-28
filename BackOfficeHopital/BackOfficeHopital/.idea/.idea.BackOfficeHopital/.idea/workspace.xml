@@ -7,19 +7,7 @@
     <list default="true" id="a10a7010-6adb-4ffe-82e8-6c3c94e7969c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BackOfficeHopital/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackOfficeHopital.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackOfficeHopital.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Administrateur.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Administrateur.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Infirmier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Infirmier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Secretaire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Secretaire.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageUtilisateur.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageUtilisateur.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageUtilisateur.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PageUtilisateur.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/BackOfficeHopital.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/BackOfficeHopital.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PagePatient.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PagePatient.Designer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,13 +37,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="BackOfficeHopital" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -98,6 +85,9 @@
       <workItem from="1653647283740" duration="2446000" />
       <workItem from="1653651139122" duration="4057000" />
       <workItem from="1653655253153" duration="4158000" />
+      <workItem from="1653661273981" duration="427000" />
+      <workItem from="1653737279249" duration="168000" />
+      <workItem from="1653737645077" duration="4191000" />
     </task>
     <servers />
   </component>
