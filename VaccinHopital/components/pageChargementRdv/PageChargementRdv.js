@@ -4,6 +4,12 @@ import {ActivityIndicator, StyleSheet } from 'react-native';
 
 export default function PageChargementRdv({navigation, route})
 {
+    //route.params reccupérer la date de consulter
+    const annee = route.params.annee;
+    const mois = route.params.mois;
+    const jour = route.params.jour ;
+    const dateChoisie = route.params.choosenDate;
+
     async function getVaccinListe()
     {
         var ApiHeaders = new Headers({
@@ -24,18 +30,20 @@ export default function PageChargementRdv({navigation, route})
                 if (! vaccin.reserve )
                 {
                     vaccinListe.push(vaccin);
+
                 }
             };
             return vaccinListe;
             })
         .then( vaccinListe => 
             {
-                //route.params reccupérer la date
-                const jour= 10;
-                const mois= 6;
-                const annee= 2022;
-                navigation.navigate('PagePriseRdv', {vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
+
+                const jour= jour;
+                const mois= mois;
+                const annee= annee;
+                navigation.navigate('PagePriseRdv', {choisieDate: dateChoisie, vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });
+
     };
 
     getVaccinListe();

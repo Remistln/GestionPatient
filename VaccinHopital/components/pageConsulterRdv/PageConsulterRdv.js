@@ -8,12 +8,15 @@ import {useNavigation} from "@react-navigation/native";
 export default function PageConsulterRdv({route}) {
 
 	const { choosenDate} = route.params;
+	const annee = route.params.annee;
+	const mois = route.params.mois;
+	const jour = route.params.jour ;
 
 	const [rdvList, letRdvList] = useState([]);
 
 	//Ip de l'ordi
-	const ip =  "192.168.1.14:8000"; //remi chez lui
-	//const ip = "172.20.10.4:8000"; //ip aya
+	//const ip =  "192.168.1.14:8000"; //remi chez lui
+	const ip = "172.20.10.9:8000"; //ip aya
 
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
@@ -44,8 +47,10 @@ export default function PageConsulterRdv({route}) {
 			}).then(res => {
 			letRdvList(res)
 
-			console.log("le resultat")
-			console.log(rdvList)
+			//console.log("le resultat")
+			//console.log(rdvList)
+			//console.log(jour)
+
 		}).catch(error => console.log(error))
 	}
 
@@ -85,7 +90,7 @@ export default function PageConsulterRdv({route}) {
 			</Block>
 			<Block style={styles.btnBlock}>
 				<Button round style={styles.button} color="primary"
-				        onPress={() => navigation.navigate('PageChargementRdv')}>Ajouter un RDV</Button>
+				        onPress={() => navigation.navigate('PageChargementRdv', {choosenDate : choosenDate, jour : jour, mois: mois, annee: annee}) }>Ajouter un RDV</Button>
 			</Block>
 		</SafeAreaView>
 

@@ -64,7 +64,8 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 			return (
 				<Button style={styles.jour} color="info" round key={nombre}
 				        onPress={ ()=> {
-					        navigation.navigate('PageConsulterRdv', {choosenDate: datechoisie})
+							navigation.navigate('PageConsulterRdv', {choosenDate : datechoisie, annee: annee,jour : nombre, mois : mois +1})
+					       // navigation.navigate('PageConsulterRdv', {choosenDate: datechoisie})
 				        }}>
 					<Text color="white">{nombre.toString()}</Text>
 				</Button>)

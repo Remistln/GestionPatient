@@ -19,12 +19,9 @@ export default class PagePriseRdv extends Component
         super({navigation, route});
         this.placeholderDate = this.formatToday();
         this.listeVacins = route.params.vaccinListe;
+        this.dateChoisie = route.params.choisieDate;
 
         this.state = {
-            jour: route.params.jour,
-            mois: route.params.mois,
-            annee: route.params.annee,
-
             nom:"",
             prenom:"",
             dateNaissance: this.placeholderDate,
@@ -51,7 +48,7 @@ export default class PagePriseRdv extends Component
                 ],
             heure : "la première heure",
 
-            vaccins : this.vaccinsDisponibles(route.params.jour, route.params.mois, route.params.annee),
+            vaccins : this.vaccinsDisponibles(),
             typeVaccin : "le type",
             vaccin: "la picure",
         };
@@ -59,14 +56,14 @@ export default class PagePriseRdv extends Component
 
     };
 
-    vaccinsDisponibles(jour, mois, annee)
+    vaccinsDisponibles()
     {
+
         let typeVaccins = [];
-        
         for (const vaccin of this.listeVacins)
         {
-            var dateDePeremption = new Date(vaccin.datePeremption);
-            var dateRdv = new Date(annee, mois, jour,0,0,0,0);
+            let dateDePeremption = new Date(vaccin.datePeremption);
+            let dateRdv = new Date(this.dateChoisie)
             if (dateDePeremption > dateRdv )
             {
                 if (Pfizer && vaccin.type.label === "Pfizer")
@@ -87,6 +84,7 @@ export default class PagePriseRdv extends Component
 
             };
         };
+
         return typeVaccins ;
     };
 
@@ -102,7 +100,7 @@ export default class PagePriseRdv extends Component
         if (age >= 30) {Moderna = true;}
         else {Moderna = false;}
     
-        this.setState({vaccins : this.vaccinsDisponibles(this.state.jour, this.state.mois, this.state.annee)})
+        this.setState({vaccins : this.vaccinsDisponibles()})
         
     };
 
@@ -170,7 +168,7 @@ export default class PagePriseRdv extends Component
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
         const urlVaccin = 'http://' + ip + iriVaccin;
 
-        const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
+        const date = new Date(this.dateChoisie);
         
         const Rdv = {
             vaccin: iriVaccin, 
@@ -178,6 +176,7 @@ export default class PagePriseRdv extends Component
             nom: this.state.nom,
             prenom: this.state.prenom,
             heure: this.state.heure,
+            typeVaccin: this.state.typeVaccin
         };
 
         const vaccinAJour = {
@@ -204,7 +203,7 @@ export default class PagePriseRdv extends Component
                     <Text h5>Date :</Text>
                 </Block>
                 <Block  style={ styles.centrer}>
-                    <Text style={ styles.centrer} h5>{this.state.jour}-{this.state.mois}-{this.state.annee}</Text>
+                    <Text style={ styles.centrer} h5>{this.dateChoisie}</Text>
                 </Block>
             </Block>
 
@@ -288,10 +287,12 @@ export default class PagePriseRdv extends Component
                         items={this.state.vaccins}
                         onValueChange = {value => {
                             this.setState( { typeVaccin: value} );
-                            this.loadVaccin(value);
+                            if (value !== null){
+                                this.loadVaccin(value);
+                            }
                         }
                         }
-                        value = {this.state.vaccin}
+                        value = {this.state.typeVaccin}
                         style={pickerSelectStyles}
 
                     />
