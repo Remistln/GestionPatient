@@ -78,8 +78,18 @@
     <ItemGroup>
         <Compile Include="Entities\Administrateur.cs" />
         <Compile Include="Entities\Infirmier.cs" />
+        <Compile Include="Entities\Lit.cs" />
+        <Compile Include="Entities\NouveauLit.cs" />
+        <Compile Include="Entities\NouveauPatient.cs" />
+        <Compile Include="Entities\NouveauRendezVous.cs" />
+        <Compile Include="Entities\NouveauService.cs" />
+        <Compile Include="Entities\NouveauVaccin.cs" />
+        <Compile Include="Entities\Patient.cs" />
         <Compile Include="Entities\Secretaire.cs" />
+        <Compile Include="Entities\Service.cs" />
+        <Compile Include="Entities\TypeVaccin.cs" />
         <Compile Include="Entities\Utilisateur.cs" />
+        <Compile Include="Entities\Vaccin.cs" />
         <Compile Include="FormUtilisateur.cs">
           <SubType>Form</SubType>
         </Compile>
