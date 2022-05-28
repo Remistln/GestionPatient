@@ -172,8 +172,8 @@ export default function PageSansRdv({navigation}) {
 					/>
 				</Block>
 
-				<Block style={styles.vaccins}>
-					<Text h5>Vaccins : </Text>
+				<Block>
+					<Text style={styles.vaccins} h5>Vaccins : </Text>
 					<Radio label="Pfizer" color="primary"
 					       onChange={() => {
 						       ckeckInfo("Pfizer")
@@ -182,6 +182,10 @@ export default function PageSansRdv({navigation}) {
 					       onChange={() => {
 						       ckeckInfo("AstraZeneca")
 					       }}/>
+					<Radio label="Moderna" color="primary" checked="false"
+						   onChange={() => {
+							   ckeckInfo("Moderna")
+						   }}/>
 
 				</Block>
 			</Block>
@@ -209,9 +213,7 @@ const styles = StyleSheet.create({
 		},
 	titre: {
 		justifyContent: 'space-evenly',
-		flex: 3,
 		textAlign: "center",
-		marginTop: 3,
 		fontWeight: 'bold'
 	},
 	TextTitre: {
@@ -220,13 +222,12 @@ const styles = StyleSheet.create({
 	},
 	date: {
 		flex: 2,
-		justifyContent: 'space-evenly'
+		justifyContent: 'space-evenly',
+		marginTop : 50
 
 	},
 	vaccins: {
-		flex: 2,
-		justifyContent: 'space-evenly',
-		marginTop: 40
+		marginTop: 30
 	},
 	valider: {
 		flex: 1,
@@ -240,6 +241,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		marginTop: 20,
 		padding: 16,
-		height: 20
+		height: 20,
+		width: 300,
 	},
 });
