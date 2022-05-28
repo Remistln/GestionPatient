@@ -4,6 +4,12 @@ import {ActivityIndicator, StyleSheet } from 'react-native';
 
 export default function PageChargementRdv({navigation, route})
 {
+    //route.params reccupérer la date de consulter
+    const annee = route.params.annee;
+    const mois = route.params.mois;
+    const jour = route.params.jour ;
+    const dateChoisie = route.params.choosenDate;
+
     async function getVaccinListe()
     {
         var ApiHeaders = new Headers({
@@ -12,7 +18,7 @@ export default function PageChargementRdv({navigation, route})
 
         // ip de l'ordinateur où se trouve le serveur
         //const ip ="192.168.42.96:8000";
-        const ip ="172.20.10.4:8000"; //ip aya
+        const ip ="172.20.10.9:8000"; //ip aya
 
         const url = 'http://' + ip + '/api/vaccins';
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
@@ -24,18 +30,20 @@ export default function PageChargementRdv({navigation, route})
                 if (! vaccin.reserve )
                 {
                     vaccinListe.push(vaccin);
+
                 }
             };
             return vaccinListe;
             })
         .then( vaccinListe => 
             {
-                //route.params reccupérer la date
-                const jour= 12;
-                const mois= 12;
-                const annee= 2022;
-                navigation.navigate('PagePriseRdv', {vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
+
+                const jour= jour;
+                const mois= mois;
+                const annee= annee;
+                navigation.navigate('PagePriseRdv', {choisieDate: dateChoisie, vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });
+
     };
 
     getVaccinListe();

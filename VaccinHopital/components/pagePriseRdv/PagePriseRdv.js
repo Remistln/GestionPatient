@@ -19,12 +19,9 @@ export default class PagePriseRdv extends Component
         super({navigation, route});
         this.placeholderDate = this.formatToday();
         this.listeVacins = route.params.vaccinListe;
+        this.dateChoisie = route.params.choisieDate;
 
         this.state = {
-            jour: route.params.jour,
-            mois: route.params.mois,
-            annee: route.params.annee,
-
             nom:"",
             prenom:"",
             dateNaissance: this.placeholderDate,
@@ -51,7 +48,7 @@ export default class PagePriseRdv extends Component
                 ],
             heure : "la première heure",
 
-            vaccins : this.vaccinsDisponibles(route.params.jour, route.params.mois, route.params.annee),
+            vaccins : this.vaccinsDisponibles(),
             typeVaccin : "le type",
             vaccin: "la picure",
         };
@@ -59,14 +56,14 @@ export default class PagePriseRdv extends Component
 
     };
 
-    vaccinsDisponibles(jour, mois, annee)
+    vaccinsDisponibles()
     {
+
         let typeVaccins = [];
-        
         for (const vaccin of this.listeVacins)
         {
-            var dateDePeremption = new Date(vaccin.datePeremption);
-            var dateRdv = new Date(annee, mois, jour,0,0,0,0);
+            let dateDePeremption = new Date(vaccin.datePeremption);
+            let dateRdv = new Date(this.dateChoisie)
             if (dateDePeremption > dateRdv )
             {
                 if (Pfizer && vaccin.type.label === "Pfizer")
@@ -87,6 +84,7 @@ export default class PagePriseRdv extends Component
 
             };
         };
+
         return typeVaccins ;
     };
 
@@ -102,7 +100,7 @@ export default class PagePriseRdv extends Component
         if (age >= 30) {Moderna = true;}
         else {Moderna = false;}
     
-        this.setState({vaccins : this.vaccinsDisponibles(this.state.jour, this.state.mois, this.state.annee)})
+        this.setState({vaccins : this.vaccinsDisponibles()})
         
     };
 
@@ -145,6 +143,15 @@ export default class PagePriseRdv extends Component
             ]
         );
 
+    alertFormulaireIncomplet = () =>
+        Alert.alert(
+            "Status Formulaire",
+            "Le formulaire n'est pas complet! ",
+            [
+                { text: "OK" }
+            ]
+        );
+
     async enregistrement()
     {
         var ApiHeadersPost = new Headers({
@@ -154,14 +161,14 @@ export default class PagePriseRdv extends Component
             'Content-Type': 'application/merge-patch+json'
         });
         // ip de l'ordinateur où se trouve le serveur
-        const ip ="172.20.10.4:8000"; //ip aya
+        const ip ="172.20.10.9:8000"; //ip aya
         //const ip ="192.168.42.96:8000";
         const urlRdv = 'http://' + ip + '/api/rendez_vouses';
 
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
         const urlVaccin = 'http://' + ip + iriVaccin;
 
-        const date = new Date(this.state.annee, this.state.mois, this.state.jour,0,0,0,0);
+        const date = new Date(this.dateChoisie);
         
         const Rdv = {
             vaccin: iriVaccin, 
@@ -169,6 +176,7 @@ export default class PagePriseRdv extends Component
             nom: this.state.nom,
             prenom: this.state.prenom,
             heure: this.state.heure,
+            typeVaccin: this.state.typeVaccin
         };
 
         const vaccinAJour = {
@@ -190,36 +198,36 @@ export default class PagePriseRdv extends Component
     {
     return(
         <Block style={ styles.block}> 
-            <Block style={ styles.block}>
-                <Block style = {styles.date } >
-                    <Text h4>Date :</Text>
+            <Block>
+                <Block style = {styles.date} >
+                    <Text h5>Date :</Text>
                 </Block>
                 <Block  style={ styles.centrer}>
-                    <Text style={ styles.centrer} h5>{this.state.jour}-{moisListe[this.state.mois]}-{this.state.annee}</Text>
+                    <Text style={ styles.centrer} h5>{this.dateChoisie}</Text>
                 </Block>
             </Block>
 
-            <Block style={ styles.block}>
-                <Block>
-                    <Text h4>Nom :</Text>
+
+                <Block style = {styles.commun} >
+                    <Text h5>Nom :</Text>
                 </Block>
                 <Block>
                     <Input style={ styles.input} onChangeText={text => {this.setState({nom: text})}}></Input>
                 </Block>
-            </Block>
 
-            <Block style={ styles.block}>
-                <Block>
-                    <Text h4>Prénom :</Text>
+
+
+                <Block style = {styles.commun}>
+                    <Text h5>Prénom :</Text>
                 </Block>
-                <Block>
+                <Block s>
                     <Input style={ styles.input} onChangeText={text => {this.setState({prenom: text})}}></Input>
                 </Block>
-            </Block>
 
-            <Block style={ styles.block}>
-                <Block>
-                    <Text h4>Date de Naissance :</Text>
+
+
+                <Block style = {styles.commun} >
+                    <Text h5>Date de Naissance :</Text>
                 </Block>
                 <Block style = {styles.centrer }>
                     <Text style = {styles.centrer } h5>{this.state.dateNaissance}</Text>
@@ -251,11 +259,11 @@ export default class PagePriseRdv extends Component
                             />
                     </Block>
                 </Block>
-            </Block>
 
-            <Block style={ styles.block}>
-                <Block>
-                    <Text h4>Heure de Passage :</Text>
+
+
+                <Block style = {styles.commun}>
+                    <Text h5>Heure de Passage :</Text>
                 </Block>
                 <Block style = {styles.centrer } >
                     <RNPickerSelect
@@ -267,11 +275,11 @@ export default class PagePriseRdv extends Component
                     style={pickerSelectStyles}
                     />
                 </Block>
-            </Block>
 
-            <Block style={ styles.block}>
-                <Block>
-                    <Text h4>Vaccins :</Text>
+
+
+                <Block style = {styles.commun}>
+                    <Text h5>Vaccins :</Text>
                 </Block>
                 <Block style = {styles.centrer } >
 
@@ -279,22 +287,28 @@ export default class PagePriseRdv extends Component
                         items={this.state.vaccins}
                         onValueChange = {value => {
                             this.setState( { typeVaccin: value} );
-                            this.loadVaccin(value);
+                            if (value !== null){
+                                this.loadVaccin(value);
+                            }
                         }
                         }
-                        value = {this.state.vaccin}
+                        value = {this.state.typeVaccin}
                         style={pickerSelectStyles}
-                        
+
                     />
                 </Block>
-            </Block>
 
-            <Block style={ styles.centrer}>
-                <Button style={ styles.valider} onPress={ ()=>{
+
+            <Block style={ styles.valider}  >
+                <Button  onPress={ ()=>{
                     if (this.validation())
                     {
                         this.enregistrement() && this.alertRdvPris();
-                    } }
+                    }
+                    else
+                    {
+                        this.alertFormulaireIncomplet();
+                    }}
                 }>Valider</Button>
             </Block>
 
@@ -310,6 +324,11 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flex: 1,
         marginHorizontal: 5,
+        marginLeft: 35,
+        marginRight: 35,
+        marginTop : 20,
+
+
 
     },
     select :
@@ -331,6 +350,7 @@ const styles = StyleSheet.create({
     date :
     {
         textAlign : "right",
+
     },
     centrer :
     {
@@ -340,10 +360,16 @@ const styles = StyleSheet.create({
     },
     valider  :
         {
-            marginBottom : "15%",
-            alignItems : "center",
 
-        }
+            alignItems : "center",
+            marginTop : "12%",
+
+        },
+    commun :
+        {
+            marginTop : "10%",
+            //backgroundColor : "green",
+       }
 
 
 });
