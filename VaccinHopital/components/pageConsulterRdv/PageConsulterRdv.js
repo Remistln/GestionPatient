@@ -15,14 +15,11 @@ export default function PageConsulterRdv({route}) {
 	const [rdvList, letRdvList] = useState([]);
 
 	//Ip de l'ordi
-	//const ip =  "192.168.1.14:8000"; //remi chez lui
-	const ip = "172.20.10.9:8000"; //ip aya
+	const ip =  "192.168.1.14:8000"; //remi chez lui
+	// const ip = "172.20.10.9:8000"; //ip aya
 
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
-
-		console.log("///////////////////////////////////////////////////////////////////")
-		console.log(requete)
 
 		fetch(requete, {
 			method : 'DELETE',
