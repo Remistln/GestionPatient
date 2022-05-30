@@ -27,18 +27,6 @@ export default function PageConsulterRdv({route}) {
 
 	const navigation = useNavigation()
 
-
-	function delete_rdv(ip, id){
-		let requete = "http://" + ip + "/api/rendez_vouses/" + id
-
-		fetch(requete, {
-			method : 'DELETE',
-		})
-			.then(res => res.json())
-			.then(res => console.log(res))
-		navigation.navigate('AgendaVaccinations')
-	}
-
 	function get_rdv(ip) {
 
 
@@ -58,6 +46,38 @@ export default function PageConsulterRdv({route}) {
 
 
 		}).catch(error => console.log(error))
+	}
+
+	function delete_rdv(ip, id){
+
+		let idVaccin = 0
+		let requete = "http://" + ip + "/api/rendez_vouses/" + id
+		fetch(requete, {
+			headers: {
+				'Accept' : 'application/json'
+			}
+		})
+			.then(response => {return response.json();})
+			.then(res => {idVaccin = res.vaccin.id})
+			.then(() => {
+				let requete = "http://" + ip + "/api/rendez_vouses/" + id
+
+				fetch(requete, {
+					method : 'DELETE',
+				})
+					.then(res => res.json())
+				updateVaccin(ip, idVaccin)
+				navigation.navigate('AgendaVaccinations')
+			})
+
+
+	}
+
+	function updateVaccin(ip, idVaccin){
+		let requete = "http://" + ip + "/api/vaccins/" + idVaccin
+
+		console.log(requete)
+
 	}
 
 	useEffect(() => {get_rdv(ip)},[]);
