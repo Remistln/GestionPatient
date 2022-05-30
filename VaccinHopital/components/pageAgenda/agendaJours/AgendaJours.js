@@ -17,6 +17,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 			<Block style={styles.entete}>
 				<Button
 					round
+					color="black"
 					style={{width: 40, height: 40}}
 					onPress={() => {
 						if (mois != 0) {
@@ -26,10 +27,11 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 							setAnnee(annee - 1);
 						}
 					}}
-				>{"<="}</Button>
+				><Text h3 color='white' adjustsFontSizeToFit >{"<"}</Text></Button>
 				<Text h4 onPress={handlers.choixDuMois_handler}>{moisListe[mois]} {annee}</Text>
 				<Button
 					round
+					color="black"
 					style={{width: 40, height: 40}}
 					onPress={() => {
 						if (mois != 11) {
@@ -39,7 +41,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 							setAnnee(annee + 1);
 						}
 					}}
-				>{"=>"}</Button>
+				><Text h3 color='white' adjustsFontSizeToFit >{">"}</Text></Button>
 			</Block>
 
 			<Block style={styles.agenda}>
