@@ -7,16 +7,13 @@ import {useNavigation} from "@react-navigation/native";
 
 export default function PageConsulterRdv({route}) {
 
-	const {choosenDate, annee, jour, mois} = route.params;
-	/*
+	//const choosenDate = route.params.choosenDate;
+	const choosenDate = route.params.choosenDate;
 	const annee = route.params.annee;
 	const mois = route.params.mois;
 	const jour = route.params.jour ;
-	*/
-	console.log('Date Choisie : '+route.params.choosenDate);
-	console.log('Annee : '+route.params.annee);
-	console.log('Jour : '+route.params.jour);
-	console.log('Mois : ' + route.params.mois);
+
+
 	const [rdvList, letRdvList] = useState([]);
 
 	//Ip de l'ordi
@@ -53,9 +50,6 @@ export default function PageConsulterRdv({route}) {
 			}).then(res => {
 			letRdvList(res)
 
-			//console.log("le resultat")
-			//console.log(rdvList)
-			//console.log(jour)
 
 		}).catch(error => console.log(error))
 	}
