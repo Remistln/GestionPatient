@@ -15,7 +15,8 @@ export default function PageConsulterRdv({route}) {
 	const [rdvList, letRdvList] = useState([]);
 
 	//Ip de l'ordi
-	const ip =  "192.168.1.14:8000"; //remi chez lui
+	//const ip =  "192.168.1.14:8000"; //remi chez lui
+	const ip = "10.60.44.36"; // ip remi a epsi
 	// const ip = "172.20.10.9:8000"; //ip aya
 
 	function delete_rdv(ip, id){
