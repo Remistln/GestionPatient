@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
 
 
-var countEnd = false ; 
+var countEnd = false ;
 
 
 
@@ -27,8 +27,8 @@ useEffect(() => {
     {return}
   var ApiHeaders = new Headers({
     'Content-Type': 'application/ld+json'
-  }) 
-  
+  })
+
   // ip de l'ordinateur où se trouve le serveur
     //const ip ="192.168.42.96:8000";
 
@@ -36,20 +36,22 @@ useEffect(() => {
     const ip = "10.60.44.36:8000"; // ip remi a epsi
     //const ip = "192.168.1.14:8000"; //ip remi chez lui
 
-  
+
   //url
-  const url = 'http://'+ ip +'/api/vaccins'; 
-  
+  const url = 'http://'+ ip +'/api/vaccins';
+  console.log(url)
+
   fetch (url, {method : 'GET', headers : ApiHeaders})
     .then(response => response.json())
-    .then (data => 
+    .then (data =>
       {
+		  console.log(data)
         var dateAuj = new Date();
         dateAuj.setDate(dateAuj.getDate() + 1);
         let countSansRdv =0;
         let countVaccin =0;
         for( const vaccins of data['hydra:member']){
-          
+
           var dateDePeremption = new Date(vaccins.datePeremption)
 
           if (dateDePeremption.getDate() === dateAuj.getDate() && dateDePeremption.getMonth() === dateAuj.getMonth() && dateDePeremption.getFullYear() === dateAuj.getFullYear()) {
@@ -59,7 +61,7 @@ useEffect(() => {
 
           if (dateAuj < dateDePeremption && ! vaccins.reserve)
           {countVaccin = countVaccin + 1;};
-          
+
           countEnd =true;
         }
         if (countVaccin < 20)
