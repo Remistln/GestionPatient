@@ -16,13 +16,11 @@ export default function PageConsulterRdv({route}) {
 
 	//Ip de l'ordi
 	//const ip =  "192.168.1.14:8000"; //remi chez lui
-	const ip = "172.20.10.9:8000"; //ip aya
+	const ip = "192.168.42.96:8000"; //ip aya
 
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
 
-		console.log("///////////////////////////////////////////////////////////////////")
-		console.log(requete)
 
 		fetch(requete, {
 			method : 'DELETE',
@@ -45,7 +43,7 @@ export default function PageConsulterRdv({route}) {
 			.then(response => {
 				return response.json();
 			}).then(res => {
-			letRdvList(res)
+				letRdvList(res);
 
 			//console.log("le resultat")
 			//console.log(rdvList)
@@ -54,7 +52,8 @@ export default function PageConsulterRdv({route}) {
 		}).catch(error => console.log(error))
 	}
 
-	get_rdv(ip)
+	useEffect(() => {get_rdv(ip)},[]);
+	
 
 	const navigation = useNavigation()
 
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
 			flexDirection: "column",
 			marginTop: 70,
 			width: 415,
-			height: 700,
+			height: 400,
 
 
 		},

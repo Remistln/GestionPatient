@@ -32,7 +32,7 @@ useEffect(() => {
   // ip de l'ordinateur où se trouve le serveur
     //const ip ="192.168.42.96:8000";
 
-    const ip ="172.20.10.9:8000"; //ip aya
+    const ip ="192.168.42.96:8000"; //ip aya
 
     //remi : 192.168.1.14:8000
 

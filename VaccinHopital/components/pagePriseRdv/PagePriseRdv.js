@@ -1,5 +1,5 @@
 import { Text, Block, Button, Input } from 'galio-framework';
-import {Alert, StyleSheet} from 'react-native';
+import {Alert, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import { Component } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
@@ -22,6 +22,9 @@ export default class PagePriseRdv extends Component
         this.dateChoisie = route.params.choisieDate;
 
         this.state = {
+            jour : route.params.jour,
+            mois : route.params.mois,
+            annee : route.params.annee,
             nom:"",
             prenom:"",
             dateNaissance: this.placeholderDate,
@@ -48,7 +51,7 @@ export default class PagePriseRdv extends Component
                 ],
             heure : "la première heure",
 
-            vaccins : this.vaccinsDisponibles(),
+            vaccins : this.vaccinsDisponibles(route.params.jour ,route.params.mois ,route.params.annee),
             typeVaccin : "le type",
             vaccin: "la picure",
         };
@@ -56,14 +59,16 @@ export default class PagePriseRdv extends Component
 
     };
 
-    vaccinsDisponibles()
+    vaccinsDisponibles(jour, mois, annee)
     {
 
         let typeVaccins = [];
         for (const vaccin of this.listeVacins)
         {
             let dateDePeremption = new Date(vaccin.datePeremption);
-            let dateRdv = new Date(this.dateChoisie)
+            const dateChoisieSplit = this.dateChoisie.split('-');
+            let dateRdv = new Date(annee,mois-1,jour+1,0,0,0);
+            
             if (dateDePeremption > dateRdv )
             {
                 if (Pfizer && vaccin.type.label === "Pfizer")
@@ -84,7 +89,6 @@ export default class PagePriseRdv extends Component
 
             };
         };
-
         return typeVaccins ;
     };
 
@@ -100,7 +104,7 @@ export default class PagePriseRdv extends Component
         if (age >= 30) {Moderna = true;}
         else {Moderna = false;}
     
-        this.setState({vaccins : this.vaccinsDisponibles()})
+        this.setState({vaccins : this.vaccinsDisponibles(this.state.jour,this.state.mois, this.state.annee)})
         
     };
 
@@ -161,14 +165,14 @@ export default class PagePriseRdv extends Component
             'Content-Type': 'application/merge-patch+json'
         });
         // ip de l'ordinateur où se trouve le serveur
-        const ip ="172.20.10.9:8000"; //ip aya
+        const ip ="192.168.42.96:8000"; //ip aya
         //const ip ="192.168.42.96:8000";
         const urlRdv = 'http://' + ip + '/api/rendez_vouses';
 
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
         const urlVaccin = 'http://' + ip + iriVaccin;
 
-        const date = new Date(this.dateChoisie);
+        const date = new Date(this.state.annee,this.state.mois - 1,this.state.jour,0,0,0);
         
         const Rdv = {
             vaccin: iriVaccin, 
@@ -197,6 +201,8 @@ export default class PagePriseRdv extends Component
     render()
     {
     return(
+        <SafeAreaView>
+        <ScrollView>
         <Block style={ styles.block}> 
             <Block>
                 <Block style = {styles.date} >
@@ -313,6 +319,8 @@ export default class PagePriseRdv extends Component
             </Block>
 
         </Block>
+        </ScrollView>
+        </SafeAreaView>
     )
         
     };
