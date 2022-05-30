@@ -13,14 +13,17 @@ export default function PageSansRdv({navigation}) {
 	const [status, setStatus] = useState(false)
 	const [deleteItem, setDeleteItem] = useState()
 
-	let ip = "10.60.44.36:8000" //remi a epsi
+	//let ip = "10.60.44.36:8000" //remi a epsi
+	let ip ="172.20.10.4:8000"; //ip aya
 
 	useEffect(() => {
 
+		//const ip ="172.20.10.9:8000"; //ip aya
+		let ip ="172.20.10.4:8000"; //ip aya
 		//let ip = "10.60.44.36:8000" //remi a epsi
 		//let ip = "192.168.1.14:8000" //remi chez lui
 		//let ip = "127.0.0.1:8000"
-		let ip = "192.168.42.96:8000" // ip aya
+		//let ip = "192.168.42.96:8000" // ip aya
 		//let ip = "192.168.42.96:8000"
 
 
@@ -38,12 +41,6 @@ export default function PageSansRdv({navigation}) {
 
 
 	async function getVaccinPeremtion(formatted_tomorrow, ip){
-
-		//A changer quand on aura des vaccins en temps reel
-		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
-
-		//let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
-
 
 		let requete = "http://" + ip + "/api/vaccins?datePeremption=" + formatted_tomorrow
 
