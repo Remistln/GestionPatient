@@ -23,7 +23,7 @@ export default function PageConsulterRdv({route}) {
 	// const ip = "172.20.10.9:8000"; //ip aya
 
 	//const ip = "172.20.10.9:8000"; //ip aya
-	const ip ="172.20.10.4:8000"; //ip aya
+	const ip ="192.168.42.96:8000"; //ip aya
 
 
 	function delete_rdv(ip, id){

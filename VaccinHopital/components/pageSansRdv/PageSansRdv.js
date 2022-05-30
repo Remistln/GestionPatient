@@ -20,7 +20,7 @@ export default function PageSansRdv({navigation}) {
 		//let ip = "10.60.44.36:8000" //remi a epsi
 		//let ip = "192.168.1.14:8000" //remi chez lui
 		//let ip = "127.0.0.1:8000"
-		let ip = "172.20.10.9:8000" // ip aya
+		let ip = "192.168.42.96:8000" // ip aya
 		//let ip = "192.168.42.96:8000"
 
 
