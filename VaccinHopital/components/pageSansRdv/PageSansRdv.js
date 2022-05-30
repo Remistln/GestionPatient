@@ -13,7 +13,17 @@ export default function PageSansRdv({navigation}) {
 	const [status, setStatus] = useState(false)
 	const [deleteItem, setDeleteItem] = useState()
 
+	let ip = "10.60.44.36:8000" //remi a epsi
+
 	useEffect(() => {
+
+		let ip = "10.60.44.36:8000" //remi a epsi
+		//let ip = "192.168.1.14:8000" //remi chez lui
+		//let ip = "127.0.0.1:8000"
+		//let ip = "172.20.10.9:8000" //aya
+		//let ip = "192.168.42.96:8000"
+
+
 		setStatus(true)
 
 		let datemtn = new Date
@@ -23,19 +33,20 @@ export default function PageSansRdv({navigation}) {
 		tomorrow.setDate(tomorrow.getDate() + 1)
 		const formatted_tomorrow = tomorrow.getFullYear() + "-" + (tomorrow.getMonth() + 1) + "-" + tomorrow.getDate()
 
-		getVaccinPeremtion(formatted_tomorrow);
+		getVaccinPeremtion(formatted_tomorrow, ip);
 	}, []) ;
 
 
-	async function getVaccinPeremtion(formatted_tomorrow){
+	async function getVaccinPeremtion(formatted_tomorrow, ip){
 
 		//A changer quand on aura des vaccins en temps reel
 		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
 
 		//let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
-		let requete = "http://192.168.42.96:8000/api/vaccins?datePeremption=" + formatted_tomorrow //Aya
 
-		//let requete = "http://192.168.42.96:8000/api/vaccins?datePeremption=" + formatted_tomorrow
+		let requete = "http://" + ip + "/api/vaccins?datePeremption=" + formatted_tomorrow
+		console.log(formatted_tomorrow)
+		console.log(requete)
 
 		fetch(requete, {
 			headers: {
@@ -52,23 +63,22 @@ export default function PageSansRdv({navigation}) {
 		}).catch(error => console.log(error))
 	}
 
-	function ckeckInfo(chosenVaccin) {
+	function ckeckInfo(chosenVaccin, ip) {
 
 		if (birthDate !== "") {
 			// console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
 			console.log("une date")
-			getTypeVaccin(chosenVaccin)
+			getTypeVaccin(chosenVaccin, ip)
 		}else{
 			console.log("pas de date")
 			setStatus(true)
 		}
 	}
 
-	async function getTypeVaccin(chosenVaccin) {
+	async function getTypeVaccin(chosenVaccin, ip) {
 		console.log("je suis dans typevaccin")
-		fetch("http://192.168.42.96:8000/api/type_vaccins?label=" + chosenVaccin, { //Aya
 
-		//fetch("http://192.168.42.96:8000:8000/api/type_vaccins?label=" + chosenVaccin, {
+		fetch("http://" + ip + "/api/type_vaccins?label=" + chosenVaccin, {
 
 			headers: {
 				'Accept': 'application/json'
@@ -78,7 +88,6 @@ export default function PageSansRdv({navigation}) {
 				return response.json();
 			}).then(res => {
 			checkAge(res[0])
-			console.log("fetch reussi")
 		}).catch(error => console.log("ERROR" + error))
 
 
@@ -86,7 +95,7 @@ export default function PageSansRdv({navigation}) {
 
 	function checkAge(Vaccin) {
 		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
-			getNumberVaccin(Vaccin.label)
+			getNumberVaccin(Vaccin.label, ip)
 			console.log(Vaccin.label)
 		} else {
 			setMessage("Vous n'avez pas l'age pour utiliser ce vaccin (Entre " + Vaccin.ageMin + " et " + Vaccin.ageMax + " ans)")
@@ -102,7 +111,7 @@ export default function PageSansRdv({navigation}) {
 				numberVaccinsLeft++
 				// console.log(item)
 				setDeleteItem(item.id)
-				// console.log(item.id)
+				console.log(item.id)
 			}
 		} )
 
@@ -115,10 +124,9 @@ export default function PageSansRdv({navigation}) {
 		}
 	}
 
-	async function deleteVaccin(){
+	async function deleteVaccin(ip){
 		console.log("suppression du " + deleteItem)
-	    fetch('http://192.168.42.96:8000/api/vaccins/' + deleteItem, { //Aya
-		//fetch('http://192.168.42.96:8000:8000/api/vaccins/' + deleteItem, {
+	    fetch('http://' + ip + '/api/vaccins/' + deleteItem, {
 			method: 'DELETE',
 		}).then(response => {
 			response.json()
@@ -176,15 +184,15 @@ export default function PageSansRdv({navigation}) {
 					<Text style={styles.vaccins} h5>Vaccins : </Text>
 					<Radio label="Pfizer" color="primary"
 					       onChange={() => {
-						       ckeckInfo("Pfizer")
+						       ckeckInfo("Pfizer", ip)
 					       }}/>
 					<Radio label="AstraZeneca" color="primary" checked="false"
 					       onChange={() => {
-						       ckeckInfo("AstraZeneca")
+						       ckeckInfo("AstraZeneca", ip)
 					       }}/>
 					<Radio label="Moderna" color="primary" checked="false"
 						   onChange={() => {
-							   ckeckInfo("Moderna")
+							   ckeckInfo("Moderna", ip)
 						   }}/>
 
 				</Block>
@@ -194,7 +202,7 @@ export default function PageSansRdv({navigation}) {
 				<Text>{age} ans</Text>
 				<Text>{message}</Text>
 				<Text>{status}</Text>
-				<Button disabled={status} onPress={deleteVaccin && alertRdvPris }>Valider</Button>
+				<Button disabled={status} onPress={() => {deleteVaccin(ip) && alertRdvPris} }>Valider</Button>
 			</Block>
 
 		</Block>
