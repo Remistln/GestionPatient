@@ -131,6 +131,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 		let moisDate = new Date();
 
 		moisDate.setFullYear(anneeNombre, moisNombre, 1);
+		
 		let premierJourMois = moisDate.getDay();
 		if (premierJourMois === 1) {
 			return 8;
@@ -138,6 +139,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 		if (premierJourMois === 0) {
 			return 2;
 		}
+		
 		return 9 - premierJourMois;
 	}
 
@@ -158,6 +160,8 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 // affiche l'agenda complet d'un mois
 	function agenda(moisNombre, anneeNombre) {
 		let lundi = premierLundiMois(moisNombre, anneeNombre);
+		let lundiProchainMois = premierLundiMois(moisNombre + 1, anneeNombre);
+		if (lundiProchainMois === 8) {lundiProchainMois=1;}
 
 		let moisDate = new Date();
 		moisDate.setFullYear(anneeNombre, moisNombre + 1, 0);
@@ -165,6 +169,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 
 		if (moisNombre !== 1) {
 			if (lundi === 2 || (lundi === 3 && dernierJourMoisDate === 31)) {
+				
 				return (
 					<>
 						{legendeSemaine()}
@@ -188,7 +193,6 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 					</>
 				)
 			}
-			lundi = premierLundiMois(moisNombre + 1, anneeNombre);
 			return (
 				<>
 					{legendeSemaine()}
@@ -208,7 +212,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 					{buttonsDerniereSemaine(moisNombre, anneeNombre)}
 
 					<Block style={styles.jours}>
-						{buttonsSemaine(lundi, 7)}
+						{buttonsSemaine(lundiProchainMois, 7)}
 					</Block>
 				</>
 			)
