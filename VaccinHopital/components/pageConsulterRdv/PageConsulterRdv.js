@@ -33,6 +33,7 @@ export default function PageConsulterRdv({route}) {
 		})
 			.then(res => res.json())
 			.then(res => console.log(res))
+		navigation.navigate('AgendaVaccinations')
 	}
 
 	// reccupération des rendez-vous du jour
@@ -54,9 +55,6 @@ export default function PageConsulterRdv({route}) {
 	}
 
 	useEffect(() => {get_rdv(ip)},[]);
-	
-
-	const navigation = useNavigation()
 
 	return (
 		<SafeAreaView>
