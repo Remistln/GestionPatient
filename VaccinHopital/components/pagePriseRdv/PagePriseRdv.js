@@ -65,11 +65,11 @@ export default class PagePriseRdv extends Component
         let typeVaccins = [];
         for (const vaccin of this.listeVacins)
         {
-            let dateDePeremption = new Date(vaccin.datePeremption);
+            let dateDePeremption = vaccin.datePeremption;
             const dateChoisieSplit = this.dateChoisie.split('-');
-            let dateRdv = new Date(annee,mois-1,jour+1,0,0,0);
-            
-            if (dateDePeremption > dateRdv )
+            let dateRdv = new Date();
+            let Peremption = new Date(dateDePeremption)
+            if (Peremption > dateRdv )
             {
                 if (Pfizer && vaccin.type.label === "Pfizer")
                 {
@@ -86,7 +86,6 @@ export default class PagePriseRdv extends Component
                     typeVaccins.push({label: "Moderna", value: "Moderna"});
                     Moderna = false;
                 }
-
             };
         };
         return typeVaccins ;
@@ -166,20 +165,22 @@ export default class PagePriseRdv extends Component
         });
         // ip de l'ordinateur où se trouve le serveur
 
-
         //const ip ="172.20.10.9:8000"; //ip aya
-        const ip ="172.20.10.4:8000"; //ip aya
+        //const ip ="192.168.42.96:8000"; //ip aya
+        let ip = "10.60.44.36:8000" //remi a epsi
+
         //const ip ="192.168.42.96:8000";
         const urlRdv = 'http://' + ip + '/api/rendez_vouses';
 
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
         const urlVaccin = 'http://' + ip + iriVaccin;
 
-        const date = new Date(this.state.annee,this.state.mois - 1,this.state.jour,0,0,0);
-        
+        const date = new Date(this.state.annee,this.state.mois - 1,this.state.jour+1,0,0,0);
+
+        console.log(date)
         const Rdv = {
-            vaccin: iriVaccin, 
-            Date: date.toString(),
+            vaccin: iriVaccin,
+            Date: date,
             nom: this.state.nom,
             prenom: this.state.prenom,
             heure: this.state.heure,
@@ -194,8 +195,6 @@ export default class PagePriseRdv extends Component
                 await fetch(urlVaccin, {method: 'PATCH', headers: ApiHeadersPatch, body: JSON.stringify(vaccinAJour)})
                     .then(this.props.navigation.navigate('AgendaVaccinations'))
             );
-
-
 
     };
 
