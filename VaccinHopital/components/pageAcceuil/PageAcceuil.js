@@ -6,48 +6,44 @@ import { useNavigation , NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
 
-
+// Variable vérifiant que le compte n'est effectuée qu'une seule fois
 var countEnd = false ;
 
 
-
+// Page d'acceuil, elle affiche le nombre de vaccins qui périme demain ainsi que deux boutons
+// Un bouton permet l'accès à l'agenda
+// Un bouton permet l'accès à la page des vaccins sans Rendez-vous
 export default function PageAcceuil({navigation, route}) {
-/*
-A mettre en place :
--Class pageAcceuil
--Fonction async pr appel api
-- algo qui permet de compter le nombre de vaccins dans la table
-OU algo qui permet de vérifier si il y a au moin un vaccin
-- Afficher le nombre de vaccins dans la pageAcceuil
-* */
+
 const [nbVaccins, setNbVaccins] = useState(0);
 
 useEffect(() => {
+  // Test vérifiant que le compte n'est effectuée qu'une seule fois
   if (countEnd)
     {return}
+
+  // Préparation de l'appel API des vaccins
   var ApiHeaders = new Headers({
     'Content-Type': 'application/ld+json'
   })
 
   // ip de l'ordinateur où se trouve le serveur
-    //const ip ="192.168.42.96:8000";
-
-
-    //const ip ="172.20.10.9:8000"; //ip aya
-    const ip ="192.168.42.96:8000"; //ip aya
-    //const ip = "10.60.44.36:8000"; // ip remi a epsi
-    //const ip = "192.168.1.14:8000"; //ip remi chez lui
+  const ip ="192.168.42.96:8000"; // ip gaëtan
+  //const ip ="172.20.10.9:8000"; //ip aya
+  //const ip ="192.168.42.96:8000"; //ip aya
+  //const ip = "10.60.44.36:8000"; // ip remi a epsi
+  //const ip = "192.168.1.14:8000"; //ip remi chez lui
 
 
   //url
   const url = 'http://'+ ip +'/api/vaccins';
-  console.log(url)
 
+  // Appel API des vaccins
   fetch (url, {method : 'GET', headers : ApiHeaders})
     .then(response => response.json())
+    // Décompte des vaccins qui périment demain et alerte en cas de stock bas : moins de 20 vaccins disponibles
     .then (data =>
       {
-		  console.log(data)
         var dateAuj = new Date();
         dateAuj.setDate(dateAuj.getDate() + 1);
         let countSansRdv =0;
@@ -78,12 +74,13 @@ useEffect(() => {
         }
     })
   });
-//Bonjour {route.params.nom}! si on a le temps, mettre en place ça
+
+  //Affichage
     return (
       <Block  style = {styles.block}>
 
             <Block style = {styles.titre} >
-              <Text style = {styles.TextTitre} h3>Bonjour!</Text>
+              <Text style = {styles.TextTitre} h3>Bonjour {route.parms.nom}!</Text>
             </Block>
 
             <Block style = {styles.gererRDV}  >
@@ -102,15 +99,13 @@ useEffect(() => {
     </Block>
   );
 }
-
+// Style de l'affichage
 const styles = StyleSheet.create({
-    block :
-        {
-            flexDirection: "column",
-            flex: 5,
-            padding: 50,
-
-        },
+    block : {
+        flexDirection: "column",
+        flex: 5,
+        padding: 50,
+    },
     titre: {
         justifyContent: 'space-evenly',
         flex: 3,
@@ -135,10 +130,6 @@ const styles = StyleSheet.create({
     },
     button : {
         marginTop : '7%',
-
-
     }
-
-
   });
   

@@ -17,57 +17,39 @@ export default class PageLogin extends Component {
         }
     };
 
+    // Vérification si le login correspond à une secrétaire de l'API et si oui, ouvre à la page d'acceuil
     async connect()
     {
-        /*
-            Plan:
-            mettre a jour ma bdd CHECK
-            mettre a jour fakker pour hasher les mdps CHECK
-            coder un appel API pour obtenir le secretaire CHECK
-            verifier le mdp CHECK
-            passer à la page Acceuil si mdp correct
-                attention debut d'architecture d'app nécessaire
-        */
-
-        // écrire une fonction qui ignore la casse de l'e-mail
-
+        // Préparation de l'appel API des secretaires
         var ApiHeaders = new Headers({
             'Content-Type': 'application/ld+json'
         });
 
         // ip de l'ordinateur où se trouve le serveur
-
-
         //const ip ="172.20.10.4:8000"; //ip aya
         // const ip ="172.20.10.9:8000"; //ip aya
         //const ip = "192.168.1.14:8000"; //ip remi
         //const ip = "10.60.44.36:8000"; // ip remi a epsi
-
-        const ip ="192.168.42.96:8000"; //ip aya
-        //const ip ="172.20.10.9:8000"; //ip aya
-        // const ip = "192.168.1.14:8000"; //ip remi
-
-        //const ip ="192.168.42.96:8000";
-
-
+        const ip ="192.168.42.96:8000"; //ip gaëtan
 
         const url = 'http://' + ip + '/api/secretaires';
+
+        // Appel API des secretaires
         await fetch(url, { method: 'GET', headers: ApiHeaders,}) 
             .then(response => response.json())
             .then((data) => {
+                // pour chaque secretaire, vérification si le login correspond
                 for (const secretaire of data['hydra:member'])
                 {
                     if (secretaire.identifiant !== this.state.identifiant)
                     {
-                        console.log('mot de passe non valide');
                         continue;
                     }
 
+                    //vérification du mot de passe qui est crypté en bcrypt
                     if( bcrypt.compareSync(this.state.mdp, secretaire.mdp) )
                     {
                         this.props.navigation.navigate('PageAcceuil', {nom: secretaire.prenom});
-                        console.log('MDP OK');
-                        
                     }
                 }
             })

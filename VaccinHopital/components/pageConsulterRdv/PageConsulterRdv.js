@@ -4,10 +4,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect, useState} from "react";
 import {useNavigation} from "@react-navigation/native";
 
-
+// Page Consulter les rendez-vous, elle affiche les rendez du jours
+// Un bouton ouvre la page de chargement
 export default function PageConsulterRdv({route}) {
 
-	//const choosenDate = route.params.choosenDate;
 	const choosenDate = route.params.choosenDate;
 	const annee = route.params.annee;
 	const mois = route.params.mois;
@@ -16,16 +16,15 @@ export default function PageConsulterRdv({route}) {
 
 	const [rdvList, letRdvList] = useState([]);
 
-	//Ip de l'ordi
-	//const ip =  "192.168.1.14:8000"; //remi chez lui
-
-	//const ip = "10.60.44.36:8000"; // ip remi a epsi
-	// const ip = "172.20.10.9:8000"; //ip aya
-
-	//const ip = "172.20.10.9:8000"; //ip aya
-	const ip ="192.168.42.96:8000"; //ip aya
+  	// ip de l'ordinateur où se trouve le serveur
+	//const ip = "10.60.44.36:8000" //remi a epsi
+	//const ip = "192.168.1.14:8000" //remi chez lui
+	const ip = "192.168.42.96:8000" // ip gaëtan
+	//const ip ="172.20.10.9:8000"; //ip aya
+	//const ip ="192.168.42.96:8000"; //ip aya
 
 
+	// Suppression d'un rendez-vous dans l'API
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
 
@@ -36,10 +35,9 @@ export default function PageConsulterRdv({route}) {
 			.then(res => console.log(res))
 	}
 
-	function get_rdv(ip) {
-
-
-
+	// reccupération des rendez-vous du jour
+	function get_rdv(ip) 
+	{
 		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
 
 		fetch(requete, {
@@ -49,11 +47,9 @@ export default function PageConsulterRdv({route}) {
 		})
 			.then(response => {
 				return response.json();
-			}).then(res => {
-
+			})
+			.then(res => {
 				letRdvList(res);
-
-
 		}).catch(error => console.log(error))
 	}
 
@@ -84,42 +80,30 @@ export default function PageConsulterRdv({route}) {
 									title={cardTitle}
 									caption={rdv.vaccin.type.label}
 								>
-									{/*<Button color="warning" style={styles.btnCard} onPress={() => {navigation.navigate('SupprimerRdv', {rdvid: rdv.id})}}>Annuler le RDV</Button>*/}
+									{}
 									<Button color="warning" style={styles.btnCard} onPress= {() => {delete_rdv(ip, rdv.id)}}>Annuler le RDV</Button>
-
 								</Card>
-
 							</Block>
 						)
-
 					})}
-
 				</ScrollView>
 			</Block>
-
 		</SafeAreaView>
-
-
 	);
 }
 
 const styles = StyleSheet.create({
 	block:
 		{
-			//backgroundColor: "yellow" ,
 			flexDirection: "column",
 			marginTop: 70,
 			width: 415,
 			height: 400,
-
-
 		},
 	titre:
 		{
 			textAlign: "center",
-			//backgroundColor: "green" ,
 			height : "10%"
-
 		},
 	TextTitre:
 		{
@@ -129,22 +113,17 @@ const styles = StyleSheet.create({
 			textAlign: "center",
 			zIndex: 0,
 			flex : 1,
-			//backgroundColor: "green" ,
 		},
 	cardBlock:
 		{
-			//backgroundColor : "blue",
 			flex: 2,
 			height: 150,
 			zIndex: 0,
 			marginTop: 10,
 			fontSize: 20
-
-
 		},
 	card:
 		{
-			//backgroundColor : "yellow",
 			alignItems: "center",
 			height: 10,
 			marginLeft: 70,
@@ -155,7 +134,6 @@ const styles = StyleSheet.create({
 		},
 	btnCard:
 		{
-
 			width: 100,
 			height: 40
 		},
@@ -165,14 +143,10 @@ const styles = StyleSheet.create({
 			justifyContent: 'space-evenly',
 			alignItems: "center",
 			marginTop: 3,
-
-
 		},
 	button:
 		{
-
 			justifyContent: 'space-evenly',
 			alignItems: "center",
-
 		}
 });

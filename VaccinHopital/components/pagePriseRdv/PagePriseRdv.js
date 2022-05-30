@@ -11,7 +11,9 @@ let Pfizer = true;
 let Astra = true;
 let Moderna = true;
 
-
+// Page de prise de rendez-vous
+// Elle affiche un formulaire a remplir afin de prendre un rendez-vous
+// Elle selectionne les type de vacins disponible en fonction des vaccins disponible dans l'API ainsi que l'age du patient
 export default class PagePriseRdv extends Component 
 {
     constructor({navigation, route})
@@ -59,6 +61,7 @@ export default class PagePriseRdv extends Component
 
     };
 
+    // Selectionne les type de vaccins disponibles en fonction des vaccins de l'API
     vaccinsDisponibles(jour, mois, annee)
     {
 
@@ -66,7 +69,6 @@ export default class PagePriseRdv extends Component
         for (const vaccin of this.listeVacins)
         {
             let dateDePeremption = new Date(vaccin.datePeremption);
-            const dateChoisieSplit = this.dateChoisie.split('-');
             let dateRdv = new Date(annee,mois-1,jour+1,0,0,0);
             
             if (dateDePeremption > dateRdv )
@@ -92,6 +94,7 @@ export default class PagePriseRdv extends Component
         return typeVaccins ;
     };
 
+    // Filtre les type de vaccins disponible en fontion de l'age
     typeVaccinParAge(date)
     {
         const naissance = date.split('-');
@@ -108,6 +111,7 @@ export default class PagePriseRdv extends Component
         
     };
 
+    // retourne la date d'aujourd'hui sous un format jj-mm-yyyy ou j-mm-yyyy
     formatToday()
     {
         let aujourdhuis = new Date();
@@ -121,6 +125,7 @@ export default class PagePriseRdv extends Component
         return placeholderDate;
     };
 
+    // sauvergarde un des vaccins du type selectionnée dans le state "vaccin"
     loadVaccin(typeVaccin)
     {
         for (const vaccin of this.listeVacins)
@@ -133,6 +138,7 @@ export default class PagePriseRdv extends Component
         };
     }
 
+    // Vérifie si le formulaire a été entièrement remplit
     validation()
     {
         return (this.state.nom !== "" && this.state.prenom !== "" && this.state.heure !== "la première heure" && this.state.vaccin !== "la picure" && this.state.dateNaissance !== this.placeholderDate);
@@ -156,6 +162,7 @@ export default class PagePriseRdv extends Component
             ]
         );
 
+    // enregistre le rendez-vous dans l'API
     async enregistrement()
     {
         var ApiHeadersPost = new Headers({
@@ -164,13 +171,14 @@ export default class PagePriseRdv extends Component
         var ApiHeadersPatch = new Headers({
             'Content-Type': 'application/merge-patch+json'
         });
+
         // ip de l'ordinateur où se trouve le serveur
-
-
+        //const ip = "10.60.44.36:8000" //remi a epsi
+        //const ip = "192.168.1.14:8000" //remi chez lui
+        const ip = "192.168.42.96:8000" // ip gaëtan
         //const ip ="172.20.10.9:8000"; //ip aya
-        const ip ="192.168.42.96:8000"; //ip aya
-
-        //const ip ="192.168.42.96:8000";
+        //const ip ="192.168.42.96:8000"; //ip aya
+        
         const urlRdv = 'http://' + ip + '/api/rendez_vouses';
 
         const iriVaccin = "/api/vaccins/" + this.state.vaccin.toString();
@@ -195,13 +203,9 @@ export default class PagePriseRdv extends Component
                 await fetch(urlVaccin, {method: 'PATCH', headers: ApiHeadersPatch, body: JSON.stringify(vaccinAJour)})
                     .then(this.props.navigation.navigate('AgendaVaccinations'))
             );
-
-
-
     };
 
-
-
+    // Affichage
     render()
     {
     return(
@@ -330,6 +334,7 @@ export default class PagePriseRdv extends Component
     };
 };
 
+// Style de l'affichage
 const styles = StyleSheet.create({
     block :
     {
@@ -339,10 +344,8 @@ const styles = StyleSheet.create({
         marginLeft: 35,
         marginRight: 35,
         marginTop : 20,
-
-
-
     },
+
     select :
     {
         color: 'black',
@@ -351,18 +354,15 @@ const styles = StyleSheet.create({
     input :
     {
         height: 40,
-
     },
 
     boutonDate:
     {
         width: 300,
-
     },
     date :
     {
         textAlign : "right",
-
     },
     centrer :
     {
@@ -372,20 +372,18 @@ const styles = StyleSheet.create({
     },
     valider  :
         {
-
             alignItems : "center",
             marginTop : "12%",
-
         },
     commun :
         {
             marginTop : "10%",
-            //backgroundColor : "green",
        }
 
 
 });
 
+// Style particulier des picker en fonction des OS
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
       fontSize: 16,

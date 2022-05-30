@@ -2,9 +2,9 @@ import React from 'react';
 import {Block} from 'galio-framework';
 import {ActivityIndicator, StyleSheet } from 'react-native';
 
+// Page de chargement qui réccupère la liste des vaccins et ouvre la page de prise de rendez-vous
 export default function PageChargementRdv({navigation, route})
 {
-    //route.params reccupérer la date de consulter
     const annee = route.params.annee;
     const mois = route.params.mois;
     const jour = route.params.jour ;
@@ -17,14 +17,11 @@ export default function PageChargementRdv({navigation, route})
         });
 
         // ip de l'ordinateur où se trouve le serveur
-        //const ip ="192.168.42.96:8000";
-
-        // const ip ="172.20.10.9:8000"; //ip aya
-        //const ip =  "192.168.1.14:8000"; //remi chez lui
-        //const ip = "10.60.44.36"; // ip remi a epsi
-
+        //const ip = "10.60.44.36:8000" //remi a epsi
+        //const ip = "192.168.1.14:8000" //remi chez lui
+        const ip = "192.168.42.96:8000" // ip gaëtan
         //const ip ="172.20.10.9:8000"; //ip aya
-        const ip ="192.168.42.96:8000"; //ip aya
+        //const ip ="192.168.42.96:8000"; //ip aya
 
 
         const url = 'http://' + ip + '/api/vaccins';
@@ -44,10 +41,6 @@ export default function PageChargementRdv({navigation, route})
             })
         .then( vaccinListe => 
             {
-
-                //const jour= jour;
-                //const mois= mois;
-                //const annee= annee;
                 navigation.navigate('PagePriseRdv', {choisieDate: dateChoisie, vaccinListe: vaccinListe, jour: jour, mois: mois, annee: annee });
             });
 

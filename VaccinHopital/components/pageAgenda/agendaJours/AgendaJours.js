@@ -142,7 +142,7 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 		
 		return 9 - premierJourMois;
 	}
-
+// affiche la légendes des différants jours de la semaine
 	function legendeSemaine() {
 		return (
 			<Block style={styles.jours}>
@@ -166,7 +166,11 @@ export default function AgendaJours({navigation,  moisInitial, anneeInitiale, ha
 		let moisDate = new Date();
 		moisDate.setFullYear(anneeNombre, moisNombre + 1, 0);
 		const dernierJourMoisDate = moisDate.getDate();
-
+		
+		// Il y a trois façons d'afficher le mois
+		// Celle pour février
+		// Celle où il n'y a pas de jour du mois dans la dernière ligne
+		// Celle où il y a des jours du mois dans la dernière ligne
 		if (moisNombre !== 1) {
 			if (lundi === 2 || (lundi === 3 && dernierJourMoisDate === 31)) {
 				
@@ -251,13 +255,11 @@ const styles = StyleSheet.create({
 			borderColor: "black",
 			borderWidth: 5,
 			padding: 15,
-			//backgroundColor : "red"
 		},
 
 	agenda:
 		{
 			flex: 4,
-			//backgroundColor : "green"
 		},
 
 	entete:
@@ -268,8 +270,6 @@ const styles = StyleSheet.create({
 			alignItems: "center",
 			borderColor: "black",
 			borderWidth: 4,
-			//backgroundColor : "yellow"
-
 		},
 
 	jours:
@@ -278,7 +278,6 @@ const styles = StyleSheet.create({
 			justifyContent: 'space-evenly',
 			flexDirection: 'row',
 			alignItems: "center",
-
 		},
 
 	jour:

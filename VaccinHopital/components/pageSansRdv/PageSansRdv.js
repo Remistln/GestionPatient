@@ -3,7 +3,9 @@ import {Alert, StyleSheet, View} from "react-native";
 import DatePicker from "react-native-datepicker";
 import {useEffect, useState} from "react";
 
-
+// Page d'enregistrement des vaccinations sans rendez-vous
+// Elle affiche la selection de la date de naissance, la selection du type de vaccin ainsi que le nombre de vaccin de ce type disponible (et périmant demain)
+// Un bouton permet de valider la selection du vaccin, le supprime dans l'API et ouvre la page d'acceuil
 export default function PageSansRdv({navigation}) {
 	const [birthDate, setBirthDate] = useState("");
 	const [age, setAge] = useState("");
@@ -13,19 +15,17 @@ export default function PageSansRdv({navigation}) {
 	const [status, setStatus] = useState(false)
 	const [deleteItem, setDeleteItem] = useState()
 
-	let ip = "10.60.44.36:8000" //remi a epsi
+  	// ip de l'ordinateur où se trouve le serveur
+	//const ip = "10.60.44.36:8000" //remi a epsi
+	//const ip = "192.168.1.14:8000" //remi chez lui
+	const ip = "192.168.42.96:8000" // ip gaëtan
+	//const ip ="172.20.10.9:8000"; //ip aya
+	//const ip ="192.168.42.96:8000"; //ip aya
 
+	// Recuppération de la liste des vaccins qui périme demain
 	useEffect(() => {
-
-		//let ip = "10.60.44.36:8000" //remi a epsi
-		//let ip = "192.168.1.14:8000" //remi chez lui
-		//let ip = "127.0.0.1:8000"
-		let ip = "192.168.42.96:8000" // ip aya
-		//let ip = "192.168.42.96:8000"
-
-
 		setStatus(true)
-
+		// définition de demain
 		let datemtn = new Date
 		let formatted_date = datemtn.getFullYear() + "-" + (datemtn.getMonth() + 1) + "-" + datemtn.getDate()
 
@@ -36,15 +36,9 @@ export default function PageSansRdv({navigation}) {
 		getVaccinPeremtion(formatted_tomorrow, ip);
 	}, []) ;
 
-
+	
 	async function getVaccinPeremtion(formatted_tomorrow, ip){
-
-		//A changer quand on aura des vaccins en temps reel
-		// let requete = "http://127.0.0.1:8000/api/vaccins?page=1&datePeremption=" + formatted_tomorrow
-
-		//let requete = "http://192.168.1.14:8000/api/vaccins?datePeremption=" + formatted_tomorrow
-
-
+		// Appel API des vaccins qui périment demain
 		let requete = "http://" + ip + "/api/vaccins?datePeremption=" + formatted_tomorrow
 
 		fetch(requete, {
@@ -59,6 +53,7 @@ export default function PageSansRdv({navigation}) {
 		}).catch(error => console.log(error))
 	}
 
+	// Vérification qu'une date de naissance a été choisie
 	function ckeckInfo(chosenVaccin, ip) {
 
 		if (birthDate !== "") {
@@ -68,15 +63,12 @@ export default function PageSansRdv({navigation}) {
 		}
 	}
 
-
+	// Appel API du type de vaccin choisit
 	async function getTypeVaccin(chosenVaccin, ip) {
 
 		fetch("http://" + ip + "/api/type_vaccins?label=" + chosenVaccin, {
-
-			headers: {
-				'Accept': 'application/json'
-			}
-		})
+				headers: { 'Accept': 'application/json' }
+				})
 			.then(response => {
 				return response.json();
 			}).then(res => {
@@ -86,6 +78,7 @@ export default function PageSansRdv({navigation}) {
 
 	}
 
+	// Vérification que le vaccin choisi est autorisé pour cette age
 	function checkAge(Vaccin) {
 		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
 			getNumberVaccin(Vaccin.label, ip)
@@ -95,11 +88,13 @@ export default function PageSansRdv({navigation}) {
 		}
 	}
 
+	// Affichage du nombre de vaccin disponible de ce type
 	function getNumberVaccin(chosenVaccin){
 		let numberVaccinsLeft = 0
 
 		vaccinPeremptionList.map(item => {
-			if (item.type.label === chosenVaccin && item.reserve === false){
+			if (item.type.label === chosenVaccin && item.reserve === false)
+			{
 				numberVaccinsLeft++
 				setDeleteItem(item.id)
 			}
@@ -114,16 +109,16 @@ export default function PageSansRdv({navigation}) {
 		}
 	}
 
-
+	// Supprime un vaccin dans l'API
 	async function deleteVaccin(ip){
 	    fetch('http://' + ip + '/api/vaccins/' + deleteItem, {
-			method: 'DELETE',
-		}).then(response => {
-			response.json()
-		    alertRdvPris()
-		})
+				method: 'DELETE',
+			})
+			.then(response => {
+				response.json()
+		    	alertRdvPris()
+			})
 	}
-
 
 
 	let  alertRdvPris = () =>
@@ -135,6 +130,7 @@ export default function PageSansRdv({navigation}) {
 			]
 		);
 
+	// Affichage
 	return (
 		<Block style={styles.block}>
 			<Block flex row={false}>
@@ -200,14 +196,14 @@ export default function PageSansRdv({navigation}) {
 	);
 }
 
+// Style de l'affichage
 const styles = StyleSheet.create({
 
-	block:
-		{
-			flexDirection: "column",
-			flex: 5,
-			padding: 50,
-		},
+	block:{
+		flexDirection: "column",
+		flex: 5,
+		padding: 50,
+	},
 	titre: {
 		justifyContent: 'space-evenly',
 		textAlign: "center",
