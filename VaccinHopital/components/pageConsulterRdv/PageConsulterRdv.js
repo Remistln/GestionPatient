@@ -19,11 +19,11 @@ export default function PageConsulterRdv({route}) {
 	//Ip de l'ordi
 	//const ip =  "192.168.1.14:8000"; //remi chez lui
 
-	//const ip = "10.60.44.36:8000"; // ip remi a epsi
+	const ip = "10.60.44.36:8000"; // ip remi a epsi
 	// const ip = "172.20.10.9:8000"; //ip aya
 
 	//const ip = "172.20.10.9:8000"; //ip aya
-	const ip ="192.168.42.96:8000"; //ip aya
+	//const ip ="192.168.42.96:8000"; //ip aya
 
 
 	function delete_rdv(ip, id){
