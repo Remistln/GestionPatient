@@ -25,6 +25,8 @@ export default function PageConsulterRdv({route}) {
 	//const ip = "172.20.10.9:8000"; //ip aya
 	//const ip ="192.168.42.96:8000"; //ip aya
 
+	const navigation = useNavigation()
+
 
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
@@ -34,6 +36,7 @@ export default function PageConsulterRdv({route}) {
 		})
 			.then(res => res.json())
 			.then(res => console.log(res))
+		navigation.navigate('AgendaVaccinations')
 	}
 
 	function get_rdv(ip) {
@@ -58,9 +61,6 @@ export default function PageConsulterRdv({route}) {
 	}
 
 	useEffect(() => {get_rdv(ip)},[]);
-	
-
-	const navigation = useNavigation()
 
 	return (
 		<SafeAreaView>
