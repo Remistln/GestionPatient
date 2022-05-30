@@ -16,7 +16,7 @@ export default function PageConsulterRdv({route}) {
 
 	//Ip de l'ordi
 	//const ip =  "192.168.1.14:8000"; //remi chez lui
-	const ip = "10.60.44.36"; // ip remi a epsi
+	const ip = "10.60.44.36:8000"; // ip remi a epsi
 	// const ip = "172.20.10.9:8000"; //ip aya
 
 	function delete_rdv(ip, id){
@@ -44,10 +44,6 @@ export default function PageConsulterRdv({route}) {
 				return response.json();
 			}).then(res => {
 			letRdvList(res)
-
-			//console.log("le resultat")
-			//console.log(rdvList)
-			//console.log(jour)
 
 		}).catch(error => console.log(error))
 	}
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
 			flexDirection: "column",
 			marginTop: 70,
 			width: 415,
-			height: 700,
+			height: 400,
 
 
 		},

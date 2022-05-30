@@ -42,8 +42,6 @@ export default function PageSansRdv({navigation}) {
 		//A changer quand on aura des vaccins en temps reel
 
 		let requete = "http://" + ip + "/api/vaccins?datePeremption=" + formatted_tomorrow
-		console.log(formatted_tomorrow)
-		console.log(requete)
 
 		fetch(requete, {
 			headers: {
@@ -54,26 +52,19 @@ export default function PageSansRdv({navigation}) {
 				return response.json();
 			}).then(res => {
 				letVaccinPeremptionList(res)
-
-			console.log("le resultat")
-			console.log(vaccinPeremptionList)
 		}).catch(error => console.log(error))
 	}
 
 	function ckeckInfo(chosenVaccin, ip) {
 
 		if (birthDate !== "") {
-			// console.log("http://192.168.1.14:8000/api/type_vaccins?label=" + chosenVaccin)
-			console.log("une date")
 			getTypeVaccin(chosenVaccin, ip)
 		}else{
-			console.log("pas de date")
 			setStatus(true)
 		}
 	}
 
 	async function getTypeVaccin(chosenVaccin, ip) {
-		console.log("je suis dans typevaccin")
 
 		fetch("http://" + ip + "/api/type_vaccins?label=" + chosenVaccin, {
 
@@ -93,7 +84,6 @@ export default function PageSansRdv({navigation}) {
 	function checkAge(Vaccin) {
 		if (age >= Vaccin.ageMin && age <= Vaccin.ageMax) {
 			getNumberVaccin(Vaccin.label, ip)
-			console.log(Vaccin.label)
 		} else {
 			setMessage("Vous n'avez pas l'age pour utiliser ce vaccin (Entre " + Vaccin.ageMin + " et " + Vaccin.ageMax + " ans)")
 			setStatus(true)
@@ -106,9 +96,7 @@ export default function PageSansRdv({navigation}) {
 		vaccinPeremptionList.map(item => {
 			if (item.type.label === chosenVaccin && item.reserve === false){
 				numberVaccinsLeft++
-				// console.log(item)
 				setDeleteItem(item.id)
-				console.log(item.id)
 			}
 		} )
 
@@ -122,11 +110,11 @@ export default function PageSansRdv({navigation}) {
 	}
 
 	async function deleteVaccin(ip){
-		console.log("suppression du " + deleteItem)
 	    fetch('http://' + ip + '/api/vaccins/' + deleteItem, {
 			method: 'DELETE',
 		}).then(response => {
 			response.json()
+		    alertRdvPris()
 		})
 	}
 
@@ -172,7 +160,6 @@ export default function PageSansRdv({navigation}) {
 						onDateChange={(date) => {
 							setBirthDate(date);
 							setAge(today.getFullYear() - new Date(date).getFullYear())
-							console.log(today.getFullYear().toString() - new Date(date).getFullYear().toString())
 						}}
 					/>
 				</Block>
@@ -196,10 +183,9 @@ export default function PageSansRdv({navigation}) {
 			</Block>
 
 			<Block style={styles.valider}>
-				<Text>{age} ans</Text>
 				<Text>{message}</Text>
 				<Text>{status}</Text>
-				<Button disabled={status} onPress={() => {deleteVaccin(ip) && alertRdvPris} }>Valider</Button>
+				<Button disabled={status} onPress={() => {deleteVaccin(ip)}}>Valider</Button>
 			</Block>
 
 		</Block>
