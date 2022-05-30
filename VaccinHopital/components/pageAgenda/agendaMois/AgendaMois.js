@@ -15,18 +15,22 @@ export default function AgendaMois(props) {
         <Block style = {styles.block}>
             <Block style = {styles.entete}>
                 <Button 
-                        onlyIcon icon="left" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff"  style={{ width: 40, height: 40 }}
-                        onPress= {() => {
-                            setAnnee(annee - 1);
-                        }}
-                        ></Button>
+					round
+					color="black"
+                    style={{ width: 40, height: 40 }}
+                    onPress= {() => {
+                        setAnnee(annee - 1);
+                    }}
+                    ><Text h3 color='white' adjustsFontSizeToFit >{"<"}</Text></Button>
                     <Text h4>{annee}</Text>
-                    <Button 
-                        onlyIcon icon="right" iconFamily="antdesign" iconSize={30} color="black" iconColor="#fff" style={{ width: 40, height: 40 }}
-                        onPress= {() => {
-                            setAnnee(annee + 1);
-                        }}
-                    ></Button>
+                <Button 
+					round
+					color="black" 
+                    style={{ width: 40, height: 40 }}
+                    onPress= {() => {
+                        setAnnee(annee + 1);
+                    }}
+                    ><Text h3 color='white' adjustsFontSizeToFit >{">"}</Text></Button>
             </Block>
             <Block style = {styles.calendrier}>
                 <Block style = {styles.troisMois}>
