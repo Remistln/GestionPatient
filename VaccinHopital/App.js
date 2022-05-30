@@ -18,7 +18,7 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="PageLogin">
+			<Stack.Navigator initialRouteName="AgendaVaccinations">
 				<Stack.Screen name="PageLogin" component={PageLogin}/>
 				<Stack.Screen name="PageAcceuil" component={PageAcceuil}/>
 				<Stack.Screen name="PageSansRdv" component={PageSansRdv}/>

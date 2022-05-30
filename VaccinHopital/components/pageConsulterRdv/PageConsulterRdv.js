@@ -11,7 +11,7 @@ export default function PageConsulterRdv({route}) {
 	const choosenDate = route.params.choosenDate;
 	const annee = route.params.annee;
 	const mois = route.params.mois;
-	const jour = route.params.jour ;
+	const jour = route.params.jour;
 
 
 	const [rdvList, letRdvList] = useState([]);
@@ -30,7 +30,6 @@ export default function PageConsulterRdv({route}) {
 	function get_rdv(ip) {
 
 
-
 		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
 
 		fetch(requete, {
@@ -42,45 +41,64 @@ export default function PageConsulterRdv({route}) {
 				return response.json();
 			}).then(res => {
 
-				letRdvList(res);
+			letRdvList(res);
 
 
 		}).catch(error => console.log(error))
 	}
 
-	function delete_rdv(ip, id){
+	function delete_rdv(ip, id) {
 
-		let idVaccin = 0
+		let vaccin = {}
+
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
 		fetch(requete, {
 			headers: {
-				'Accept' : 'application/json'
+				'Accept': 'application/json'
 			}
 		})
-			.then(response => {return response.json();})
-			.then(res => {idVaccin = res.vaccin.id})
+			.then(response => {
+				return response.json();
+			})
+			.then(res => {
+				vaccin = res.vaccin
+			})
 			.then(() => {
 				let requete = "http://" + ip + "/api/rendez_vouses/" + id
 
 				fetch(requete, {
-					method : 'DELETE',
+					method: 'DELETE',
 				})
 					.then(res => res.json())
-				updateVaccin(ip, idVaccin)
-				navigation.navigate('AgendaVaccinations')
+				updateVaccin(ip, vaccin)
 			})
 
 
 	}
 
-	function updateVaccin(ip, idVaccin){
-		let requete = "http://" + ip + "/api/vaccins/" + idVaccin
+	function updateVaccin(ip, vaccin) {
+		let requete = "http://" + ip + "/api/vaccins/" + vaccin.id
 
-		console.log(requete)
+		const reserveAJour = {
+			reserve: false
+		}
+
+		var ApiHeadersPatch = new Headers({
+			'Content-Type': 'application/merge-patch+json'
+		});
+
+		fetch(requete, {
+			method: 'PATCH',
+			headers: ApiHeadersPatch,
+			body: JSON.stringify(reserveAJour)
+		}).then(
+			() => navigation.navigate('AgendaVaccinations'))
 
 	}
 
-	useEffect(() => {get_rdv(ip)},[]);
+	useEffect(() => {
+		get_rdv(ip)
+	}, []);
 
 	return (
 		<SafeAreaView>
@@ -89,7 +107,12 @@ export default function PageConsulterRdv({route}) {
 			</Block>
 			<Block style={styles.btnBlock}>
 				<Button round style={styles.button} color="primary"
-						onPress={() => navigation.navigate('PageChargementRdv', {choosenDate : choosenDate , jour : jour, mois: mois, annee: annee}) }>Ajouter un RDV</Button>
+				        onPress={() => navigation.navigate('PageChargementRdv', {
+					        choosenDate: choosenDate,
+					        jour: jour,
+					        mois: mois,
+					        annee: annee
+				        })}>Ajouter un RDV</Button>
 			</Block>
 			<Block style={styles.block}>
 				<ScrollView>
@@ -105,7 +128,9 @@ export default function PageConsulterRdv({route}) {
 									caption={rdv.vaccin.type.label}
 								>
 									{/*<Button color="warning" style={styles.btnCard} onPress={() => {navigation.navigate('SupprimerRdv', {rdvid: rdv.id})}}>Annuler le RDV</Button>*/}
-									<Button color="warning" style={styles.btnCard} onPress= {() => {delete_rdv(ip, rdv.id)}}>Annuler le RDV</Button>
+									<Button color="warning" style={styles.btnCard} onPress={() => {
+										delete_rdv(ip, rdv.id)
+									}}>Annuler le RDV</Button>
 
 								</Card>
 
@@ -138,7 +163,7 @@ const styles = StyleSheet.create({
 		{
 			textAlign: "center",
 			//backgroundColor: "green" ,
-			height : "10%"
+			height: "10%"
 
 		},
 	TextTitre:
@@ -148,7 +173,7 @@ const styles = StyleSheet.create({
 			height: 60,
 			textAlign: "center",
 			zIndex: 0,
-			flex : 1,
+			flex: 1,
 			//backgroundColor: "green" ,
 		},
 	cardBlock:
