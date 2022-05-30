@@ -31,7 +31,7 @@ class RendezVous
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Vaccin::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Vaccin::class, cascade={"persist"})
      * @Groups({"rdv_read"})
      */
     private $vaccin;
