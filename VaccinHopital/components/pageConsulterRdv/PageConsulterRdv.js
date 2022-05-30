@@ -7,16 +7,22 @@ import {useNavigation} from "@react-navigation/native";
 
 export default function PageConsulterRdv({route}) {
 
-	const { choosenDate} = route.params;
+	const {choosenDate, annee, jour, mois} = route.params;
+	/*
 	const annee = route.params.annee;
 	const mois = route.params.mois;
 	const jour = route.params.jour ;
-
+	*/
+	console.log('Date Choisie : '+route.params.choosenDate);
+	console.log('Annee : '+route.params.annee);
+	console.log('Jour : '+route.params.jour);
+	console.log('Mois : ' + route.params.mois);
 	const [rdvList, letRdvList] = useState([]);
 
 	//Ip de l'ordi
 	//const ip =  "192.168.1.14:8000"; //remi chez lui
-	const ip = "172.20.10.9:8000"; //ip aya
+	//const ip = "172.20.10.9:8000"; //ip aya
+	const ip ="172.20.10.4:8000"; //ip aya
 
 	function delete_rdv(ip, id){
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
@@ -63,6 +69,10 @@ export default function PageConsulterRdv({route}) {
 			<Block style={styles.titre}>
 				<Text style={styles.TextTitre} h5>Rendez-vous le {choosenDate}</Text>
 			</Block>
+			<Block style={styles.btnBlock}>
+				<Button round style={styles.button} color="primary"
+						onPress={() => navigation.navigate('PageChargementRdv', {choosenDate : choosenDate , jour : jour, mois: mois, annee: annee}) }>Ajouter un RDV</Button>
+			</Block>
 			<Block style={styles.block}>
 				<ScrollView>
 					{rdvList.map((rdv) => {
@@ -88,10 +98,7 @@ export default function PageConsulterRdv({route}) {
 
 				</ScrollView>
 			</Block>
-			<Block style={styles.btnBlock}>
-				<Button round style={styles.button} color="primary"
-				        onPress={() => navigation.navigate('PageChargementRdv', {choosenDate : choosenDate, jour : jour, mois: mois, annee: annee}) }>Ajouter un RDV</Button>
-			</Block>
+
 		</SafeAreaView>
 
 
@@ -101,6 +108,7 @@ export default function PageConsulterRdv({route}) {
 const styles = StyleSheet.create({
 	block:
 		{
+			//backgroundColor: "yellow" ,
 			flexDirection: "column",
 			marginTop: 70,
 			width: 415,
@@ -110,9 +118,9 @@ const styles = StyleSheet.create({
 		},
 	titre:
 		{
-			flex: 1,
 			textAlign: "center",
-			//  backgroundColor: "yellow" ,
+			//backgroundColor: "green" ,
+			height : "10%"
 
 		},
 	TextTitre:
@@ -122,6 +130,7 @@ const styles = StyleSheet.create({
 			height: 60,
 			textAlign: "center",
 			zIndex: 0,
+			flex : 1,
 			//backgroundColor: "green" ,
 		},
 	cardBlock:
@@ -163,6 +172,7 @@ const styles = StyleSheet.create({
 		},
 	button:
 		{
+
 			justifyContent: 'space-evenly',
 			alignItems: "center",
 
