@@ -2,6 +2,9 @@ import {Text, Block, Button, Icon } from 'galio-framework';
 import { StyleSheet } from "react-native";
 import React, { useState } from 'react';
 
+// Affiche les mois d'une annéee
+// Passe d'une année à l'autre
+// Cliquer sur un mois le selectionne dans l'agenda des jours et ouvre l'agenda des jours
 export default function AgendaMois(props) {
     
     const [annee, setAnnee] = useState(props.anneeInitiale);
@@ -50,7 +53,7 @@ export default function AgendaMois(props) {
     );
 };
 
-//ici travail de la magie covidée
+// Affiche les mois
 function calendrier(annee, moisListe, nombre, handler)
 {
     const toutMoisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -100,7 +103,6 @@ const styles = StyleSheet.create({
         alignItems:"center",
         borderColor: "black",
         borderWidth: 4,
-
     },
     
     troisMois :

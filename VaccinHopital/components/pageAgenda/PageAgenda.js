@@ -4,6 +4,9 @@ import { Component } from 'react';
 import AgendaJours from './agendaJours/AgendaJours';
 import AgendaMois from './agendaMois/AgendaMois';
 
+// Page Agenda, elle affiche des boutons qui permettent la selection d'un jour du calendrier
+// La selection d'un jour ouvrer la page de consultation des rendez-vous
+// Il est possible de se déplacer mois par mois ou année par année
 export default class PageAgenda extends Component {
     constructor()
     {
@@ -44,7 +47,7 @@ export default class PageAgenda extends Component {
     }
 
 
-
+    // Affiche l'agenda
     agenda()
     {
         if (this.state.choisirMois) 

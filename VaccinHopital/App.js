@@ -16,6 +16,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
 
+	// Déclaration des pages parmis lesquelles la naviagation est possible
+	// Chaque page reçoit une des props liées à la naviagation due à sa présence dans la stack
+	// On utilise les props de naviagation : navigation et route 
 	return (
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName="PageLogin">

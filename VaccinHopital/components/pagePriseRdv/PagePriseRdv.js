@@ -66,7 +66,6 @@ export default class PagePriseRdv extends Component
         for (const vaccin of this.listeVacins)
         {
             let dateDePeremption = new Date(vaccin.datePeremption);
-            const dateChoisieSplit = this.dateChoisie.split('-');
             let dateRdv = new Date(annee,mois-1,jour+1,0,0,0);
             
             if (dateDePeremption > dateRdv )
