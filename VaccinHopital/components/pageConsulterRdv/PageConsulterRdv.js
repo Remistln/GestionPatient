@@ -23,19 +23,11 @@ export default function PageConsulterRdv({route}) {
 	//const ip ="172.20.10.9:8000"; //ip aya
 	//const ip ="192.168.42.96:8000"; //ip aya
 
-<<<<<<< HEAD
-
-	// Suppression d'un rendez-vous dans l'API
-	function delete_rdv(ip, id){
-		let requete = "http://" + ip + "/api/rendez_vouses/" + id
-=======
 	const navigation = useNavigation()
 
 	function get_rdv(ip) {
 
-
 		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
->>>>>>> gestionReservationSuppr
 
 		fetch(requete, {
 			headers: {
@@ -48,20 +40,12 @@ export default function PageConsulterRdv({route}) {
 
 			letRdvList(res);
 
-<<<<<<< HEAD
-	// reccupération des rendez-vous du jour
-	function get_rdv(ip) 
-	{
-		let requete = "http://" + ip + "/api/rendez_vouses?Date=" + choosenDate
-=======
-
 		}).catch(error => console.log(error))
 	}
 
 	function delete_rdv(ip, id) {
 
 		let vaccin = {}
->>>>>>> gestionReservationSuppr
 
 		let requete = "http://" + ip + "/api/rendez_vouses/" + id
 		fetch(requete, {
@@ -73,10 +57,6 @@ export default function PageConsulterRdv({route}) {
 				return response.json();
 			})
 			.then(res => {
-<<<<<<< HEAD
-				letRdvList(res);
-		}).catch(error => console.log(error))
-=======
 				vaccin = res.vaccin
 			})
 			.then(() => {
@@ -89,8 +69,6 @@ export default function PageConsulterRdv({route}) {
 				updateVaccin(ip, vaccin)
 			})
 
-
->>>>>>> gestionReservationSuppr
 	}
 
 	function updateVaccin(ip, vaccin) {
@@ -144,16 +122,8 @@ export default function PageConsulterRdv({route}) {
 									title={cardTitle}
 									caption={rdv.vaccin.type.label}
 								>
-<<<<<<< HEAD
 									{}
 									<Button color="warning" style={styles.btnCard} onPress= {() => {delete_rdv(ip, rdv.id)}}>Annuler le RDV</Button>
-=======
-									{/*<Button color="warning" style={styles.btnCard} onPress={() => {navigation.navigate('SupprimerRdv', {rdvid: rdv.id})}}>Annuler le RDV</Button>*/}
-									<Button color="warning" style={styles.btnCard} onPress={() => {
-										delete_rdv(ip, rdv.id)
-									}}>Annuler le RDV</Button>
-
->>>>>>> gestionReservationSuppr
 								</Card>
 							</Block>
 						)
@@ -175,13 +145,7 @@ const styles = StyleSheet.create({
 	titre:
 		{
 			textAlign: "center",
-<<<<<<< HEAD
 			height : "10%"
-=======
-			//backgroundColor: "green" ,
-			height: "10%"
-
->>>>>>> gestionReservationSuppr
 		},
 	TextTitre:
 		{
@@ -190,12 +154,7 @@ const styles = StyleSheet.create({
 			height: 60,
 			textAlign: "center",
 			zIndex: 0,
-<<<<<<< HEAD
 			flex : 1,
-=======
-			flex: 1,
-			//backgroundColor: "green" ,
->>>>>>> gestionReservationSuppr
 		},
 	cardBlock:
 		{
