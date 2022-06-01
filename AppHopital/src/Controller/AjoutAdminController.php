@@ -33,7 +33,7 @@ class AjoutAdminController extends AbstractController
                 $data = $request->request->get('form');
                 $data['mdp'] = password_hash($data['mdp'], PASSWORD_DEFAULT);
                 $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
-                $requetteAdmin = curl_init('http://localhost:8000/api/admins');
+                $requetteAdmin = curl_init('http://192.168.42.96:8000/api/admins');
 
                 curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $donneesAdmin);
                 curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));

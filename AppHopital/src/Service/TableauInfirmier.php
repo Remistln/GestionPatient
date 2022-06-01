@@ -9,7 +9,7 @@ class TableauInfirmier
 {
     public function GetInfirmiers()
     {
-        $appel = file_get_contents("http://localhost:8000/api/infirmiers");
+        $appel = file_get_contents("http://192.168.42.96:8000/api/infirmiers");
         $appel = json_decode($appel, true);
         $tableau = [];
 
@@ -32,7 +32,7 @@ class TableauInfirmier
 
     public function GetInfirmier($id)
     {
-        $appel = file_get_contents("http://localhost:8000/api/infirmiers/" . strval($id));
+        $appel = file_get_contents("http://192.168.42.96:8000/api/infirmiers/" . strval($id));
         $appel = json_decode($appel, true);
 
         $infirmiers = $appel;
@@ -72,7 +72,7 @@ class TableauInfirmier
         
         $donneeInfirmier = json_encode($data,true);
 
-        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers');
+        $requetteInfirmier = curl_init('http://192.168.42.96:8000/api/infirmiers');
 
         curl_setopt($requetteInfirmier, CURLOPT_POSTFIELDS, $donneeInfirmier);
         curl_setopt($requetteInfirmier, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -89,7 +89,7 @@ class TableauInfirmier
         $donneesInfirmier = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers/' . strval($idInfirmier));
+        $requetteInfirmier = curl_init('http://192.168.42.96:8000/api/infirmiers/' . strval($idInfirmier));
 
         curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteInfirmier, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -105,7 +105,7 @@ class TableauInfirmier
     public function DeleteInfirmier($idInfirmier)
     {
     
-        $requetteInfirmier = curl_init('http://localhost:8000/api/infirmiers/' . strval($idInfirmier));
+        $requetteInfirmier = curl_init('http://192.168.42.96:8000/api/infirmiers/' . strval($idInfirmier));
         curl_setopt($requetteInfirmier, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requetteInfirmier, CURLOPT_RETURNTRANSFER, true);
     

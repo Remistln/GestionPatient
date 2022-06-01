@@ -9,7 +9,7 @@ class TableauPatient
 {
     public function GetPatients()
     {
-        $appel = file_get_contents("http://localhost:8000/api/patients");
+        $appel = file_get_contents("http://192.168.42.96:8000/api/patients");
         $appel = json_decode($appel,true);
 
         $tableau = [];
@@ -49,7 +49,7 @@ class TableauPatient
 
     public function GetPatient($id)
     {
-        $appel = file_get_contents("http://localhost:8000/api/patients/" . strval($id));
+        $appel = file_get_contents("http://192.168.42.96:8000/api/patients/" . strval($id));
         $appel = json_decode($appel,true);
 
         $patientReponse = $appel;
@@ -84,7 +84,7 @@ class TableauPatient
         $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requettePatient = curl_init('http://localhost:8000/api/patients');
+        $requettePatient = curl_init('http://192.168.42.96:8000/api/patients');
 
         curl_setopt($requettePatient, CURLOPT_POSTFIELDS, $donneesPatient);
         curl_setopt($requettePatient, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -100,7 +100,7 @@ class TableauPatient
         $donneesPatient = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requettePatient = curl_init('http://localhost:8000/api/patients/' . strval($idPatient));
+        $requettePatient = curl_init('http://192.168.42.96:8000/api/patients/' . strval($idPatient));
 
         curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requettePatient, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -115,7 +115,7 @@ class TableauPatient
     public function DeletePatient($idPatient)
     {
     
-        $requettePatient = curl_init('http://localhost:8000/api/patients/' . strval($idPatient));
+        $requettePatient = curl_init('http://192.168.42.96:8000/api/patients/' . strval($idPatient));
         curl_setopt($requettePatient, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requettePatient, CURLOPT_RETURNTRANSFER, true);
     

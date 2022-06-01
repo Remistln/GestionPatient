@@ -37,7 +37,7 @@ class AjoutInfirmierController extends AbstractController
 
                 dump($data);
                 $donneesInfirmier = json_encode($data, JSON_UNESCAPED_SLASHES, true);
-                $requestInfirmier = curl_init('http://localhost:8000/api/infirmiers');
+                $requestInfirmier = curl_init('http://192.168.42.96:8000/api/infirmiers');
 
                 curl_setopt($requestInfirmier, CURLOPT_POSTFIELDS, $donneesInfirmier);
                 curl_setopt($requestInfirmier, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));

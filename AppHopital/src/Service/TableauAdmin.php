@@ -9,7 +9,7 @@ class TableauAdmin
 {
     public function GetAdmins()
     {
-        $appel = file_get_contents("http://localhost:8000/api/admins");
+        $appel = file_get_contents("http://192.168.42.96:8000/api/admins");
         $appel = json_decode($appel, true);
         $tableau = [];
         $admins = $appel["hydra:member"];
@@ -30,7 +30,7 @@ class TableauAdmin
 
     public function GetAdmin($id)
     {
-        $appel = file_get_contents("http://localhost:8000/api/admins/" . strval($id));
+        $appel = file_get_contents("http://192.168.42.96:8000/api/admins/" . strval($id));
         $appel = json_decode($appel, true);
 
         $admins = $appel;
@@ -70,7 +70,7 @@ class TableauAdmin
         
         $donneeAdmin = json_encode($data,true);
 
-        $requetteAdmin = curl_init('http://localhost:8000/api/admins');
+        $requetteAdmin = curl_init('http://192.168.42.96:8000/api/admins');
 
         curl_setopt($requetteAdmin, CURLOPT_POSTFIELDS, $donneeAdmin);
         curl_setopt($requetteAdmin, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -87,7 +87,7 @@ class TableauAdmin
         $donneesAdmin = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteAdmin = curl_init('http://localhost:8000/api/admins/' . strval($idAdmin));
+        $requetteAdmin = curl_init('http://192.168.42.96:8000/api/admins/' . strval($idAdmin));
 
         curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteAdmin, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -102,7 +102,7 @@ class TableauAdmin
     public function DeleteAdmin($idAdmin)
     {
     
-        $requetteAdmin = curl_init('http://localhost:8000/api/admins/' . strval($idAdmin));
+        $requetteAdmin = curl_init('http://192.168.42.96:8000/api/admins/' . strval($idAdmin));
         curl_setopt($requetteAdmin, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requetteAdmin, CURLOPT_RETURNTRANSFER, true);
     
