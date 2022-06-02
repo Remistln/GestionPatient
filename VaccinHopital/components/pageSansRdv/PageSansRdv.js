@@ -180,7 +180,6 @@ export default function PageSansRdv({navigation}) {
 						   onChange={() => {
 							   ckeckInfo("Moderna", ip)
 						   }}/>
-
 				</Block>
 			</Block>
 
