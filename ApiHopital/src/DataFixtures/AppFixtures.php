@@ -11,6 +11,7 @@ use App\Entity\Secretaire;
 use App\Entity\Service;
 use App\Entity\TypeVaccin;
 use App\Entity\Vaccin;
+use App\Entity\PriseEnCharge;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -49,7 +50,8 @@ class AppFixtures extends Fixture
         $mdpFile = "mdp.txt";
         $mdpData = "Liste des mdps :\n";
         
-
+        $idPatients = [];
+        $idInfirmiers = [];
         for ($i = 0; $i < 10; $i++) {
 
             $identifiantAdmin = $faker->email();
@@ -74,6 +76,8 @@ class AppFixtures extends Fixture
             $infirmier->setIdentifiant($identifiantInfirmier);
             $infirmier->setMdp(password_hash($mdpInfirmier, PASSWORD_DEFAULT));
             $manager->persist($infirmier);
+
+            array_push($idInfirmiers, $infirmier->getId());
 
             $service = new Service();
             $service->setLabel($list_services[$i]);
@@ -109,6 +113,8 @@ class AppFixtures extends Fixture
                     $patient->setProbleme($faker->text());
                     $patient->setNumeroSS($faker->randomDigit());
                     $manager->persist($patient);
+
+                    array_push($idPatients, $patient->getId());
                 }
                 
                 for ($j = 0; $j < 10; $j++)
@@ -187,5 +193,17 @@ class AppFixtures extends Fixture
         $manager->flush();
 
         file_put_contents($mdpFile, $mdpData);
+/*
+        for ($z = 0; $z < count($idPatients); $z++)
+        {
+            for ($h = 0; $h < 6; $h++)
+            {    
+                $priseEnCharge = new PriseEnCharge();
+                $priseEnCharge->setIdPatient($idPatients[$z]->getId());
+                $priseEnCharge->setIdPatient($idInfirmiers[rand(0, count($idInfirmiers))]->getId());
+                $manager->persist($vaccin);
+            }
+        }
+        $manager->flush();*/
     }
 }
