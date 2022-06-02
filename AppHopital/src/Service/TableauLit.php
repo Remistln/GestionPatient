@@ -9,7 +9,7 @@ class TableauLit
 {
     public function GetLits()
     {
-        $appel = file_get_contents("http://192.168.42.96:8000/api/lits");
+        $appel = file_get_contents("http://localhost:8000/api/lits");
         $appel = json_decode($appel, true);
 
         $tableau = [];
@@ -34,7 +34,7 @@ class TableauLit
 
     public function GetLit($id)
     {
-        $appel = file_get_contents("http://192.168.42.96:8000/api/lits/" . strval($id));
+        $appel = file_get_contents("http://localhost:8000/api/lits/" . strval($id));
         $appel = json_decode($appel, true);
 
         $lits = $appel;
@@ -57,7 +57,7 @@ class TableauLit
         
         $donneeLit = json_encode($data,true);
 
-        $requetteLit = curl_init('http://192.168.42.96:8000/api/lits');
+        $requetteLit = curl_init('http://localhost:8000/api/lits');
 
         curl_setopt($requetteLit, CURLOPT_POSTFIELDS, $donneeLit);
         curl_setopt($requetteLit, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -74,7 +74,7 @@ class TableauLit
         $donneesLit = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteLit = curl_init('http://192.168.42.96:8000/api/lits/' . strval($idLit));
+        $requetteLit = curl_init('http://localhost:8000/api/lits/' . strval($idLit));
 
         curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteLit, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -89,7 +89,7 @@ class TableauLit
     public function DeleteLit($idLit)
     {
     
-        $requetteLit = curl_init('http://192.168.42.96:8000/api/lits/' . strval($idLit));
+        $requetteLit = curl_init('http://localhost:8000/api/lits/' . strval($idLit));
         curl_setopt($requetteLit, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requetteLit, CURLOPT_RETURNTRANSFER, true);
     

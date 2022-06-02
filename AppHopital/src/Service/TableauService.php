@@ -9,7 +9,7 @@ class TableauService
 {
     public function GetServices()
     {
-        $appel = file_get_contents("http://192.168.42.96:8000/api/services");
+        $appel = file_get_contents("http://localhost:8000/api/services");
         $appel = json_decode($appel,true);
         $tableau = [];
         $service = $appel["hydra:member"];
@@ -27,7 +27,7 @@ class TableauService
 
     public function GetService($id)
     {
-        $appel = file_get_contents("http://192.168.42.96:8000/api/services/" . strval($id));
+        $appel = file_get_contents("http://localhost:8000/api/services/" . strval($id));
         $appel = json_decode($appel,true);
         
         $services = $appel;
@@ -47,7 +47,7 @@ class TableauService
         
         $donneeService = json_encode($data,true);
 
-        $requetteService = curl_init('http://192.168.42.96:8000/api/services');
+        $requetteService = curl_init('http://localhost:8000/api/services');
 
         curl_setopt($requetteService, CURLOPT_POSTFIELDS, $donneeService);
         curl_setopt($requetteService, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -64,7 +64,7 @@ class TableauService
         $donneesService = json_encode($data, JSON_UNESCAPED_SLASHES, true);
 
             
-        $requetteService = curl_init('http://192.168.42.96:8000/api/services/' . strval($idService));
+        $requetteService = curl_init('http://localhost:8000/api/services/' . strval($idService));
 
         curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($requetteService, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -79,7 +79,7 @@ class TableauService
     public function DeleteService($idService)
     {
     
-        $requetteService = curl_init('http://192.168.42.96:8000/api/services/' . strval($idService));
+        $requetteService = curl_init('http://localhost:8000/api/services/' . strval($idService));
         curl_setopt($requetteService, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($requetteService, CURLOPT_RETURNTRANSFER, true);
     
